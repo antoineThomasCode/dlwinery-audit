@@ -66,6 +66,7 @@
   section {
     padding: 4rem 0;
     border-bottom: 1px solid var(--border-light);
+    overflow-x: auto;
   }
   section:last-of-type { border-bottom: none; }
 
@@ -168,6 +169,8 @@
     padding: 2rem;
     margin: 1.5rem 0;
     backdrop-filter: blur(4px);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   /* === EXECUTIVE SUMMARY BULLETS === */
@@ -726,11 +729,20 @@
   }
 
   /* === TABLE === */
+  .table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 1.5rem 0;
+  }
+  .table-scroll .data-table {
+    margin: 0;
+  }
   .data-table {
     width: 100%;
     border-collapse: collapse;
     margin: 1.5rem 0;
     font-size: 0.85rem;
+    min-width: 500px;
   }
   .data-table th {
     font-family: var(--font-mono);
@@ -947,22 +959,91 @@
 
   /* === RESPONSIVE === */
   @media (max-width: 640px) {
-    h1 { font-size: 1.8rem; }
-    h2 { font-size: 1.35rem; }
-    .stat-grid { grid-template-columns: repeat(2, 1fr); }
-    .timeline { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    html { font-size: 15px; }
+    .container { padding: 0 1rem; }
+    h1 { font-size: 1.6rem; }
+    h2 { font-size: 1.25rem; }
+    h3 { font-size: 1.05rem; }
+    .subtitle { font-size: 0.95rem; margin-bottom: 1.25rem; }
+    section { padding: 2rem 0; }
+
+    /* Cover */
+    .cover { min-height: 70vh; padding: 2.5rem 1.25rem; }
+    .cover h1 { font-size: clamp(1.5rem, 6vw, 2rem); }
+    .cover .subtitle { font-size: 0.9rem; }
+
+    /* Cards & containers */
+    .glass-card { padding: 1.25rem; margin: 1rem 0; }
+    .confidential { padding: 1rem 1.25rem; }
+    .stat-grid { grid-template-columns: repeat(2, 1fr); gap: 0.6rem; }
+    .stat-card { padding: 0.85rem; }
+    .stat-card .value { font-size: 1.5rem; }
+    .stat-card .desc { font-size: 0.72rem; }
+
+    /* Grids → single column */
+    .timeline { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
     .timeline::before { display: none; }
+    .timeline-title { font-size: 0.78rem; }
     .advantage-grid { grid-template-columns: 1fr; }
+    .advantage-card { padding: 1rem; }
     .pricing-grid { grid-template-columns: 1fr; }
+    .pricing-card { padding: 1.25rem; }
+    .pricing-card .price { font-size: 1.8rem; }
     .process-flow { grid-template-columns: 1fr; }
-    .milestone-grid { grid-template-columns: repeat(2, 1fr); }
+    .milestone-grid { grid-template-columns: repeat(2, 1fr); gap: 0.6rem; }
+    .milestone-card { padding: 0.85rem; }
+    .milestone-card h4 { font-size: 0.8rem; }
+    .milestone-card ul li { font-size: 0.72rem; }
     .replaces-grid { grid-template-columns: 1fr; }
     .includes-grid { grid-template-columns: 1fr; }
     .tools-grid { grid-template-columns: 1fr; }
-    section { padding: 2.5rem 0; }
+    .tool-card { padding: 1rem; }
+
+    /* Charts */
     .chart-container { flex-direction: column; }
-    .cover { min-height: 70vh; padding: 3rem 1.5rem; }
-    .market-label { width: 7rem; font-size: 0.7rem; }
+    .chart-container svg { width: 140px; height: 140px; }
+
+    /* Bar charts */
+    .bar-label { width: 2rem; font-size: 0.62rem; }
+    .bar-track { height: 22px; }
+    .bar-value { width: 3rem; font-size: 0.62rem; }
+    .gap-label { width: 4rem; font-size: 0.68rem; }
+    .gap-track { height: 18px; }
+    .gap-value { font-size: 0.62rem; }
+
+    /* Projection chart */
+    .proj-value { width: 4.5rem; font-size: 0.58rem; }
+
+    /* Market labels */
+    .market-label { width: 6.5rem; font-size: 0.65rem; }
+
+    /* Tables — horizontal scroll */
+    .data-table { font-size: 0.75rem; min-width: 480px; }
+    .data-table th { padding: 0.4rem 0.5rem; font-size: 0.58rem; }
+    .data-table td { padding: 0.4rem 0.5rem; }
+    .data-table .mono { font-size: 0.7rem; }
+
+    /* Phase details */
+    .phase-detail { padding: 1rem 1.25rem; margin-bottom: 0.75rem; }
+    .phase-detail h4 { font-size: 0.88rem; line-height: 1.35; }
+    .phase-detail ul li { font-size: 0.82rem; }
+    .phase-detail .kpi-line { font-size: 0.78rem; }
+
+    /* Annotation boxes */
+    .annotation-box { padding: 0.85rem 1rem; font-size: 0.82rem; }
+
+    /* Exec list */
+    .exec-list li { padding: 0.85rem 0.85rem 0.85rem 2.2rem; font-size: 0.88rem; }
+
+    /* CTA */
+    .cta-section { padding: 3rem 1.25rem; margin: 1rem 0; }
+    .cta-section h2 { font-size: 1.25rem; }
+
+    /* Opportunity sections */
+    .opportunity { margin-bottom: 2rem; padding-bottom: 1.5rem; }
+    .opportunity-header { gap: 0.6rem; }
+    .explainer { padding: 0.85rem 1rem; font-size: 0.8rem; }
+    .potential-box { padding: 0.85rem 1rem; font-size: 0.82rem; }
   }
 
   /* Hide print-only blocks on screen */
