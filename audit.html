@@ -3221,24 +3221,68 @@
         </div>
       </div>
       <div style="background: #fafafa; border-radius: var(--radius); padding: 0.85rem; margin-bottom: 0.75rem;">
-        <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.5rem;">Objectifs (2 sur 3 requis) &mdash; modifiez selon vos priorit&eacute;s</p>
-        <div style="display: flex; flex-direction: column; gap: 0.4rem;">
-          <div style="display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap;">
-            <span style="font-size: 0.78rem; color: var(--text-secondary);">&ge;</span>
-            <input type="number" id="obj-1-val" placeholder="200" min="0" style="font-family: var(--font-mono); font-size: 0.82rem; font-weight: 600; color: var(--text); border: 2px solid var(--border); border-radius: 5px; padding: 0.25rem 0.4rem; width: 70px; outline: none; background: #fff; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border)'">
-            <input type="text" id="obj-1-label" placeholder="r&eacute;servations en ligne / trimestre" style="font-size: 0.78rem; color: var(--text-secondary); border: 1px solid var(--border-light); border-radius: 5px; padding: 0.25rem 0.4rem; flex: 1; min-width: 150px; outline: none; background: #fff; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border-light)'">
-          </div>
-          <div style="display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap;">
-            <span style="font-size: 0.78rem; color: var(--text-secondary);">&ge;</span>
-            <input type="number" id="obj-2-val" placeholder="500" min="0" style="font-family: var(--font-mono); font-size: 0.82rem; font-weight: 600; color: var(--text); border: 2px solid var(--border); border-radius: 5px; padding: 0.25rem 0.4rem; width: 70px; outline: none; background: #fff; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border)'">
-            <input type="text" id="obj-2-label" placeholder="abonn&eacute;s email collect&eacute;s / trimestre" style="font-size: 0.78rem; color: var(--text-secondary); border: 1px solid var(--border-light); border-radius: 5px; padding: 0.25rem 0.4rem; flex: 1; min-width: 150px; outline: none; background: #fff; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border-light)'">
-          </div>
-          <div style="display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap;">
-            <span style="font-size: 0.78rem; color: var(--text-secondary);">&ge;</span>
-            <input type="text" id="obj-3-val" placeholder="$15K" style="font-family: var(--font-mono); font-size: 0.82rem; font-weight: 600; color: var(--text); border: 2px solid var(--border); border-radius: 5px; padding: 0.25rem 0.4rem; width: 70px; outline: none; background: #fff; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border)'">
-            <input type="text" id="obj-3-label" placeholder="CA en ligne Vinoshipper / trimestre" style="font-size: 0.78rem; color: var(--text-secondary); border: 1px solid var(--border-light); border-radius: 5px; padding: 0.25rem 0.4rem; flex: 1; min-width: 150px; outline: none; background: #fff; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border-light)'">
-          </div>
+        <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.35rem;">S&eacute;lectionnez vos objectifs</p>
+        <p style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.6rem;">Cochez les indicateurs sur lesquels vous souhaitez me mesurer. Ce sont des m&eacute;triques o&ugrave; mes actions digitales ont un impact direct et v&eacute;rifiable. Vous choisissez le nombre d'objectifs et les seuils.</p>
+        <div id="obj-list" style="display: flex; flex-direction: column; gap: 0.5rem;">
+
+          <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.4rem 0.5rem; border-radius: 6px; transition: background 0.15s;" onmouseover="this.style.background='rgba(34,197,94,0.06)'" onmouseout="this.style.background='transparent'">
+            <input type="checkbox" class="obj-check" data-label="R&eacute;servations en ligne / trimestre" style="accent-color: var(--green); width: 16px; height: 16px; cursor: pointer;">
+            <span style="font-size: 0.78rem; color: var(--text-secondary); flex: 1;">R&eacute;servations en ligne</span>
+            <span style="font-size: 0.72rem; color: var(--text-muted);">&ge;</span>
+            <input type="number" class="obj-val" placeholder="200" min="0" style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--text); border: 2px solid var(--border); border-radius: 5px; padding: 0.2rem 0.35rem; width: 65px; outline: none; background: #fff;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border)'">
+            <span style="font-size: 0.68rem; color: var(--text-muted);">/ trim.</span>
+          </label>
+
+          <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.4rem 0.5rem; border-radius: 6px; transition: background 0.15s;" onmouseover="this.style.background='rgba(34,197,94,0.06)'" onmouseout="this.style.background='transparent'">
+            <input type="checkbox" class="obj-check" data-label="Abonn&eacute;s email collect&eacute;s / trimestre" style="accent-color: var(--green); width: 16px; height: 16px; cursor: pointer;">
+            <span style="font-size: 0.78rem; color: var(--text-secondary); flex: 1;">Abonn&eacute;s email collect&eacute;s</span>
+            <span style="font-size: 0.72rem; color: var(--text-muted);">&ge;</span>
+            <input type="number" class="obj-val" placeholder="500" min="0" style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--text); border: 2px solid var(--border); border-radius: 5px; padding: 0.2rem 0.35rem; width: 65px; outline: none; background: #fff;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border)'">
+            <span style="font-size: 0.68rem; color: var(--text-muted);">/ trim.</span>
+          </label>
+
+          <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.4rem 0.5rem; border-radius: 6px; transition: background 0.15s;" onmouseover="this.style.background='rgba(34,197,94,0.06)'" onmouseout="this.style.background='transparent'">
+            <input type="checkbox" class="obj-check" data-label="CA en ligne Vinoshipper / trimestre" style="accent-color: var(--green); width: 16px; height: 16px; cursor: pointer;">
+            <span style="font-size: 0.78rem; color: var(--text-secondary); flex: 1;">CA en ligne Vinoshipper</span>
+            <span style="font-size: 0.72rem; color: var(--text-muted);">&ge;</span>
+            <input type="text" class="obj-val" placeholder="$15K" style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--text); border: 2px solid var(--border); border-radius: 5px; padding: 0.2rem 0.35rem; width: 65px; outline: none; background: #fff;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border)'">
+            <span style="font-size: 0.68rem; color: var(--text-muted);">/ trim.</span>
+          </label>
+
+          <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.4rem 0.5rem; border-radius: 6px; transition: background 0.15s;" onmouseover="this.style.background='rgba(34,197,94,0.06)'" onmouseout="this.style.background='transparent'">
+            <input type="checkbox" class="obj-check" data-label="Inscriptions Wine Club en ligne / trimestre" style="accent-color: var(--green); width: 16px; height: 16px; cursor: pointer;">
+            <span style="font-size: 0.78rem; color: var(--text-secondary); flex: 1;">Inscriptions Wine Club en ligne</span>
+            <span style="font-size: 0.72rem; color: var(--text-muted);">&ge;</span>
+            <input type="number" class="obj-val" placeholder="30" min="0" style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--text); border: 2px solid var(--border); border-radius: 5px; padding: 0.2rem 0.35rem; width: 65px; outline: none; background: #fff;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border)'">
+            <span style="font-size: 0.68rem; color: var(--text-muted);">/ trim.</span>
+          </label>
+
+          <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.4rem 0.5rem; border-radius: 6px; transition: background 0.15s;" onmouseover="this.style.background='rgba(34,197,94,0.06)'" onmouseout="this.style.background='transparent'">
+            <input type="checkbox" class="obj-check" data-label="Trafic site web / trimestre" style="accent-color: var(--green); width: 16px; height: 16px; cursor: pointer;">
+            <span style="font-size: 0.78rem; color: var(--text-secondary); flex: 1;">Trafic site web (visiteurs uniques)</span>
+            <span style="font-size: 0.72rem; color: var(--text-muted);">&ge;</span>
+            <input type="number" class="obj-val" placeholder="5000" min="0" style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--text); border: 2px solid var(--border); border-radius: 5px; padding: 0.2rem 0.35rem; width: 65px; outline: none; background: #fff;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border)'">
+            <span style="font-size: 0.68rem; color: var(--text-muted);">/ trim.</span>
+          </label>
+
+          <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.4rem 0.5rem; border-radius: 6px; transition: background 0.15s;" onmouseover="this.style.background='rgba(34,197,94,0.06)'" onmouseout="this.style.background='transparent'">
+            <input type="checkbox" class="obj-check" data-label="Taux d'ouverture email / trimestre" style="accent-color: var(--green); width: 16px; height: 16px; cursor: pointer;">
+            <span style="font-size: 0.78rem; color: var(--text-secondary); flex: 1;">Taux d'ouverture email</span>
+            <span style="font-size: 0.72rem; color: var(--text-muted);">&ge;</span>
+            <input type="text" class="obj-val" placeholder="25%" style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--text); border: 2px solid var(--border); border-radius: 5px; padding: 0.2rem 0.35rem; width: 65px; outline: none; background: #fff;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border)'">
+            <span style="font-size: 0.68rem; color: var(--text-muted);">/ trim.</span>
+          </label>
+
+          <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.4rem 0.5rem; border-radius: 6px; transition: background 0.15s;" onmouseover="this.style.background='rgba(34,197,94,0.06)'" onmouseout="this.style.background='transparent'">
+            <input type="checkbox" class="obj-check" data-label="Avis Google collect&eacute;s / trimestre" style="accent-color: var(--green); width: 16px; height: 16px; cursor: pointer;">
+            <span style="font-size: 0.78rem; color: var(--text-secondary); flex: 1;">Avis Google collect&eacute;s</span>
+            <span style="font-size: 0.72rem; color: var(--text-muted);">&ge;</span>
+            <input type="number" class="obj-val" placeholder="20" min="0" style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--text); border: 2px solid var(--border); border-radius: 5px; padding: 0.2rem 0.35rem; width: 65px; outline: none; background: #fff;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border)'">
+            <span style="font-size: 0.68rem; color: var(--text-muted);">/ trim.</span>
+          </label>
+
         </div>
+        <p id="obj-count" style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.5rem; margin-bottom: 0;">0 objectif s&eacute;lectionn&eacute;</p>
       </div>
       <p id="option-c-sim" style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0; line-height: 1.45;"><strong>Simulation :</strong> Entrez un montant ci-dessus pour voir le co&ucirc;t annuel.</p>
     </div>
@@ -3353,15 +3397,17 @@
 
       var now = new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Paris', dateStyle: 'short', timeStyle: 'medium' });
 
-      // Collect objectives
-      var obj1v = document.getElementById('obj-1-val').value || document.getElementById('obj-1-val').placeholder;
-      var obj1l = document.getElementById('obj-1-label').value || document.getElementById('obj-1-label').placeholder;
-      var obj2v = document.getElementById('obj-2-val').value || document.getElementById('obj-2-val').placeholder;
-      var obj2l = document.getElementById('obj-2-label').value || document.getElementById('obj-2-label').placeholder;
-      var obj3v = document.getElementById('obj-3-val').value || document.getElementById('obj-3-val').placeholder;
-      var obj3l = document.getElementById('obj-3-label').value || document.getElementById('obj-3-label').placeholder;
-
-      var objModified = document.getElementById('obj-1-val').value || document.getElementById('obj-1-label').value || document.getElementById('obj-2-val').value || document.getElementById('obj-2-label').value || document.getElementById('obj-3-val').value || document.getElementById('obj-3-label').value;
+      // Collect selected objectives
+      var checks = document.querySelectorAll('.obj-check');
+      var selectedObjs = [];
+      checks.forEach(function(cb) {
+        if (cb.checked) {
+          var row = cb.closest('label');
+          var val = row.querySelector('.obj-val').value || row.querySelector('.obj-val').placeholder;
+          var label = cb.getAttribute('data-label');
+          selectedObjs.push({ val: val, label: label });
+        }
+      });
 
       var text = [
         '\u{1F4CA} *Simulateur Le Clos utilis\u00e9*',
@@ -3377,11 +3423,11 @@
         '*Option C (bonus) :* ' + (cAmount > 0 ? fmt(cAmount) + '/trim = ' + fmt(cAmount * 2) + '/an' : 'Non renseign\u00e9'),
       ].join('\n');
 
-      if (objModified || cAmount > 0) {
-        text += '\n\n*Objectifs Option C' + (objModified ? ' (modifi\u00e9s)' : '') + ' :*';
-        text += '\n\u2022 \u2265 ' + obj1v + ' ' + obj1l;
-        text += '\n\u2022 \u2265 ' + obj2v + ' ' + obj2l;
-        text += '\n\u2022 \u2265 ' + obj3v + ' ' + obj3l;
+      if (selectedObjs.length > 0) {
+        text += '\n\n*Objectifs choisis (' + selectedObjs.length + ') :*';
+        selectedObjs.forEach(function(o) {
+          text += '\n\u2022 \u2265 ' + o.val + ' ' + o.label;
+        });
       }
 
       if (trackHistory.length > 0) {
@@ -3428,25 +3474,44 @@
       simB.textContent = fmt(bTotal);
       simBDetail.textContent = '~' + fmt(bPerMonth) + '/mois sur 5 mois';
 
-      // Option C: dynamic from input
+      // Option C: dynamic from input + objectives
       var cAmount = parseInt(optionCInput.value) || 0;
+      var objCount = document.querySelectorAll('.obj-check:checked').length;
+      var reqCount = Math.max(1, Math.ceil(objCount / 2));
       if (cAmount > 0) {
         simC.textContent = fmt(cAmount * 2);
         simCDetail.textContent = fmt(cAmount) + '/trim \u00d7 2 trimestres';
-        optionCSim.innerHTML = '<strong>Simulation :</strong> ' + fmt(cAmount) + '/trimestre \u00d7 2 trimestres actifs (Q3 + Q4) = <strong>' + fmt(cAmount * 2) + '/an</strong>. Objectifs non atteints = z\u00e9ro bonus.';
+        var objSuffix = objCount > 0 ? ' si ' + reqCount + '/' + objCount + ' objectifs atteints.' : '';
+        optionCSim.innerHTML = '<strong>Simulation :</strong> ' + fmt(cAmount) + '/trimestre \u00d7 2 trimestres actifs (Q3 + Q4) = <strong>' + fmt(cAmount * 2) + '/an</strong>' + objSuffix + ' Objectifs non atteints = z\u00e9ro bonus.';
       } else {
         simC.textContent = '\u2014';
-        simCDetail.textContent = 'Entrez un montant dans l\'Option C ci-dessus';
+        simCDetail.textContent = 'Entrez un montant ci-dessus';
         optionCSim.innerHTML = '<strong>Simulation :</strong> Entrez un montant ci-dessus pour voir le co\u00fbt annuel.';
       }
 
       scheduleTracking();
     }
 
+    function updateObjCount() {
+      var count = document.querySelectorAll('.obj-check:checked').length;
+      var el = document.getElementById('obj-count');
+      if (count === 0) {
+        el.textContent = '0 objectif s\u00e9lectionn\u00e9';
+      } else {
+        el.textContent = count + ' objectif' + (count > 1 ? 's' : '') + ' s\u00e9lectionn\u00e9' + (count > 1 ? 's' : '') + ' \u2014 bonus vers\u00e9 si ' + Math.max(1, Math.ceil(count / 2)) + '/' + count + ' atteint' + (Math.max(1, Math.ceil(count / 2)) > 1 ? 's' : '');
+        el.style.color = 'var(--green)';
+        el.style.fontWeight = '600';
+      }
+      scheduleTracking();
+    }
+
     slider.addEventListener('input', update);
     optionCInput.addEventListener('input', update);
-    ['obj-1-val','obj-1-label','obj-2-val','obj-2-label','obj-3-val','obj-3-label'].forEach(function(id) {
-      document.getElementById(id).addEventListener('input', scheduleTracking);
+    document.querySelectorAll('.obj-check').forEach(function(cb) {
+      cb.addEventListener('change', updateObjCount);
+    });
+    document.querySelectorAll('.obj-val').forEach(function(inp) {
+      inp.addEventListener('input', scheduleTracking);
     });
     update();
   })();
