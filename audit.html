@@ -3921,5 +3921,133 @@
   </p>
 </footer>
 
+<!-- ============================================================ -->
+<!-- BEHAVIORAL TRACKING — section visibility, scroll, heartbeat -->
+<!-- ============================================================ -->
+<script>
+(function() {
+  var token = window.__VIEWER_TOKEN__ || '';
+  if (!token) return;
+
+  var device = /mobile|android|iphone/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop';
+  var scrollMax = 0;
+  var sectionTimers = {}; // sectionName -> ms accumulated this interval
+  var visibleSections = {}; // sectionName -> enterTimestamp
+
+  // Find all sections by H2 headings — each H2's parent section is tracked
+  var h2s = document.querySelectorAll('h2');
+  var sectionEls = [];
+  h2s.forEach(function(h2) {
+    var section = h2.closest('section');
+    if (!section) return;
+    // Use h2 text as label (cleaned)
+    var label = h2.textContent.replace(/\s+/g, ' ').trim().substring(0, 50);
+    if (section.dataset.trackLabel) return; // already tagged
+    section.dataset.trackLabel = label;
+    sectionEls.push(section);
+  });
+
+  // Also track the simulator specifically
+  var simSection = document.getElementById('sim-slider');
+  if (simSection) {
+    var simContainer = simSection.closest('.glass-card') || simSection.closest('div');
+    if (simContainer && !simContainer.dataset.trackLabel) {
+      simContainer.dataset.trackLabel = 'Simulateur Le Clos';
+      sectionEls.push(simContainer);
+    }
+  }
+
+  // IntersectionObserver — track which sections are visible
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        var label = entry.target.dataset.trackLabel;
+        if (!label) return;
+        if (entry.isIntersecting) {
+          visibleSections[label] = Date.now();
+        } else {
+          // Section left viewport — accumulate time
+          if (visibleSections[label]) {
+            var elapsed = Date.now() - visibleSections[label];
+            sectionTimers[label] = (sectionTimers[label] || 0) + elapsed;
+            delete visibleSections[label];
+          }
+        }
+      });
+    }, { threshold: 0.3 });
+
+    sectionEls.forEach(function(el) { observer.observe(el); });
+  }
+
+  // Scroll tracking
+  window.addEventListener('scroll', function() {
+    var scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (scrollHeight > 0) {
+      var pct = Math.round((window.scrollY / scrollHeight) * 100);
+      if (pct > scrollMax) scrollMax = pct;
+    }
+  }, { passive: true });
+
+  // Heartbeat — send data every 30s
+  setInterval(function() {
+    // Flush visible sections (still on screen)
+    var now = Date.now();
+    for (var label in visibleSections) {
+      var elapsed = now - visibleSections[label];
+      sectionTimers[label] = (sectionTimers[label] || 0) + elapsed;
+      visibleSections[label] = now; // reset
+    }
+
+    // Only send if there's data
+    var hasSections = Object.keys(sectionTimers).length > 0;
+    if (!hasSections && scrollMax === 0) return;
+
+    var payload = {
+      token: token,
+      device: device,
+      scrollMax: scrollMax,
+      sections: {}
+    };
+
+    // Copy and reset section timers
+    for (var s in sectionTimers) {
+      if (sectionTimers[s] > 0) {
+        payload.sections[s] = sectionTimers[s];
+      }
+    }
+    sectionTimers = {};
+
+    fetch('/event', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).catch(function() {});
+  }, 30000);
+
+  // Send final flush on page unload
+  document.addEventListener('visibilitychange', function() {
+    if (document.visibilityState === 'hidden') {
+      var now = Date.now();
+      for (var label in visibleSections) {
+        sectionTimers[label] = (sectionTimers[label] || 0) + (now - visibleSections[label]);
+      }
+      var payload = {
+        token: token,
+        device: device,
+        scrollMax: scrollMax,
+        sections: sectionTimers,
+        event: 'page_leave'
+      };
+      // Use sendBeacon for reliability
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon('/event', JSON.stringify(payload));
+      } else {
+        fetch('/event', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload), keepalive: true }).catch(function(){});
+      }
+    }
+  });
+})();
+</script>
+
 </body>
 </html>
