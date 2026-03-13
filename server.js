@@ -67,10 +67,11 @@ const server = http.createServer(async (req, res) => {
     req.on("data", (chunk) => { body += chunk; });
     req.on("end", async () => {
       try {
-        const { text, token: viewerToken } = JSON.parse(body);
+        const { text, token: viewerToken, isProposal } = JSON.parse(body);
         const trackViewer = viewerToken && TOKENS[viewerToken];
-        // Only send Telegram alert if viewer has notify: true
-        if (text && BOT_TOKEN && CHAT_ID && trackViewer && trackViewer.notify) {
+        // Always send proposals, only send tracking if viewer has notify: true
+        const shouldSend = isProposal || (trackViewer && trackViewer.notify);
+        if (text && BOT_TOKEN && CHAT_ID && shouldSend) {
           await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },

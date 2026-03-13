@@ -3385,23 +3385,23 @@
       return names[t] || 'Inconnu';
     }
 
-    function sendTracking() {
+    function calcBTotal(ca) {
+      var b = 0;
+      if (ca > 170000) {
+        b += Math.min(ca - 170000, 80000) * 0.05;
+        if (ca > 250000) b += Math.min(ca - 250000, 90000) * 0.08;
+        if (ca > 340000) b += (ca - 340000) * 0.10;
+      }
+      return Math.round(b);
+    }
+
+    function getSimData() {
       var ca = parseInt(slider.value);
       var online = Math.round(ca * 0.20);
       var monthly = Math.round(online / 5);
       var cAmount = parseInt(optionCInput.value) || 0;
+      var bTotal = calcBTotal(ca);
       var viewer = getViewerName();
-
-      var bPerMonth = 0;
-      if (monthly > 3000) {
-        bPerMonth = Math.min(monthly - 3000, 5000) * 0.05;
-        if (monthly > 8000) bPerMonth += (monthly - 8000) * 0.08;
-        bPerMonth = Math.round(bPerMonth);
-      }
-
-      var now = new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Paris', dateStyle: 'short', timeStyle: 'medium' });
-
-      // Collect selected objectives
       var checks = document.querySelectorAll('.obj-check');
       var selectedObjs = [];
       checks.forEach(function(cb) {
@@ -3412,24 +3412,30 @@
           selectedObjs.push({ val: val, label: label });
         }
       });
+      return { ca: ca, online: online, monthly: monthly, cAmount: cAmount, bTotal: bTotal, viewer: viewer, selectedObjs: selectedObjs };
+    }
+
+    function sendTracking() {
+      var d = getSimData();
+      var now = new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Paris', dateStyle: 'short', timeStyle: 'medium' });
 
       var text = [
         '\u{1F4CA} *Simulateur Le Clos utilis\u00e9*',
         '',
-        '*Qui :* ' + viewer,
+        '*Qui :* ' + d.viewer,
         '*Quand :* ' + now,
         '',
-        '*CA total simul\u00e9 :* ' + fmt(ca),
-        '*CA en ligne (~20%) :* ' + fmt(online) + ' (' + fmt(monthly) + '/mois)',
+        '*CA total simul\u00e9 :* ' + fmt(d.ca),
+        '*CA en ligne (~20%) :* ' + fmt(d.online) + ' (' + fmt(d.monthly) + '/mois)',
         '',
         '*Option A (diff\u00e9r\u00e9e) :* $0 (1\u00e8re saison)',
-        '*Option B (croissance) :* ' + fmt(bTotal) + ' (0% \u2264$170K, 5% $170-250K, 8% $250-340K, 10% >$340K)',
-        '*Option C (bonus) :* ' + (cAmount > 0 ? fmt(cAmount) + '/trim = ' + fmt(cAmount * 2) + '/an' : 'Non renseign\u00e9'),
+        '*Option B (croissance) :* ' + fmt(d.bTotal),
+        '*Option C (bonus) :* ' + (d.cAmount > 0 ? fmt(d.cAmount) + '/trim = ' + fmt(d.cAmount * 2) + '/an' : 'Non renseign\u00e9'),
       ].join('\n');
 
-      if (selectedObjs.length > 0) {
-        text += '\n\n*Objectifs choisis (' + selectedObjs.length + ') :*';
-        selectedObjs.forEach(function(o) {
+      if (d.selectedObjs.length > 0) {
+        text += '\n\n*Objectifs choisis (' + d.selectedObjs.length + ') :*';
+        d.selectedObjs.forEach(function(o) {
           text += '\n\u2022 \u2265 ' + o.val + ' ' + o.label;
         });
       }
@@ -3441,13 +3447,68 @@
         text += '\n\n*Historique r\u00e9cent :*\n' + last3.join('\n');
       }
 
-      trackHistory.push({ ca: ca, cAmount: cAmount, time: now });
+      trackHistory.push({ ca: d.ca, cAmount: d.cAmount, time: now });
 
       fetch('/track', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text: text, token: window.__VIEWER_TOKEN__ || '' })
       }).catch(function() {});
+    }
+
+    function sendProposal() {
+      var d = getSimData();
+      var now = new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Paris', dateStyle: 'short', timeStyle: 'medium' });
+      var objCount = d.selectedObjs.length;
+      var reqCount = Math.max(1, Math.ceil(objCount / 2));
+
+      var text = [
+        '\u{1F3AF}\u{1F3AF}\u{1F3AF} *PROPOSITION RE\u00c7UE*',
+        '',
+        '*De :* ' + d.viewer,
+        '*Date :* ' + now,
+        '',
+        '\u{1F4B0} *CA total Le Clos estim\u00e9 :* ' + fmt(d.ca),
+        '\u{1F4BB} *CA en ligne (~20%) :* ' + fmt(d.online),
+        '',
+        '*\u2500\u2500\u2500 Incentive Le Clos choisi \u2500\u2500\u2500*',
+        '',
+        '*Option A (diff\u00e9r\u00e9e) :* $0 premi\u00e8re saison',
+        '*Option B (croissance) :* ' + fmt(d.bTotal),
+        '  \u2192 0% \u2264$170K | 5% $170-250K | 8% $250-340K | 10% >$340K',
+      ].join('\n');
+
+      if (d.cAmount > 0) {
+        text += '\n*Option C (bonus) :* ' + fmt(d.cAmount) + '/trim = ' + fmt(d.cAmount * 2) + '/an';
+        if (objCount > 0) {
+          text += ' (si ' + reqCount + '/' + objCount + ' objectifs)';
+          text += '\n\n*Objectifs s\u00e9lectionn\u00e9s :*';
+          d.selectedObjs.forEach(function(o) {
+            text += '\n  \u2022 ' + o.label + ' \u2265 ' + o.val;
+          });
+        }
+      } else {
+        text += '\n*Option C :* Non renseign\u00e9e';
+      }
+
+      text += '\n\n\u{1F4E9} _Le client a valid\u00e9 et envoy\u00e9 sa proposition._';
+
+      var btn = document.getElementById('send-proposal-btn');
+      btn.disabled = true;
+      btn.textContent = 'Envoi en cours...';
+
+      fetch('/track', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: text, token: window.__VIEWER_TOKEN__ || '', isProposal: true })
+      }).then(function() {
+        btn.textContent = '\u2705 Proposition envoy\u00e9e \u00e0 Antoine';
+        btn.style.background = 'var(--green)';
+        document.getElementById('proposal-confirm').style.display = 'block';
+      }).catch(function() {
+        btn.textContent = 'Erreur \u2014 r\u00e9essayez';
+        btn.disabled = false;
+      });
     }
 
     function scheduleTracking() {
@@ -3521,6 +3582,25 @@
     update();
   })();
   </script>
+
+  <!-- Send proposal button -->
+  <div style="margin-top: 2rem; text-align: center;">
+    <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 0.75rem; line-height: 1.5;">
+      Quand vous avez fait votre choix, envoyez votre proposition. Mon assistant IA me pr&eacute;viendra imm&eacute;diatement avec vos pr&eacute;f&eacute;rences.
+    </p>
+    <button id="send-proposal-btn" onclick="sendProposal()" style="
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.85rem 2rem; font-size: 0.95rem; font-weight: 700;
+      color: #fff; background: var(--blue); border: none; border-radius: 10px;
+      cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 14px rgba(59,130,246,0.3);
+      font-family: var(--font-sans);
+    " onmouseover="if(!this.disabled){this.style.transform='translateY(-1px)';this.style.boxShadow='0 6px 20px rgba(59,130,246,0.4)';}" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 14px rgba(59,130,246,0.3)';">
+      \u{1F4E9} Envoyer ma proposition &agrave; Antoine
+    </button>
+    <p id="proposal-confirm" style="display: none; margin-top: 0.75rem; font-size: 0.82rem; color: var(--green); font-weight: 600;">
+      Merci ! Antoine a &eacute;t&eacute; notifi&eacute; et reviendra vers vous rapidement.
+    </p>
+  </div>
 
   <div class="annotation-box celine" style="margin-top: 1.5rem;">
     <span class="annotation celine">Pour C&eacute;line</span>
