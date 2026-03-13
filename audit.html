@@ -3213,8 +3213,12 @@
       <h4 style="font-size: 1rem; margin-bottom: 0.25rem;">Bonus sur objectifs</h4>
       <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1rem;">Aucun pourcentage sur le CA. Un bonus trimestriel fixe, d&eacute;clench&eacute; uniquement si des objectifs digitaux mesurables sont atteints.</p>
       <div style="background: #fafafa; border-radius: var(--radius); padding: 0.85rem; margin-bottom: 0.75rem;">
-        <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.25rem;">Bonus trimestriel</p>
-        <p style="font-size: 1.1rem; font-weight: 700; color: var(--green); margin-bottom: 0;">$750 si 2/3 objectifs atteints</p>
+        <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.25rem;">Bonus trimestriel &mdash; votre montant</p>
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <span style="font-size: 1.1rem; font-weight: 700; color: var(--green);">$</span>
+          <input type="number" id="option-c-amount" placeholder="Montant" min="0" max="10000" step="50" style="font-family: var(--font-mono); font-size: 1.1rem; font-weight: 700; color: var(--green); border: 2px solid var(--border); border-radius: 6px; padding: 0.4rem 0.6rem; width: 120px; outline: none; background: #fff; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border)'">
+          <span style="font-size: 0.78rem; color: var(--text-muted);">/ trimestre si 2/3 objectifs atteints</span>
+        </div>
       </div>
       <div style="background: #fafafa; border-radius: var(--radius); padding: 0.85rem; margin-bottom: 0.75rem;">
         <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.25rem;">Objectifs (2 sur 3 requis)</p>
@@ -3224,7 +3228,7 @@
           <li>&ge; $15K CA en ligne Vinoshipper / trimestre</li>
         </ul>
       </div>
-      <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0; line-height: 1.45;"><strong>Simulation :</strong> 2 trimestres actifs (Q3 + Q4 2026) &rarr; max <strong>$1 500/an</strong>. Objectifs non atteints = z&eacute;ro bonus.</p>
+      <p id="option-c-sim" style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0; line-height: 1.45;"><strong>Simulation :</strong> Entrez un montant ci-dessus pour voir le co&ucirc;t annuel.</p>
     </div>
 
   </div>
@@ -3275,10 +3279,10 @@
 
       <div style="background: rgba(34,197,94,0.06); border-radius: var(--radius); padding: 1rem; border-left: 3px solid var(--green);">
         <div style="font-family: var(--font-mono); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--green); margin-bottom: 0.35rem;">Option C &mdash; Bonus objectifs</div>
-        <div style="font-size: 0.78rem; color: var(--text-secondary); margin-bottom: 0.5rem;">$750/trimestre si 2/3 objectifs atteints</div>
+        <div style="font-size: 0.78rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Bonus trimestriel sur objectifs atteints</div>
         <div style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.15rem;">Commission premi&egrave;re saison :</div>
-        <div id="sim-c" style="font-family: var(--font-mono); font-size: 1.4rem; font-weight: 700; color: var(--green);">$1 500 max</div>
-        <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.15rem;">Fixe &mdash; ind&eacute;pendant du CA</div>
+        <div id="sim-c" style="font-family: var(--font-mono); font-size: 1.4rem; font-weight: 700; color: var(--green);">&mdash;</div>
+        <div id="sim-c-detail" style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.15rem;">Entrez un montant dans l'Option C ci-dessus</div>
       </div>
 
     </div>
@@ -3291,6 +3295,8 @@
   <script>
   (function() {
     var slider = document.getElementById('sim-slider');
+    var optionCInput = document.getElementById('option-c-amount');
+    var optionCSim = document.getElementById('option-c-sim');
     var caDisplay = document.getElementById('sim-ca-display');
     var onlineDisplay = document.getElementById('sim-online');
     var monthlyDisplay = document.getElementById('sim-monthly');
@@ -3298,9 +3304,76 @@
     var simB = document.getElementById('sim-b');
     var simBDetail = document.getElementById('sim-b-detail');
     var simC = document.getElementById('sim-c');
+    var simCDetail = document.getElementById('sim-c-detail');
+
+    var trackTimer = null;
+    var trackHistory = [];
 
     function fmt(n) {
       return '$' + n.toLocaleString('en-US');
+    }
+
+    function getViewerName() {
+      var params = new URLSearchParams(window.location.search);
+      var t = params.get('t');
+      var names = {
+        'H9B7BHXro6R6YscvL4mpdDl9sUoBvE8z': 'Sebastien',
+        'tfzQUQKFOl6QHNGefleGy5aksjPVGjYO': 'Celine',
+        'XpcyoBPbVbe7bSjDDzDF3d9j-n5DQaeN': 'Antoine',
+        '4-k17JqiWWU7Wx9ArOkV-Py-D-Q5Del0': 'Preview'
+      };
+      return names[t] || 'Inconnu';
+    }
+
+    function sendTracking() {
+      var ca = parseInt(slider.value);
+      var online = Math.round(ca * 0.20);
+      var monthly = Math.round(online / 5);
+      var cAmount = parseInt(optionCInput.value) || 0;
+      var viewer = getViewerName();
+
+      var bPerMonth = 0;
+      if (monthly > 3000) {
+        bPerMonth = Math.min(monthly - 3000, 5000) * 0.05;
+        if (monthly > 8000) bPerMonth += (monthly - 8000) * 0.08;
+        bPerMonth = Math.round(bPerMonth);
+      }
+
+      var now = new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Paris', dateStyle: 'short', timeStyle: 'medium' });
+
+      var text = [
+        '\u{1F4CA} *Simulateur Le Clos utilis\u00e9*',
+        '',
+        '*Qui :* ' + viewer,
+        '*Quand :* ' + now,
+        '',
+        '*CA total simul\u00e9 :* ' + fmt(ca),
+        '*CA en ligne (~20%) :* ' + fmt(online) + ' (' + fmt(monthly) + '/mois)',
+        '',
+        '*Option A (diff\u00e9r\u00e9e) :* $0 (1\u00e8re saison)',
+        '*Option B (paliers) :* ' + fmt(bPerMonth * 5) + ' (' + fmt(bPerMonth) + '/mois)',
+        '*Option C (bonus) :* ' + (cAmount > 0 ? fmt(cAmount) + '/trim = ' + fmt(cAmount * 2) + '/an' : 'Non renseign\u00e9'),
+      ].join('\n');
+
+      if (trackHistory.length > 0) {
+        var last3 = trackHistory.slice(-3).map(function(h) {
+          return 'CA ' + fmt(h.ca) + ' | C: ' + (h.cAmount > 0 ? fmt(h.cAmount) : '-');
+        });
+        text += '\n\n*Historique r\u00e9cent :*\n' + last3.join('\n');
+      }
+
+      trackHistory.push({ ca: ca, cAmount: cAmount, time: now });
+
+      fetch('/track', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: text })
+      }).catch(function() {});
+    }
+
+    function scheduleTracking() {
+      clearTimeout(trackTimer);
+      trackTimer = setTimeout(sendTracking, 3000);
     }
 
     function update() {
@@ -3326,11 +3399,23 @@
       simB.textContent = fmt(bTotal);
       simBDetail.textContent = '~' + fmt(bPerMonth) + '/mois sur 5 mois';
 
-      // Option C: fixed
-      simC.textContent = '$1 500 max';
+      // Option C: dynamic from input
+      var cAmount = parseInt(optionCInput.value) || 0;
+      if (cAmount > 0) {
+        simC.textContent = fmt(cAmount * 2);
+        simCDetail.textContent = fmt(cAmount) + '/trim \u00d7 2 trimestres';
+        optionCSim.innerHTML = '<strong>Simulation :</strong> ' + fmt(cAmount) + '/trimestre \u00d7 2 trimestres actifs (Q3 + Q4) = <strong>' + fmt(cAmount * 2) + '/an</strong>. Objectifs non atteints = z\u00e9ro bonus.';
+      } else {
+        simC.textContent = '\u2014';
+        simCDetail.textContent = 'Entrez un montant dans l\'Option C ci-dessus';
+        optionCSim.innerHTML = '<strong>Simulation :</strong> Entrez un montant ci-dessus pour voir le co\u00fbt annuel.';
+      }
+
+      scheduleTracking();
     }
 
     slider.addEventListener('input', update);
+    optionCInput.addEventListener('input', update);
     update();
   })();
   </script>

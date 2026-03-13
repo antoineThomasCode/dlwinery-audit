@@ -61,6 +61,29 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  // Simulator tracking endpoint
+  if (url.pathname === "/track" && req.method === "POST") {
+    let body = "";
+    req.on("data", (chunk) => { body += chunk; });
+    req.on("end", async () => {
+      try {
+        const { text } = JSON.parse(body);
+        if (text && BOT_TOKEN && CHAT_ID) {
+          await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ chat_id: CHAT_ID, text, parse_mode: "Markdown" }),
+          });
+        }
+      } catch (err) {
+        console.error("Track error:", err);
+      }
+      res.writeHead(200, { "Content-Type": "application/json" });
+      res.end("{}");
+    });
+    return;
+  }
+
   // Only serve root path
   if (url.pathname !== "/" && url.pathname !== "") {
     res.writeHead(404, { "Content-Type": "text/html; charset=utf-8" });
