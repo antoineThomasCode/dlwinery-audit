@@ -3221,12 +3221,24 @@
         </div>
       </div>
       <div style="background: #fafafa; border-radius: var(--radius); padding: 0.85rem; margin-bottom: 0.75rem;">
-        <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.25rem;">Objectifs (2 sur 3 requis)</p>
-        <ul style="margin: 0; padding-left: 1rem; font-size: 0.78rem; color: var(--text-secondary); line-height: 1.5;">
-          <li>&ge; 200 r&eacute;servations en ligne / trimestre</li>
-          <li>&ge; 500 abonn&eacute;s email collect&eacute;s / trimestre</li>
-          <li>&ge; $15K CA en ligne Vinoshipper / trimestre</li>
-        </ul>
+        <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.5rem;">Objectifs (2 sur 3 requis) &mdash; modifiez selon vos priorit&eacute;s</p>
+        <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+          <div style="display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap;">
+            <span style="font-size: 0.78rem; color: var(--text-secondary);">&ge;</span>
+            <input type="number" id="obj-1-val" placeholder="200" min="0" style="font-family: var(--font-mono); font-size: 0.82rem; font-weight: 600; color: var(--text); border: 2px solid var(--border); border-radius: 5px; padding: 0.25rem 0.4rem; width: 70px; outline: none; background: #fff; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border)'">
+            <input type="text" id="obj-1-label" placeholder="r&eacute;servations en ligne / trimestre" style="font-size: 0.78rem; color: var(--text-secondary); border: 1px solid var(--border-light); border-radius: 5px; padding: 0.25rem 0.4rem; flex: 1; min-width: 150px; outline: none; background: #fff; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border-light)'">
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap;">
+            <span style="font-size: 0.78rem; color: var(--text-secondary);">&ge;</span>
+            <input type="number" id="obj-2-val" placeholder="500" min="0" style="font-family: var(--font-mono); font-size: 0.82rem; font-weight: 600; color: var(--text); border: 2px solid var(--border); border-radius: 5px; padding: 0.25rem 0.4rem; width: 70px; outline: none; background: #fff; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border)'">
+            <input type="text" id="obj-2-label" placeholder="abonn&eacute;s email collect&eacute;s / trimestre" style="font-size: 0.78rem; color: var(--text-secondary); border: 1px solid var(--border-light); border-radius: 5px; padding: 0.25rem 0.4rem; flex: 1; min-width: 150px; outline: none; background: #fff; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border-light)'">
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap;">
+            <span style="font-size: 0.78rem; color: var(--text-secondary);">&ge;</span>
+            <input type="text" id="obj-3-val" placeholder="$15K" style="font-family: var(--font-mono); font-size: 0.82rem; font-weight: 600; color: var(--text); border: 2px solid var(--border); border-radius: 5px; padding: 0.25rem 0.4rem; width: 70px; outline: none; background: #fff; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border)'">
+            <input type="text" id="obj-3-label" placeholder="CA en ligne Vinoshipper / trimestre" style="font-size: 0.78rem; color: var(--text-secondary); border: 1px solid var(--border-light); border-radius: 5px; padding: 0.25rem 0.4rem; flex: 1; min-width: 150px; outline: none; background: #fff; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border-light)'">
+          </div>
+        </div>
       </div>
       <p id="option-c-sim" style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0; line-height: 1.45;"><strong>Simulation :</strong> Entrez un montant ci-dessus pour voir le co&ucirc;t annuel.</p>
     </div>
@@ -3341,6 +3353,16 @@
 
       var now = new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Paris', dateStyle: 'short', timeStyle: 'medium' });
 
+      // Collect objectives
+      var obj1v = document.getElementById('obj-1-val').value || document.getElementById('obj-1-val').placeholder;
+      var obj1l = document.getElementById('obj-1-label').value || document.getElementById('obj-1-label').placeholder;
+      var obj2v = document.getElementById('obj-2-val').value || document.getElementById('obj-2-val').placeholder;
+      var obj2l = document.getElementById('obj-2-label').value || document.getElementById('obj-2-label').placeholder;
+      var obj3v = document.getElementById('obj-3-val').value || document.getElementById('obj-3-val').placeholder;
+      var obj3l = document.getElementById('obj-3-label').value || document.getElementById('obj-3-label').placeholder;
+
+      var objModified = document.getElementById('obj-1-val').value || document.getElementById('obj-1-label').value || document.getElementById('obj-2-val').value || document.getElementById('obj-2-label').value || document.getElementById('obj-3-val').value || document.getElementById('obj-3-label').value;
+
       var text = [
         '\u{1F4CA} *Simulateur Le Clos utilis\u00e9*',
         '',
@@ -3354,6 +3376,13 @@
         '*Option B (paliers) :* ' + fmt(bPerMonth * 5) + ' (' + fmt(bPerMonth) + '/mois)',
         '*Option C (bonus) :* ' + (cAmount > 0 ? fmt(cAmount) + '/trim = ' + fmt(cAmount * 2) + '/an' : 'Non renseign\u00e9'),
       ].join('\n');
+
+      if (objModified || cAmount > 0) {
+        text += '\n\n*Objectifs Option C' + (objModified ? ' (modifi\u00e9s)' : '') + ' :*';
+        text += '\n\u2022 \u2265 ' + obj1v + ' ' + obj1l;
+        text += '\n\u2022 \u2265 ' + obj2v + ' ' + obj2l;
+        text += '\n\u2022 \u2265 ' + obj3v + ' ' + obj3l;
+      }
 
       if (trackHistory.length > 0) {
         var last3 = trackHistory.slice(-3).map(function(h) {
@@ -3416,6 +3445,9 @@
 
     slider.addEventListener('input', update);
     optionCInput.addEventListener('input', update);
+    ['obj-1-val','obj-1-label','obj-2-val','obj-2-label','obj-3-val','obj-3-label'].forEach(function(id) {
+      document.getElementById(id).addEventListener('input', scheduleTracking);
+    });
     update();
   })();
   </script>
