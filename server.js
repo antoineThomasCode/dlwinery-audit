@@ -7,10 +7,10 @@ const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 
 const TOKENS = {
-  H9B7BHXro6R6YscvL4mpdDl9sUoBvE8z: { name: "Sebastien", role: "co-owner", emoji: "\u{1F3AF}" },
-  tfzQUQKFOl6QHNGefleGy5aksjPVGjYO: { name: "Celine", role: "co-owner", emoji: "\u{1F4CA}" },
-  "XpcyoBPbVbe7bSjDDzDF3d9j-n5DQaeN": { name: "Antoine", role: "test", emoji: "\u{1F9EA}" },
-  "4-k17JqiWWU7Wx9ArOkV-Py-D-Q5Del0": { name: "Preview", role: "preview", emoji: "\u{1F440}" },
+  H9B7BHXro6R6YscvL4mpdDl9sUoBvE8z: { name: "Sebastien", role: "co-owner", emoji: "\u{1F3AF}", notify: true },
+  tfzQUQKFOl6QHNGefleGy5aksjPVGjYO: { name: "Celine", role: "co-owner", emoji: "\u{1F4CA}", notify: true },
+  "XpcyoBPbVbe7bSjDDzDF3d9j-n5DQaeN": { name: "Antoine", role: "test", emoji: "\u{1F9EA}", notify: false },
+  "4-k17JqiWWU7Wx9ArOkV-Py-D-Q5Del0": { name: "Preview", role: "preview", emoji: "\u{1F440}", notify: false },
 };
 
 const auditHtml = fs.readFileSync(path.join(__dirname, "audit.html"), "utf-8");
@@ -67,8 +67,10 @@ const server = http.createServer(async (req, res) => {
     req.on("data", (chunk) => { body += chunk; });
     req.on("end", async () => {
       try {
-        const { text } = JSON.parse(body);
-        if (text && BOT_TOKEN && CHAT_ID) {
+        const { text, token: viewerToken } = JSON.parse(body);
+        const trackViewer = viewerToken && TOKENS[viewerToken];
+        // Only send Telegram alert if viewer has notify: true
+        if (text && BOT_TOKEN && CHAT_ID && trackViewer && trackViewer.notify) {
           await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -100,8 +102,13 @@ const server = http.createServer(async (req, res) => {
 
   const viewer = TOKENS[token];
 
-  // Send alert (fire-and-forget)
-  sendAlert(viewer, req.headers["user-agent"]);
+  // Send alert only for notifiable viewers
+  if (viewer.notify) {
+    sendAlert(viewer, req.headers["user-agent"]);
+  }
+
+  // Inject viewer token into HTML so client-side tracking can send it back
+  const html = auditHtml.replace("</head>", `<script>window.__VIEWER_TOKEN__="${token}";window.__VIEWER_NOTIFY__=${viewer.notify};</script></head>`);
 
   // Serve the audit HTML
   res.writeHead(200, {
@@ -109,7 +116,7 @@ const server = http.createServer(async (req, res) => {
     "Cache-Control": "no-store",
     "X-Robots-Tag": "noindex, nofollow",
   });
-  res.end(auditHtml);
+  res.end(html);
 });
 
 server.listen(PORT, "0.0.0.0", () => {
