@@ -3231,16 +3231,16 @@
       <div style="display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.6rem;">
         <span style="font-size: 0.9rem; font-weight: 700; color: var(--green);">$</span>
         <input type="number" id="option-c-amount" placeholder="Montant" min="0" max="10000" step="50" style="font-family: var(--font-mono); font-size: 1rem; font-weight: 700; color: var(--green); border: 2px solid var(--border); border-radius: 6px; padding: 0.35rem 0.5rem; width: 100px; outline: none; background: #fff;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border)'">
-        <span style="font-size: 0.72rem; color: var(--text-muted); flex: 1;">/ trimestre</span>
+        <span style="font-size: 0.72rem; color: var(--text-muted); flex: 1;">/ an</span>
       </div>
       <div id="obj-list" style="display: flex; flex-direction: column; gap: 0.3rem; margin-bottom: 0.4rem;">
-        <label class="obj-row"><input type="checkbox" class="obj-check" data-label="R&eacute;servations en ligne / trimestre"><span class="obj-name">R&eacute;servations en ligne</span><span class="obj-sep">&ge;</span><input type="number" class="obj-val" placeholder="200" min="0"><span class="obj-unit">/trim</span></label>
-        <label class="obj-row"><input type="checkbox" class="obj-check" data-label="Abonn&eacute;s email / trimestre"><span class="obj-name">Abonn&eacute;s email</span><span class="obj-sep">&ge;</span><input type="number" class="obj-val" placeholder="500" min="0"><span class="obj-unit">/trim</span></label>
-        <label class="obj-row"><input type="checkbox" class="obj-check" data-label="CA en ligne Vinoshipper / trimestre"><span class="obj-name">CA en ligne Vinoshipper</span><span class="obj-sep">&ge;</span><input type="text" class="obj-val" placeholder="$15K"><span class="obj-unit">/trim</span></label>
-        <label class="obj-row"><input type="checkbox" class="obj-check" data-label="Inscriptions Wine Club / trimestre"><span class="obj-name">Wine Club en ligne</span><span class="obj-sep">&ge;</span><input type="number" class="obj-val" placeholder="30" min="0"><span class="obj-unit">/trim</span></label>
-        <label class="obj-row"><input type="checkbox" class="obj-check" data-label="Trafic site web / trimestre"><span class="obj-name">Trafic site web</span><span class="obj-sep">&ge;</span><input type="number" class="obj-val" placeholder="5000" min="0"><span class="obj-unit">/trim</span></label>
-        <label class="obj-row"><input type="checkbox" class="obj-check" data-label="Taux ouverture email / trimestre"><span class="obj-name">Taux ouverture email</span><span class="obj-sep">&ge;</span><input type="text" class="obj-val" placeholder="25%"><span class="obj-unit">/trim</span></label>
-        <label class="obj-row"><input type="checkbox" class="obj-check" data-label="Avis Google / trimestre"><span class="obj-name">Avis Google</span><span class="obj-sep">&ge;</span><input type="number" class="obj-val" placeholder="20" min="0"><span class="obj-unit">/trim</span></label>
+        <label class="obj-row"><input type="checkbox" class="obj-check" data-label="R&eacute;servations en ligne / an"><span class="obj-name">R&eacute;servations en ligne</span><span class="obj-sep">&ge;</span><input type="number" class="obj-val" placeholder="200" min="0"><span class="obj-unit">/an</span></label>
+        <label class="obj-row"><input type="checkbox" class="obj-check" data-label="Abonn&eacute;s email / an"><span class="obj-name">Abonn&eacute;s email</span><span class="obj-sep">&ge;</span><input type="number" class="obj-val" placeholder="500" min="0"><span class="obj-unit">/an</span></label>
+        <label class="obj-row"><input type="checkbox" class="obj-check" data-label="CA en ligne Vinoshipper / an"><span class="obj-name">CA en ligne Vinoshipper</span><span class="obj-sep">&ge;</span><input type="text" class="obj-val" placeholder="$15K"><span class="obj-unit">/an</span></label>
+        <label class="obj-row"><input type="checkbox" class="obj-check" data-label="Inscriptions Wine Club / an"><span class="obj-name">Wine Club en ligne</span><span class="obj-sep">&ge;</span><input type="number" class="obj-val" placeholder="30" min="0"><span class="obj-unit">/an</span></label>
+        <label class="obj-row"><input type="checkbox" class="obj-check" data-label="Trafic site web / an"><span class="obj-name">Trafic site web</span><span class="obj-sep">&ge;</span><input type="number" class="obj-val" placeholder="5000" min="0"><span class="obj-unit">/an</span></label>
+        <label class="obj-row"><input type="checkbox" class="obj-check" data-label="Taux ouverture email / an"><span class="obj-name">Taux ouverture email</span><span class="obj-sep">&ge;</span><input type="text" class="obj-val" placeholder="25%"><span class="obj-unit">/an</span></label>
+        <label class="obj-row"><input type="checkbox" class="obj-check" data-label="Avis Google / an"><span class="obj-name">Avis Google</span><span class="obj-sep">&ge;</span><input type="number" class="obj-val" placeholder="20" min="0"><span class="obj-unit">/an</span></label>
       </div>
       <p id="obj-count" style="font-size: 0.68rem; color: var(--text-muted); margin: 0;">0 objectif s&eacute;lectionn&eacute;</p>
       <div id="sim-c-detail" style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.25rem;">Entrez un montant ci-dessus</div>
@@ -3419,7 +3419,7 @@
         '',
         '*Option A :* $0 (1\u00e8re saison)',
         '*Option B :* ' + fmt(d.bTotal),
-        '*Option C :* ' + (d.cAmount > 0 ? fmt(d.cAmount) + '/trim = ' + fmt(d.cAmount * 2) + '/an' : 'Non renseign\u00e9'),
+        '*Option C :* ' + (d.cAmount > 0 ? fmt(d.cAmount) + '/an' : 'Non renseign\u00e9'),
       ].join('\n');
 
       if (d.selectedObjs.length > 0) {
@@ -3467,7 +3467,7 @@
       ].join('\n');
 
       if (d.cAmount > 0) {
-        text += '\n*Option C :* ' + fmt(d.cAmount) + '/trim = ' + fmt(d.cAmount * 2) + '/an';
+        text += '\n*Option C :* ' + fmt(d.cAmount) + '/an';
         if (objCount > 0) {
           text += ' (si ' + reqCount + '/' + objCount + ' obj.)';
           text += '\n\n*Objectifs :*';
@@ -3523,10 +3523,10 @@
       var objCount = document.querySelectorAll('.obj-check:checked').length;
       var reqCount = Math.max(1, Math.ceil(objCount / 2));
       if (cAmount > 0) {
-        simC.textContent = fmt(cAmount * 2);
-        simCDetail.textContent = fmt(cAmount) + '/trim \u00d7 2 trim.';
+        simC.textContent = fmt(cAmount);
+        simCDetail.textContent = 'bonus annuel';
         var objSuffix = objCount > 0 ? ' si ' + reqCount + '/' + objCount + ' obj. atteints.' : '';
-        optionCSim.innerHTML = fmt(cAmount) + '/trim \u00d7 2 = <strong>' + fmt(cAmount * 2) + '/an</strong>' + objSuffix;
+        optionCSim.innerHTML = 'Bonus annuel : <strong>' + fmt(cAmount) + '</strong>' + objSuffix;
       } else {
         simC.textContent = '\u2014';
         simCDetail.textContent = 'Entrez un montant';
