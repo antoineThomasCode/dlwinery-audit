@@ -24,6 +24,7 @@
     --amber: #f59e0b;
     --amber-bg: #fffbeb;
     --violet: #8b5cf6;
+    --orange: #f97316;
     --red: #ef4444;
     --red-bg: #fef2f2;
     --radius: 0.625rem;
@@ -3241,19 +3242,19 @@
           <span style="font-size: 0.62rem; color: var(--text-muted); width: 70px; flex-shrink: 0;">Pessimiste</span>
           <span style="font-size: 0.6rem; color: var(--text-muted); flex-shrink: 0;">$</span>
           <input type="number" id="bonus-pessimiste" class="bonus-tier" placeholder="3 000" min="0" step="500" style="font-family: var(--font-mono); font-size: 0.82rem; font-weight: 700; color: var(--green); border: 2px solid var(--border); border-radius: 5px; padding: 0.25rem 0.35rem; width: 75px; outline: none; background: #fff;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border)'">
-          <span style="font-size: 0.58rem; color: var(--text-muted); flex: 1; line-height: 1.3;">objectifs de base atteints</span>
+          <span style="font-size: 0.58rem; color: var(--text-muted); flex: 1; line-height: 1.3;">CA &le;$200K</span>
         </div>
         <div style="display: flex; align-items: center; gap: 0.4rem; background: rgba(139,92,246,0.06); border-radius: 6px; padding: 0.4rem 0.5rem;">
           <span style="font-size: 0.62rem; color: var(--violet); font-weight: 600; width: 70px; flex-shrink: 0;">R&eacute;aliste</span>
           <span style="font-size: 0.6rem; color: var(--text-muted); flex-shrink: 0;">$</span>
           <input type="number" id="bonus-realiste" class="bonus-tier" placeholder="5 000" min="0" step="500" style="font-family: var(--font-mono); font-size: 0.82rem; font-weight: 700; color: var(--violet); border: 2px solid var(--border); border-radius: 5px; padding: 0.25rem 0.35rem; width: 75px; outline: none; background: #fff;" onfocus="this.style.borderColor='var(--violet)'" onblur="this.style.borderColor='var(--border)'">
-          <span style="font-size: 0.58rem; color: var(--text-muted); flex: 1; line-height: 1.3;">objectifs d&eacute;pass&eacute;s</span>
+          <span style="font-size: 0.58rem; color: var(--text-muted); flex: 1; line-height: 1.3;">CA $200-340K</span>
         </div>
-        <div style="display: flex; align-items: center; gap: 0.4rem; background: rgba(37,99,235,0.06); border-radius: 6px; padding: 0.4rem 0.5rem;">
-          <span style="font-size: 0.62rem; color: var(--blue); font-weight: 600; width: 70px; flex-shrink: 0;">Optimiste</span>
+        <div style="display: flex; align-items: center; gap: 0.4rem; background: rgba(34,197,94,0.06); border-radius: 6px; padding: 0.4rem 0.5rem;">
+          <span style="font-size: 0.62rem; color: var(--green); font-weight: 600; width: 70px; flex-shrink: 0;">Optimiste</span>
           <span style="font-size: 0.6rem; color: var(--text-muted); flex-shrink: 0;">$</span>
-          <input type="number" id="bonus-optimiste" class="bonus-tier" placeholder="10 000" min="0" step="500" style="font-family: var(--font-mono); font-size: 0.82rem; font-weight: 700; color: var(--blue); border: 2px solid var(--border); border-radius: 5px; padding: 0.25rem 0.35rem; width: 75px; outline: none; background: #fff;" onfocus="this.style.borderColor='var(--blue)'" onblur="this.style.borderColor='var(--border)'">
-          <span style="font-size: 0.58rem; color: var(--text-muted); flex: 1; line-height: 1.3;">tous objectifs doubl&eacute;s</span>
+          <input type="number" id="bonus-optimiste" class="bonus-tier" placeholder="10 000" min="0" step="500" style="font-family: var(--font-mono); font-size: 0.82rem; font-weight: 700; color: var(--green); border: 2px solid var(--border); border-radius: 5px; padding: 0.25rem 0.35rem; width: 75px; outline: none; background: #fff;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border)'">
+          <span style="font-size: 0.58rem; color: var(--text-muted); flex: 1; line-height: 1.3;">CA &gt;$340K</span>
         </div>
       </div>
 
@@ -3273,18 +3274,38 @@
       <p id="option-c-sim" style="font-size: 0.72rem; color: var(--text-muted); margin: 0.25rem 0 0; line-height: 1.4;"></p>
     </div>
 
-    <!-- SLIDER (toujours visible) -->
+    <!-- SLIDER + SCENARIO BAR (toujours visible) -->
     <div style="margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--border-light);">
-      <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.25rem;">
-        <span style="font-size: 0.72rem; color: var(--text-muted);">CA total Le Clos</span>
-        <span id="sim-ca-display" style="font-family: var(--font-mono); font-size: 1.1rem; font-weight: 700; color: var(--text);">$170 000</span>
+      <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.15rem;">
+        <span style="font-size: 0.72rem; color: var(--text-muted);">CA total Le Clos 1487</span>
+        <div style="display: flex; align-items: baseline; gap: 0.35rem;">
+          <span id="sim-scenario-badge" style="font-size: 0.58rem; font-weight: 700; padding: 0.12rem 0.4rem; border-radius: 4px; background: #f0f0f0; color: #999;">BASELINE</span>
+          <span id="sim-ca-display" style="font-family: var(--font-mono); font-size: 1.1rem; font-weight: 700; color: var(--text);">$170 000</span>
+        </div>
       </div>
-      <input type="range" id="sim-slider" min="170000" max="340000" step="5000" value="170000" style="width: 100%; accent-color: var(--blue); cursor: pointer; height: 6px;">
-      <div style="display: flex; justify-content: space-between; font-size: 0.62rem; color: var(--text-muted); font-family: var(--font-mono);">
-        <span>$170K</span>
-        <span>$340K</span>
+
+      <!-- Scenario progress bar -->
+      <div style="position: relative; margin-bottom: 0.15rem;">
+        <div style="display: flex; height: 8px; border-radius: 4px; overflow: hidden; background: #f0f0f0;">
+          <div style="width: 9.1%; background: #ddd;" title="Baseline $170K"></div>
+          <div style="width: 9.1%; background: var(--amber);" title="Pessimiste $170-200K"></div>
+          <div style="width: 42.4%; background: var(--violet);" title="R&eacute;aliste $200-340K"></div>
+          <div style="width: 39.4%; background: var(--green);" title="Optimiste $340-500K+"></div>
+        </div>
+        <div id="sim-marker" style="position: absolute; top: -3px; width: 3px; height: 14px; background: var(--text); border-radius: 2px; left: 0%; transition: left 0.15s;"></div>
       </div>
-      <div style="display: flex; gap: 0.35rem; margin-top: 0.35rem; font-size: 0.68rem; color: var(--text-muted);">
+
+      <!-- Scenario labels -->
+      <div style="display: flex; font-size: 0.52rem; color: var(--text-muted); margin-bottom: 0.3rem; font-family: var(--font-mono);">
+        <span style="width: 9.1%; text-align: left;">$170K</span>
+        <span style="width: 9.1%; text-align: center; color: var(--amber);">$200K</span>
+        <span style="width: 42.4%; text-align: center; color: var(--violet);">R&eacute;aliste</span>
+        <span style="width: 39.4%; text-align: right; color: var(--green);">$500K</span>
+      </div>
+
+      <input type="range" id="sim-slider" min="170000" max="500000" step="5000" value="170000" style="width: 100%; accent-color: var(--blue); cursor: pointer; height: 6px;">
+
+      <div style="display: flex; gap: 0.35rem; margin-top: 0.25rem; font-size: 0.68rem; color: var(--text-muted);">
         <span>En ligne (~20%) :</span>
         <span id="sim-online" style="font-family: var(--font-mono); font-weight: 600; color: var(--text);">$34 000</span>
         <span>&mdash;</span>
@@ -3547,6 +3568,26 @@
       onlineDisplay.textContent = fmt(online);
       monthlyDisplay.textContent = '~' + fmt(monthly) + '/mois';
 
+      // Scenario badge + marker + color
+      var badge = document.getElementById('sim-scenario-badge');
+      var marker = document.getElementById('sim-marker');
+      var pct = Math.min(100, Math.max(0, (ca - 170000) / (500000 - 170000) * 100));
+      marker.style.left = 'calc(' + pct + '% - 1.5px)';
+
+      if (ca <= 170000) {
+        badge.textContent = 'BASELINE'; badge.style.background = '#f0f0f0'; badge.style.color = '#999';
+        caDisplay.style.color = 'var(--text)';
+      } else if (ca <= 200000) {
+        badge.textContent = 'PESSIMISTE'; badge.style.background = 'rgba(245,158,11,0.15)'; badge.style.color = 'var(--amber)';
+        caDisplay.style.color = 'var(--amber)';
+      } else if (ca <= 340000) {
+        badge.textContent = 'R\u00c9ALISTE'; badge.style.background = 'rgba(139,92,246,0.12)'; badge.style.color = 'var(--violet)';
+        caDisplay.style.color = 'var(--violet)';
+      } else {
+        badge.textContent = 'OPTIMISTE'; badge.style.background = 'rgba(34,197,94,0.12)'; badge.style.color = 'var(--green)';
+        caDisplay.style.color = 'var(--green)';
+      }
+
       simA.textContent = '$0';
 
       var bTotal = calcBTotal(ca);
@@ -3559,10 +3600,16 @@
       var objCount = document.querySelectorAll('.obj-check:checked').length;
       var reqCount = Math.max(1, Math.ceil(objCount / 2));
       if (cPess > 0 || cReal > 0 || cOpti > 0) {
-        simC.textContent = fmt(cReal || cPess || cOpti);
-        simCDetail.textContent = 'bonus r\u00e9aliste /an';
+        // Show bonus matching current scenario
+        var activeBonus = ca <= 200000 ? cPess : (ca <= 340000 ? cReal : cOpti);
+        var activeLabel = ca <= 200000 ? 'pessimiste' : (ca <= 340000 ? 'r\u00e9aliste' : 'optimiste');
+        simC.textContent = fmt(activeBonus || cReal || cPess);
+        simCDetail.textContent = 'bonus ' + activeLabel + ' /an';
         var objSuffix = objCount > 0 ? ' si ' + reqCount + '/' + objCount + ' obj. atteints.' : '';
-        optionCSim.innerHTML = 'P: <strong>' + fmt(cPess) + '</strong> / R: <strong>' + fmt(cReal) + '</strong> / O: <strong>' + fmt(cOpti) + '</strong>' + objSuffix;
+        var pMark = ca <= 200000 ? '\u25b6 ' : '';
+        var rMark = ca > 200000 && ca <= 340000 ? '\u25b6 ' : '';
+        var oMark = ca > 340000 ? '\u25b6 ' : '';
+        optionCSim.innerHTML = pMark + 'P: <strong>' + fmt(cPess) + '</strong> / ' + rMark + 'R: <strong>' + fmt(cReal) + '</strong> / ' + oMark + 'O: <strong>' + fmt(cOpti) + '</strong>' + objSuffix;
       } else {
         simC.textContent = '\u2014';
         simCDetail.textContent = 'Entrez vos montants ci-dessus';
