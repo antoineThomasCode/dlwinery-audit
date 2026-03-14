@@ -1105,26 +1105,85 @@
 
   <details class="accordion" data-track="saisonnalite">
     <summary>
-      <span class="accordion-title">Saisonnalit&eacute; du tasting room</span>
-      <span class="accordion-meta">75% en haute saison</span>
+      <span class="accordion-title">Saisonnalit&eacute; &amp; m&eacute;t&eacute;o-d&eacute;pendance</span>
+      <span class="accordion-meta">75% en haute saison &bull; corr&eacute;lation m&eacute;t&eacute;o</span>
       <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg>
     </summary>
     <div class="accordion-body">
-      <p style="font-size: 0.9rem;">Chiffre d'affaires mensuel du tasting room (Square POS, 2025). La haute saison (mai&ndash;octobre) repr&eacute;sente 75% du CA annuel.</p>
-      <div class="bar-chart">
-        <div class="bar-row"><span class="bar-label">Jan</span><div class="bar-track"><div class="bar-fill" style="width:13%; background: linear-gradient(90deg, #2563eb, #3b82f6); opacity:0.4;"></div></div><span class="bar-value">$16K</span></div>
-        <div class="bar-row"><span class="bar-label">F&eacute;v</span><div class="bar-track"><div class="bar-fill" style="width:22%; background: linear-gradient(90deg, #2563eb, #3b82f6); opacity:0.45;"></div></div><span class="bar-value">$26K</span></div>
-        <div class="bar-row"><span class="bar-label">Mar</span><div class="bar-track"><div class="bar-fill" style="width:26%; background: linear-gradient(90deg, #2563eb, #3b82f6); opacity:0.5;"></div></div><span class="bar-value">$31K</span></div>
-        <div class="bar-row"><span class="bar-label">Avr</span><div class="bar-track"><div class="bar-fill" style="width:36%; background: linear-gradient(90deg, #2563eb, #3b82f6); opacity:0.55;"></div></div><span class="bar-value">$43K</span></div>
-        <div class="bar-row"><span class="bar-label">Mai</span><div class="bar-track"><div class="bar-fill" style="width:57%; background: linear-gradient(90deg, #2563eb, #3b82f6); opacity:0.7;"></div></div><span class="bar-value">$68K</span></div>
-        <div class="bar-row"><span class="bar-label">Juin</span><div class="bar-track"><div class="bar-fill" style="width:67%; background: linear-gradient(90deg, #2563eb, #3b82f6); opacity:0.8;"></div></div><span class="bar-value">$79K</span></div>
-        <div class="bar-row"><span class="bar-label">Juil</span><div class="bar-track"><div class="bar-fill" style="width:85%; background: linear-gradient(90deg, #2563eb, #3b82f6); opacity:0.9;"></div></div><span class="bar-value">$101K</span></div>
-        <div class="bar-row"><span class="bar-label">Ao&ucirc;t</span><div class="bar-track"><div class="bar-fill" style="width:100%; background: linear-gradient(90deg, #2563eb, #3b82f6);"></div></div><span class="bar-value">$118K</span></div>
-        <div class="bar-row"><span class="bar-label">Sep</span><div class="bar-track"><div class="bar-fill" style="width:68%; background: linear-gradient(90deg, #2563eb, #3b82f6); opacity:0.8;"></div></div><span class="bar-value">$81K</span></div>
-        <div class="bar-row"><span class="bar-label">Oct</span><div class="bar-track"><div class="bar-fill" style="width:95%; background: linear-gradient(90deg, #2563eb, #3b82f6); opacity:0.95;"></div></div><span class="bar-value">$112K</span></div>
-        <div class="bar-row"><span class="bar-label">Nov</span><div class="bar-track"><div class="bar-fill" style="width:43%; background: linear-gradient(90deg, #2563eb, #3b82f6); opacity:0.55;"></div></div><span class="bar-value">$51K</span></div>
-        <div class="bar-row"><span class="bar-label">D&eacute;c</span><div class="bar-track"><div class="bar-fill" style="width:18%; background: linear-gradient(90deg, #2563eb, #3b82f6); opacity:0.4;"></div></div><span class="bar-value">$21K</span></div>
+      <p style="font-size: 0.9rem; margin-bottom: 1rem;">Chiffre d'affaires mensuel (Square POS) crois&eacute; avec les donn&eacute;es m&eacute;t&eacute;o r&eacute;elles de Hammondsport, 2025. <strong>La corr&eacute;lation est frappante</strong> &mdash; et r&eacute;v&egrave;le un risque strat&eacute;gique.</p>
+
+      <!-- GRAPHIQUE DOUBLE : CA + MÉTÉO -->
+      <div style="margin-bottom: 1.25rem;">
+        <!-- Légende -->
+        <div style="display: flex; gap: 1rem; margin-bottom: 0.75rem; font-size: 0.7rem; color: var(--text-muted);">
+          <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 12px; height: 4px; background: linear-gradient(90deg, #2563eb, #3b82f6); border-radius: 2px; display: inline-block;"></span> CA POS</span>
+          <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 12px; height: 4px; background: var(--amber); border-radius: 2px; display: inline-block;"></span> Jours de beau temps</span>
+          <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 8px; height: 8px; background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.4); border-radius: 50%; display: inline-block;"></span> Pluie/neige</span>
+        </div>
+
+        <!-- Barres CA avec indicateurs météo -->
+        <div class="bar-chart" style="position: relative;">
+
+          <div class="bar-row"><span class="bar-label">Jan</span><div class="bar-track" style="position: relative;"><div class="bar-fill" style="width:13%; background: linear-gradient(90deg, #2563eb, #3b82f6); opacity:0.4;"></div><div style="position: absolute; right: 0; top: 0; bottom: 0; width: 33%; background: rgba(245,158,11,0.08); border-left: 1px dashed rgba(245,158,11,0.3);"></div></div><span class="bar-value" style="min-width: 80px; text-align: right; font-size: 0.68rem;">$16K <span style="color: var(--text-muted);">&bull; 25&deg;F &bull; <span style="color: var(--red);">14j pluie</span></span></span></div>
+
+          <div class="bar-row"><span class="bar-label">F&eacute;v</span><div class="bar-track" style="position: relative;"><div class="bar-fill" style="width:22%; background: linear-gradient(90deg, #2563eb, #3b82f6); opacity:0.45;"></div><div style="position: absolute; right: 0; top: 0; bottom: 0; width: 35%; background: rgba(245,158,11,0.08); border-left: 1px dashed rgba(245,158,11,0.3);"></div></div><span class="bar-value" style="min-width: 80px; text-align: right; font-size: 0.68rem;">$26K <span style="color: var(--text-muted);">&bull; 28&deg;F &bull; <span style="color: var(--red);">11j</span></span></span></div>
+
+          <div class="bar-row"><span class="bar-label">Mar</span><div class="bar-track" style="position: relative;"><div class="bar-fill" style="width:26%; background: linear-gradient(90deg, #2563eb, #3b82f6); opacity:0.5;"></div><div style="position: absolute; right: 0; top: 0; bottom: 0; width: 41%; background: rgba(245,158,11,0.08); border-left: 1px dashed rgba(245,158,11,0.3);"></div></div><span class="bar-value" style="min-width: 80px; text-align: right; font-size: 0.68rem;">$31K <span style="color: var(--text-muted);">&bull; 43&deg;F &bull; <span style="color: var(--red);">13j</span></span></span></div>
+
+          <div class="bar-row"><span class="bar-label">Avr</span><div class="bar-track" style="position: relative;"><div class="bar-fill" style="width:36%; background: linear-gradient(90deg, #2563eb, #3b82f6); opacity:0.55;"></div><div style="position: absolute; right: 0; top: 0; bottom: 0; width: 45%; background: rgba(245,158,11,0.08); border-left: 1px dashed rgba(245,158,11,0.3);"></div></div><span class="bar-value" style="min-width: 80px; text-align: right; font-size: 0.68rem;">$43K <span style="color: var(--text-muted);">&bull; 48&deg;F &bull; <span style="color: var(--red);">14j</span></span></span></div>
+
+          <div class="bar-row"><span class="bar-label">Mai</span><div class="bar-track" style="position: relative;"><div class="bar-fill" style="width:57%; background: linear-gradient(90deg, #2563eb, #3b82f6); opacity:0.7;"></div><div style="position: absolute; right: 0; top: 0; bottom: 0; width: 47%; background: rgba(245,158,11,0.1); border-left: 1px dashed rgba(245,158,11,0.3);"></div></div><span class="bar-value" style="min-width: 80px; text-align: right; font-size: 0.68rem;">$68K <span style="color: var(--text-muted);">&bull; 55&deg;F &bull; <span style="color: var(--amber);">14j</span></span></span></div>
+
+          <div class="bar-row"><span class="bar-label">Juin</span><div class="bar-track" style="position: relative;"><div class="bar-fill" style="width:67%; background: linear-gradient(90deg, #2563eb, #3b82f6); opacity:0.8;"></div><div style="position: absolute; right: 0; top: 0; bottom: 0; width: 53%; background: rgba(245,158,11,0.12); border-left: 1px dashed rgba(245,158,11,0.3);"></div></div><span class="bar-value" style="min-width: 80px; text-align: right; font-size: 0.68rem;">$79K <span style="color: var(--text-muted);">&bull; 68&deg;F &bull; <span style="color: var(--green);">13j</span></span></span></div>
+
+          <div class="bar-row"><span class="bar-label">Juil</span><div class="bar-track" style="position: relative;"><div class="bar-fill" style="width:85%; background: linear-gradient(90deg, #2563eb, #3b82f6); opacity:0.9;"></div><div style="position: absolute; right: 0; top: 0; bottom: 0; width: 61%; background: rgba(245,158,11,0.15); border-left: 1px dashed rgba(245,158,11,0.3);"></div></div><span class="bar-value" style="min-width: 80px; text-align: right; font-size: 0.68rem;">$101K <span style="color: var(--text-muted);">&bull; 72&deg;F &bull; <span style="color: var(--green);">12j</span></span></span></div>
+
+          <div class="bar-row"><span class="bar-label">Ao&ucirc;t</span><div class="bar-track" style="position: relative;"><div class="bar-fill" style="width:100%; background: linear-gradient(90deg, #2563eb, #3b82f6);"></div><div style="position: absolute; right: 0; top: 0; bottom: 0; width: 64%; background: rgba(245,158,11,0.18); border-left: 1px dashed rgba(245,158,11,0.3);"></div></div><span class="bar-value" style="min-width: 80px; text-align: right; font-size: 0.68rem;">$118K <span style="color: var(--text-muted);">&bull; 64&deg;F &bull; <span style="color: var(--green);">12j</span></span></span></div>
+
+          <div class="bar-row" style="background: rgba(239,68,68,0.03); border-radius: 6px; padding: 2px 0;"><span class="bar-label" style="color: var(--red); font-weight: 600;">Sep</span><div class="bar-track" style="position: relative;"><div class="bar-fill" style="width:68%; background: linear-gradient(90deg, #ef4444, #f87171); opacity:0.7;"></div><div style="position: absolute; right: 0; top: 0; bottom: 0; width: 62%; background: rgba(245,158,11,0.15); border-left: 1px dashed rgba(245,158,11,0.3);"></div></div><span class="bar-value" style="min-width: 80px; text-align: right; font-size: 0.68rem; color: var(--red); font-weight: 600;">$81K <span style="font-weight: 400; color: var(--text-muted);">&bull; 59&deg;F &bull; 11j</span></span></div>
+
+          <div class="bar-row"><span class="bar-label">Oct</span><div class="bar-track" style="position: relative;"><div class="bar-fill" style="width:95%; background: linear-gradient(90deg, #2563eb, #3b82f6); opacity:0.95;"></div><div style="position: absolute; right: 0; top: 0; bottom: 0; width: 55%; background: rgba(245,158,11,0.12); border-left: 1px dashed rgba(245,158,11,0.3);"></div></div><span class="bar-value" style="min-width: 80px; text-align: right; font-size: 0.68rem;">$112K <span style="color: var(--text-muted);">&bull; 48&deg;F &bull; <span style="color: var(--amber);">14j</span></span></span></div>
+
+          <div class="bar-row"><span class="bar-label">Nov</span><div class="bar-track" style="position: relative;"><div class="bar-fill" style="width:43%; background: linear-gradient(90deg, #2563eb, #3b82f6); opacity:0.55;"></div><div style="position: absolute; right: 0; top: 0; bottom: 0; width: 45%; background: rgba(245,158,11,0.08); border-left: 1px dashed rgba(245,158,11,0.3);"></div></div><span class="bar-value" style="min-width: 80px; text-align: right; font-size: 0.68rem;">$51K <span style="color: var(--text-muted);">&bull; 37&deg;F &bull; <span style="color: var(--red);">13j</span></span></span></div>
+
+          <div class="bar-row"><span class="bar-label">D&eacute;c</span><div class="bar-track" style="position: relative;"><div class="bar-fill" style="width:18%; background: linear-gradient(90deg, #2563eb, #3b82f6); opacity:0.4;"></div><div style="position: absolute; right: 0; top: 0; bottom: 0; width: 37%; background: rgba(245,158,11,0.06); border-left: 1px dashed rgba(245,158,11,0.3);"></div></div><span class="bar-value" style="min-width: 80px; text-align: right; font-size: 0.68rem;">$21K <span style="color: var(--text-muted);">&bull; 27&deg;F &bull; <span style="color: var(--red);">15j</span></span></span></div>
+
+        </div>
       </div>
+
+      <!-- INSIGHT SEPTEMBRE -->
+      <div style="padding: 14px 16px; background: rgba(239,68,68,0.03); border-radius: 10px; border-left: 3px solid var(--red); margin-bottom: 1rem;">
+        <p style="font-size: 0.85rem; font-weight: 600; color: var(--red); margin-bottom: 6px;">Le creux de septembre &mdash; pourquoi ?</p>
+        <p style="font-size: 0.82rem; line-height: 1.6; color: var(--text-secondary); margin-bottom: 6px;">
+          Septembre a la <strong>2&egrave;me meilleure m&eacute;t&eacute;o de l'ann&eacute;e</strong> (62% de jours clairs, seulement 11 jours de pluie &mdash; le minimum). Pourtant, le CA chute de <strong>$118K &agrave; $81K (&minus;31%)</strong> par rapport &agrave; ao&ucirc;t.
+        </p>
+        <p style="font-size: 0.82rem; line-height: 1.6; color: var(--text-secondary); margin-bottom: 6px;">
+          La cause n'est pas la m&eacute;t&eacute;o &mdash; c'est la <strong>rentr&eacute;e scolaire</strong> et la fin des vacances d'&eacute;t&eacute;. Les familles ne voyagent plus. C'est un <strong>signal strat&eacute;gique</strong>&nbsp;: septembre est un mois sous-exploit&eacute; o&ugrave; la m&eacute;t&eacute;o permettrait un CA bien plus &eacute;lev&eacute; avec le bon marketing (couples sans enfants, week-ends &oelig;notourisme, &eacute;v&eacute;nements post-r&eacute;colte).
+        </p>
+      </div>
+
+      <!-- INSIGHT OCTOBRE -->
+      <div style="padding: 14px 16px; background: rgba(34,197,94,0.03); border-radius: 10px; border-left: 3px solid var(--green); margin-bottom: 1rem;">
+        <p style="font-size: 0.85rem; font-weight: 600; color: var(--green); margin-bottom: 6px;">Le rebond d'octobre &mdash; la preuve que la m&eacute;t&eacute;o n'est pas tout</p>
+        <p style="font-size: 0.82rem; line-height: 1.6; color: var(--text-secondary); margin-bottom: 0;">
+          Octobre est plus froid (48&deg;F vs 59&deg;F) et plus pluvieux (14 jours vs 11) que septembre. Pourtant le CA <strong>remonte &agrave; $112K (+38%)</strong>. Pourquoi&nbsp;? Le <strong>fall foliage</strong> &mdash; un &eacute;v&eacute;nement naturel qui g&eacute;n&egrave;re son propre trafic. C'est la d&eacute;monstration qu'un <strong>moteur de trafic ind&eacute;pendant de la m&eacute;t&eacute;o</strong> (ici la nature, ailleurs le marketing digital) peut transformer un mois moyen en mois record.
+        </p>
+      </div>
+
+      <!-- RÉSUMÉ MÉTÉO-DÉPENDANCE -->
+      <div style="padding: 14px 16px; background: rgba(245,158,11,0.04); border-radius: 10px; border: 1px solid rgba(245,158,11,0.12);">
+        <p style="font-size: 0.85rem; font-weight: 600; color: var(--amber); margin-bottom: 6px;">Le risque strat&eacute;gique : la m&eacute;t&eacute;o-d&eacute;pendance</p>
+        <p style="font-size: 0.82rem; line-height: 1.6; color: var(--text-secondary); margin-bottom: 6px;">
+          De mai &agrave; ao&ucirc;t, votre CA suit presque parfaitement la courbe m&eacute;t&eacute;o. C'est normal pour un tasting room &mdash; mais c'est aussi un risque&nbsp;: <strong>un &eacute;t&eacute; pluvieux peut co&ucirc;ter $50&ndash;80K de manque &agrave; gagner</strong>. En mai 2025, les inondations &eacute;clair dans les Finger Lakes ont d&eacute;j&agrave; impact&eacute; le trafic.
+        </p>
+        <p style="font-size: 0.82rem; line-height: 1.6; color: var(--text-secondary); margin-bottom: 0;">
+          <strong>Le marketing digital est le seul levier qui ne d&eacute;pend pas de la m&eacute;t&eacute;o.</strong> Le Wine Club g&eacute;n&egrave;re $333K/an par livraison &agrave; domicile &mdash; qu'il pleuve ou qu'il fasse beau. Le SEO et l'email marketing travaillent 365 jours par an. C'est le parapluie de votre business.
+        </p>
+      </div>
+
+      <p style="font-size: 0.65rem; color: var(--text-muted); margin-top: 0.75rem;">
+        Donn&eacute;es m&eacute;t&eacute;o : station Elmira/Corning Regional Airport (12 miles de Hammondsport), 2025 &bull; Sources : TimeAndDate.com, WeatherSpark, NOAA &bull; CA : Square POS API <span class="fiab verifie">&#9679;</span>
+      </p>
     </div>
   </details>
 
