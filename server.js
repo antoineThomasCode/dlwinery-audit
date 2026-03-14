@@ -35,7 +35,7 @@ const notFoundHtml = `<!DOCTYPE html>
 // ============================================================================
 // IN-MEMORY ANALYTICS STORE
 // ============================================================================
-const sessions = []; // { token, name, channel, device, startedAt, lastActiveAt, events[], sections{}, scrollMax, proposalSent }
+const sessions = []; // { token, name, channel, device, startedAt, lastActiveAt, events[], sections{}, accordions{}, faqOpens{}, readingMode, scrollMax, proposalSent }
 
 function getOrCreateSession(token) {
   const viewer = TOKENS[token];
@@ -53,6 +53,9 @@ function getOrCreateSession(token) {
       lastActiveAt: Date.now(),
       events: [],
       sections: {},   // sectionId -> { enterTime, totalMs, visits }
+      accordions: {}, // trackId -> openCount
+      faqOpens: {},   // trackId -> openCount
+      readingMode: "Skim", // Skim | Detail | Deep dive
       scrollMax: 0,
       proposalSent: false,
     };
@@ -135,6 +138,42 @@ function generateReport() {
         }
       }
 
+      // Reading mode
+      text += `\n  *Mode lecture :* ${s.readingMode}`;
+
+      // Top accordions opened
+      const accEntries = Object.entries(s.accordions)
+        .filter(([, v]) => v > 0)
+        .sort((a, b) => b[1] - a[1]);
+
+      if (accEntries.length > 0) {
+        text += `\n  *Accordions ouverts (${accEntries.length}) :*`;
+        for (const [accId, count] of accEntries.slice(0, 3)) {
+          text += `\n    \u2022 ${accId} : ${count}x`;
+        }
+        if (accEntries.length > 3) {
+          text += `\n    + ${accEntries.length - 3} autres`;
+        }
+      }
+
+      // FAQ questions opened
+      const faqEntries = Object.entries(s.faqOpens)
+        .filter(([, v]) => v > 0)
+        .sort((a, b) => b[1] - a[1]);
+
+      if (faqEntries.length > 0) {
+        text += `\n  *FAQ consult\u00e9es (${faqEntries.length}/8) :*`;
+        for (const [faqId, count] of faqEntries.slice(0, 5)) {
+          text += `\n    \u2022 ${faqId} : ${count}x`;
+        }
+      }
+
+      // Sticky CTA clicks
+      const ctaClicks = s.events.filter(e => e.type === "sticky_cta_click").length;
+      if (ctaClicks > 0) {
+        text += `\n  *CTA flottant cliqu\u00e9 :* ${ctaClicks}x`;
+      }
+
       if (s.proposalSent) {
         text += `\n  \u{2705} *PROPOSITION ENVOY\u00c9E*`;
       }
@@ -205,6 +244,25 @@ const server = http.createServer(async (req, res) => {
               session.sections[id].totalMs += ms;
               session.sections[id].visits += 1;
             }
+          }
+
+          // Accordion open tracking
+          if (data.accordions) {
+            for (const [id, count] of Object.entries(data.accordions)) {
+              session.accordions[id] = (session.accordions[id] || 0) + count;
+            }
+          }
+
+          // FAQ open tracking
+          if (data.faqOpens) {
+            for (const [id, count] of Object.entries(data.faqOpens)) {
+              session.faqOpens[id] = (session.faqOpens[id] || 0) + count;
+            }
+          }
+
+          // Reading mode (latest value wins)
+          if (data.readingMode) {
+            session.readingMode = data.readingMode;
           }
 
           if (data.event) {
