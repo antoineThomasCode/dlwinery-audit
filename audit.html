@@ -3165,194 +3165,173 @@
     <strong>DL Winery</strong> &mdash; 10% du CA en ligne <strong>additionnel</strong> au-del&agrave; de $372K (baseline Vinoshipper 2025). Exemple : si le CA passe &agrave; $450K, commission = 10% &times; $78K = <strong>$7 800/an</strong> (~$650/mois). Si le CA reste sous $372K = <strong>z&eacute;ro commission</strong>.
   </div>
 
-  <!-- COMMISSION LE CLOS — 3 OPTIONS -->
-  <h3 style="margin-top: 2.5rem; margin-bottom: 0.5rem;">Commission Le Clos 1487 &mdash; Choisissez votre formule</h3>
-  <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.5rem;">Le Clos est un nouvel &eacute;tablissement sans historique. Votre projection : <strong>~$170K de CA total</strong> sur la premi&egrave;re saison (ao&ucirc;t&ndash;d&eacute;cembre). Trois formules possibles pour la commission &mdash; la m&ecirc;me qualit&eacute; de service dans chaque cas.</p>
+  <!-- COMMISSION LE CLOS — COMPOSANT INTERACTIF -->
+  <h3 style="margin-top: 2.5rem; margin-bottom: 0.5rem;">Commission Le Clos 1487 &mdash; Composez votre formule</h3>
+  <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">Nouvel &eacute;tablissement, votre projection : <strong>~$170K</strong> (ao&ucirc;t&ndash;d&eacute;c). Choisissez l'option qui vous convient.</p>
 
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+  <div class="glass-card" id="le-clos-composer" style="padding: 1rem;">
 
-    <!-- OPTION A -->
-    <div class="pricing-card" style="border-color: var(--blue);">
-      <div style="font-family: var(--font-mono); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--blue); margin-bottom: 0.5rem;">Option A</div>
-      <h4 style="font-size: 1rem; margin-bottom: 0.25rem;">Commission diff&eacute;r&eacute;e</h4>
-      <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1rem;">Pas de commission pendant le lancement. La commission ne d&eacute;marre qu'apr&egrave;s 6 mois, sur la partie du CA en ligne au-del&agrave; de $5&nbsp;000/mois.</p>
-      <div style="background: #fafafa; border-radius: var(--radius); padding: 0.85rem; margin-bottom: 0.75rem;">
-        <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.25rem;">Ao&ucirc;t &rarr; Janvier</p>
-        <p style="font-size: 1.1rem; font-weight: 700; color: var(--green); margin-bottom: 0;">0%</p>
-      </div>
-      <div style="background: #fafafa; border-radius: var(--radius); padding: 0.85rem; margin-bottom: 0.75rem;">
-        <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.25rem;">&Agrave; partir de f&eacute;vrier 2027</p>
-        <p style="font-size: 1.1rem; font-weight: 700; color: var(--blue); margin-bottom: 0;">10% au-del&agrave; de $5K/mois</p>
-      </div>
-      <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0; line-height: 1.45;"><strong>Simulation :</strong> Si le CA en ligne Le Clos atteint $8K/mois apr&egrave;s 6 mois &rarr; 10% &times; $3K = <strong>$300/mois</strong>. Premi&egrave;re ann&eacute;e : ~<strong>$1 800</strong>.</p>
+    <!-- ONGLETS A / B / C -->
+    <div style="display: flex; gap: 0; margin-bottom: 1rem; border-radius: 8px; overflow: hidden; border: 2px solid var(--border);">
+      <button class="tab-btn tab-active" data-tab="a" onclick="switchTab('a')" style="flex: 1; padding: 0.6rem 0.25rem; font-size: 0.72rem; font-weight: 700; border: none; cursor: pointer; transition: all 0.2s; font-family: var(--font-sans); background: var(--blue); color: #fff;">
+        A &mdash; Diff&eacute;r&eacute;e
+      </button>
+      <button class="tab-btn" data-tab="b" onclick="switchTab('b')" style="flex: 1; padding: 0.6rem 0.25rem; font-size: 0.72rem; font-weight: 700; border: none; border-left: 1px solid var(--border); cursor: pointer; transition: all 0.2s; font-family: var(--font-sans); background: #f8f8f8; color: var(--text-muted);">
+        B &mdash; Croissance
+      </button>
+      <button class="tab-btn" data-tab="c" onclick="switchTab('c')" style="flex: 1; padding: 0.6rem 0.25rem; font-size: 0.72rem; font-weight: 700; border: none; border-left: 1px solid var(--border); cursor: pointer; transition: all 0.2s; font-family: var(--font-sans); background: #f8f8f8; color: var(--text-muted);">
+        C &mdash; Objectifs
+      </button>
     </div>
 
-    <!-- OPTION B -->
-    <div class="pricing-card">
-      <div style="font-family: var(--font-mono); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--violet); margin-bottom: 0.5rem;">Option B</div>
-      <h4 style="font-size: 1rem; margin-bottom: 0.25rem;">Partage de croissance</h4>
-      <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1rem;">Z&eacute;ro commission sous votre propre estimation ($170K). La commission ne porte que sur la croissance au-del&agrave; &mdash; le succ&egrave;s que mes actions g&eacute;n&egrave;rent.</p>
-      <div style="background: #fafafa; border-radius: var(--radius); padding: 0.85rem; margin-bottom: 0.75rem;">
-        <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.25rem;">$0 &rarr; $170K <span style="font-size: 0.7rem;">(votre baseline)</span></p>
-        <p style="font-size: 1.1rem; font-weight: 700; color: var(--green); margin-bottom: 0;">0% &mdash; vous ne payez rien</p>
+    <!-- TAB A -->
+    <div id="tab-a" class="tab-content" style="display: block;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+        <span style="font-size: 0.82rem; font-weight: 600; color: var(--blue);">Commission diff&eacute;r&eacute;e</span>
+        <span style="font-family: var(--font-mono); font-size: 1.2rem; font-weight: 700; color: var(--blue);" id="sim-a">$0</span>
       </div>
-      <div style="background: #fafafa; border-radius: var(--radius); padding: 0.85rem; margin-bottom: 0.75rem;">
-        <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.25rem;">$170K &rarr; $250K <span style="font-size: 0.7rem;">(croissance mod&eacute;r&eacute;e)</span></p>
-        <p style="font-size: 1.1rem; font-weight: 700; color: var(--violet); margin-bottom: 0;">5%</p>
+      <div style="background: #f8f9fa; border-radius: 6px; padding: 0.6rem; font-size: 0.75rem; color: var(--text-secondary); line-height: 1.5;">
+        <strong>0%</strong> pendant 6 mois (ao&ucirc;t&ndash;jan) &rarr; puis <strong>10%</strong> au-del&agrave; de $5K/mois de CA en ligne. Premi&egrave;re saison : <strong>$0</strong>.
       </div>
-      <div style="background: #fafafa; border-radius: var(--radius); padding: 0.85rem; margin-bottom: 0.75rem;">
-        <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.25rem;">$250K &rarr; $340K <span style="font-size: 0.7rem;">(croissance forte)</span></p>
-        <p style="font-size: 1.1rem; font-weight: 700; color: var(--blue); margin-bottom: 0;">8%</p>
-      </div>
-      <div style="background: #fafafa; border-radius: var(--radius); padding: 0.85rem; margin-bottom: 0.75rem;">
-        <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.25rem;">Au-del&agrave; de $340K <span style="font-size: 0.7rem;">(performance exceptionnelle)</span></p>
-        <p style="font-size: 1.1rem; font-weight: 700; color: var(--orange); margin-bottom: 0;">10%</p>
-      </div>
-      <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0; line-height: 1.45;"><strong>Logique :</strong> Vous avez estim&eacute; $170K sans accompagnement digital. Tout d&eacute;passement est le fruit de notre collaboration. Plus &ccedil;a marche, plus on partage &mdash; mais en dessous de $170K, c'est z&eacute;ro.</p>
     </div>
 
-    <!-- OPTION C -->
-    <div class="pricing-card">
-      <div style="font-family: var(--font-mono); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--green); margin-bottom: 0.5rem;">Option C</div>
-      <h4 style="font-size: 1rem; margin-bottom: 0.25rem;">Bonus sur objectifs</h4>
-      <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1rem;">Aucun pourcentage sur le CA. Un bonus trimestriel fixe, d&eacute;clench&eacute; uniquement si des objectifs digitaux mesurables sont atteints.</p>
-      <div style="background: #fafafa; border-radius: var(--radius); padding: 0.85rem; margin-bottom: 0.75rem;">
-        <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.25rem;">Bonus trimestriel &mdash; votre montant</p>
-        <div style="display: flex; align-items: center; gap: 0.5rem;">
-          <span style="font-size: 1.1rem; font-weight: 700; color: var(--green);">$</span>
-          <input type="number" id="option-c-amount" placeholder="Montant" min="0" max="10000" step="50" style="font-family: var(--font-mono); font-size: 1.1rem; font-weight: 700; color: var(--green); border: 2px solid var(--border); border-radius: 6px; padding: 0.4rem 0.6rem; width: 120px; outline: none; background: #fff; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border)'">
-          <span style="font-size: 0.78rem; color: var(--text-muted);">/ trimestre si 2/3 objectifs atteints</span>
+    <!-- TAB B -->
+    <div id="tab-b" class="tab-content" style="display: none;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+        <span style="font-size: 0.82rem; font-weight: 600; color: var(--violet);">Partage de croissance</span>
+        <span style="font-family: var(--font-mono); font-size: 1.2rem; font-weight: 700; color: var(--violet);" id="sim-b">$0</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.35rem; margin-bottom: 0.5rem;">
+        <div style="background: #f8f9fa; border-radius: 6px; padding: 0.4rem 0.5rem; text-align: center;">
+          <div style="font-size: 0.62rem; color: var(--text-muted);">&le;$170K</div>
+          <div style="font-size: 0.9rem; font-weight: 700; color: var(--green);">0%</div>
+        </div>
+        <div style="background: #f8f9fa; border-radius: 6px; padding: 0.4rem 0.5rem; text-align: center;">
+          <div style="font-size: 0.62rem; color: var(--text-muted);">$170-250K</div>
+          <div style="font-size: 0.9rem; font-weight: 700; color: var(--violet);">5%</div>
+        </div>
+        <div style="background: #f8f9fa; border-radius: 6px; padding: 0.4rem 0.5rem; text-align: center;">
+          <div style="font-size: 0.62rem; color: var(--text-muted);">$250-340K</div>
+          <div style="font-size: 0.9rem; font-weight: 700; color: var(--blue);">8%</div>
+        </div>
+        <div style="background: #f8f9fa; border-radius: 6px; padding: 0.4rem 0.5rem; text-align: center;">
+          <div style="font-size: 0.62rem; color: var(--text-muted);">&gt;$340K</div>
+          <div style="font-size: 0.9rem; font-weight: 700; color: var(--orange);">10%</div>
         </div>
       </div>
-      <div style="background: #fafafa; border-radius: var(--radius); padding: 0.85rem; margin-bottom: 0.75rem;">
-        <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.35rem;">S&eacute;lectionnez vos objectifs</p>
-        <p style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.6rem;">Cochez les indicateurs sur lesquels vous souhaitez me mesurer. Ce sont des m&eacute;triques o&ugrave; mes actions digitales ont un impact direct et v&eacute;rifiable. Vous choisissez le nombre d'objectifs et les seuils.</p>
-        <div id="obj-list" style="display: flex; flex-direction: column; gap: 0.5rem;">
-
-          <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.4rem 0.5rem; border-radius: 6px; transition: background 0.15s;" onmouseover="this.style.background='rgba(34,197,94,0.06)'" onmouseout="this.style.background='transparent'">
-            <input type="checkbox" class="obj-check" data-label="R&eacute;servations en ligne / trimestre" style="accent-color: var(--green); width: 16px; height: 16px; cursor: pointer;">
-            <span style="font-size: 0.78rem; color: var(--text-secondary); flex: 1;">R&eacute;servations en ligne</span>
-            <span style="font-size: 0.72rem; color: var(--text-muted);">&ge;</span>
-            <input type="number" class="obj-val" placeholder="200" min="0" style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--text); border: 2px solid var(--border); border-radius: 5px; padding: 0.2rem 0.35rem; width: 65px; outline: none; background: #fff;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border)'">
-            <span style="font-size: 0.68rem; color: var(--text-muted);">/ trim.</span>
-          </label>
-
-          <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.4rem 0.5rem; border-radius: 6px; transition: background 0.15s;" onmouseover="this.style.background='rgba(34,197,94,0.06)'" onmouseout="this.style.background='transparent'">
-            <input type="checkbox" class="obj-check" data-label="Abonn&eacute;s email collect&eacute;s / trimestre" style="accent-color: var(--green); width: 16px; height: 16px; cursor: pointer;">
-            <span style="font-size: 0.78rem; color: var(--text-secondary); flex: 1;">Abonn&eacute;s email collect&eacute;s</span>
-            <span style="font-size: 0.72rem; color: var(--text-muted);">&ge;</span>
-            <input type="number" class="obj-val" placeholder="500" min="0" style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--text); border: 2px solid var(--border); border-radius: 5px; padding: 0.2rem 0.35rem; width: 65px; outline: none; background: #fff;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border)'">
-            <span style="font-size: 0.68rem; color: var(--text-muted);">/ trim.</span>
-          </label>
-
-          <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.4rem 0.5rem; border-radius: 6px; transition: background 0.15s;" onmouseover="this.style.background='rgba(34,197,94,0.06)'" onmouseout="this.style.background='transparent'">
-            <input type="checkbox" class="obj-check" data-label="CA en ligne Vinoshipper / trimestre" style="accent-color: var(--green); width: 16px; height: 16px; cursor: pointer;">
-            <span style="font-size: 0.78rem; color: var(--text-secondary); flex: 1;">CA en ligne Vinoshipper</span>
-            <span style="font-size: 0.72rem; color: var(--text-muted);">&ge;</span>
-            <input type="text" class="obj-val" placeholder="$15K" style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--text); border: 2px solid var(--border); border-radius: 5px; padding: 0.2rem 0.35rem; width: 65px; outline: none; background: #fff;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border)'">
-            <span style="font-size: 0.68rem; color: var(--text-muted);">/ trim.</span>
-          </label>
-
-          <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.4rem 0.5rem; border-radius: 6px; transition: background 0.15s;" onmouseover="this.style.background='rgba(34,197,94,0.06)'" onmouseout="this.style.background='transparent'">
-            <input type="checkbox" class="obj-check" data-label="Inscriptions Wine Club en ligne / trimestre" style="accent-color: var(--green); width: 16px; height: 16px; cursor: pointer;">
-            <span style="font-size: 0.78rem; color: var(--text-secondary); flex: 1;">Inscriptions Wine Club en ligne</span>
-            <span style="font-size: 0.72rem; color: var(--text-muted);">&ge;</span>
-            <input type="number" class="obj-val" placeholder="30" min="0" style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--text); border: 2px solid var(--border); border-radius: 5px; padding: 0.2rem 0.35rem; width: 65px; outline: none; background: #fff;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border)'">
-            <span style="font-size: 0.68rem; color: var(--text-muted);">/ trim.</span>
-          </label>
-
-          <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.4rem 0.5rem; border-radius: 6px; transition: background 0.15s;" onmouseover="this.style.background='rgba(34,197,94,0.06)'" onmouseout="this.style.background='transparent'">
-            <input type="checkbox" class="obj-check" data-label="Trafic site web / trimestre" style="accent-color: var(--green); width: 16px; height: 16px; cursor: pointer;">
-            <span style="font-size: 0.78rem; color: var(--text-secondary); flex: 1;">Trafic site web (visiteurs uniques)</span>
-            <span style="font-size: 0.72rem; color: var(--text-muted);">&ge;</span>
-            <input type="number" class="obj-val" placeholder="5000" min="0" style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--text); border: 2px solid var(--border); border-radius: 5px; padding: 0.2rem 0.35rem; width: 65px; outline: none; background: #fff;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border)'">
-            <span style="font-size: 0.68rem; color: var(--text-muted);">/ trim.</span>
-          </label>
-
-          <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.4rem 0.5rem; border-radius: 6px; transition: background 0.15s;" onmouseover="this.style.background='rgba(34,197,94,0.06)'" onmouseout="this.style.background='transparent'">
-            <input type="checkbox" class="obj-check" data-label="Taux d'ouverture email / trimestre" style="accent-color: var(--green); width: 16px; height: 16px; cursor: pointer;">
-            <span style="font-size: 0.78rem; color: var(--text-secondary); flex: 1;">Taux d'ouverture email</span>
-            <span style="font-size: 0.72rem; color: var(--text-muted);">&ge;</span>
-            <input type="text" class="obj-val" placeholder="25%" style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--text); border: 2px solid var(--border); border-radius: 5px; padding: 0.2rem 0.35rem; width: 65px; outline: none; background: #fff;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border)'">
-            <span style="font-size: 0.68rem; color: var(--text-muted);">/ trim.</span>
-          </label>
-
-          <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.4rem 0.5rem; border-radius: 6px; transition: background 0.15s;" onmouseover="this.style.background='rgba(34,197,94,0.06)'" onmouseout="this.style.background='transparent'">
-            <input type="checkbox" class="obj-check" data-label="Avis Google collect&eacute;s / trimestre" style="accent-color: var(--green); width: 16px; height: 16px; cursor: pointer;">
-            <span style="font-size: 0.78rem; color: var(--text-secondary); flex: 1;">Avis Google collect&eacute;s</span>
-            <span style="font-size: 0.72rem; color: var(--text-muted);">&ge;</span>
-            <input type="number" class="obj-val" placeholder="20" min="0" style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--text); border: 2px solid var(--border); border-radius: 5px; padding: 0.2rem 0.35rem; width: 65px; outline: none; background: #fff;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border)'">
-            <span style="font-size: 0.68rem; color: var(--text-muted);">/ trim.</span>
-          </label>
-
-        </div>
-        <p id="obj-count" style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.5rem; margin-bottom: 0;">0 objectif s&eacute;lectionn&eacute;</p>
-      </div>
-      <p id="option-c-sim" style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0; line-height: 1.45;"><strong>Simulation :</strong> Entrez un montant ci-dessus pour voir le co&ucirc;t annuel.</p>
+      <div id="sim-b-detail" style="font-size: 0.72rem; color: var(--text-muted); text-align: center;">0% en dessous de votre baseline ($170K)</div>
     </div>
 
-  </div>
-
-  <!-- SIMULATEUR INTERACTIF -->
-  <div class="glass-card" style="margin-top: 2rem;">
-    <h4 style="margin-bottom: 0.25rem;">Simulateur : combien co&ucirc;te chaque option ?</h4>
-    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem;">D&eacute;placez le curseur pour voir l'impact selon le CA total Le Clos sur la premi&egrave;re saison. On estime que <strong>~20% du CA total</strong> passe en ligne (Vinoshipper) &mdash; le reste est r&eacute;alis&eacute; en salle.</p>
-
-    <div style="margin-bottom: 1.5rem;">
-      <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.35rem;">
-        <span style="font-size: 0.78rem; color: var(--text-muted);">CA total Le Clos (ao&ucirc;t&ndash;d&eacute;c)</span>
-        <span id="sim-ca-display" style="font-family: var(--font-mono); font-size: 1.3rem; font-weight: 700; color: var(--text);">$170 000</span>
+    <!-- TAB C -->
+    <div id="tab-c" class="tab-content" style="display: none;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+        <span style="font-size: 0.82rem; font-weight: 600; color: var(--green);">Bonus sur objectifs</span>
+        <span style="font-family: var(--font-mono); font-size: 1.2rem; font-weight: 700; color: var(--green);" id="sim-c">&mdash;</span>
       </div>
-      <input type="range" id="sim-slider" min="170000" max="340000" step="5000" value="170000" style="width: 100%; accent-color: var(--blue); cursor: pointer; height: 8px;">
-      <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--text-muted); font-family: var(--font-mono);">
+      <div style="display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.6rem;">
+        <span style="font-size: 0.9rem; font-weight: 700; color: var(--green);">$</span>
+        <input type="number" id="option-c-amount" placeholder="Montant" min="0" max="10000" step="50" style="font-family: var(--font-mono); font-size: 1rem; font-weight: 700; color: var(--green); border: 2px solid var(--border); border-radius: 6px; padding: 0.35rem 0.5rem; width: 100px; outline: none; background: #fff;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border)'">
+        <span style="font-size: 0.72rem; color: var(--text-muted); flex: 1;">/ trimestre</span>
+      </div>
+      <div id="obj-list" style="display: flex; flex-direction: column; gap: 0.3rem; margin-bottom: 0.4rem;">
+        <label class="obj-row"><input type="checkbox" class="obj-check" data-label="R&eacute;servations en ligne / trimestre"><span class="obj-name">R&eacute;servations en ligne</span><span class="obj-sep">&ge;</span><input type="number" class="obj-val" placeholder="200" min="0"><span class="obj-unit">/trim</span></label>
+        <label class="obj-row"><input type="checkbox" class="obj-check" data-label="Abonn&eacute;s email / trimestre"><span class="obj-name">Abonn&eacute;s email</span><span class="obj-sep">&ge;</span><input type="number" class="obj-val" placeholder="500" min="0"><span class="obj-unit">/trim</span></label>
+        <label class="obj-row"><input type="checkbox" class="obj-check" data-label="CA en ligne Vinoshipper / trimestre"><span class="obj-name">CA en ligne Vinoshipper</span><span class="obj-sep">&ge;</span><input type="text" class="obj-val" placeholder="$15K"><span class="obj-unit">/trim</span></label>
+        <label class="obj-row"><input type="checkbox" class="obj-check" data-label="Inscriptions Wine Club / trimestre"><span class="obj-name">Wine Club en ligne</span><span class="obj-sep">&ge;</span><input type="number" class="obj-val" placeholder="30" min="0"><span class="obj-unit">/trim</span></label>
+        <label class="obj-row"><input type="checkbox" class="obj-check" data-label="Trafic site web / trimestre"><span class="obj-name">Trafic site web</span><span class="obj-sep">&ge;</span><input type="number" class="obj-val" placeholder="5000" min="0"><span class="obj-unit">/trim</span></label>
+        <label class="obj-row"><input type="checkbox" class="obj-check" data-label="Taux ouverture email / trimestre"><span class="obj-name">Taux ouverture email</span><span class="obj-sep">&ge;</span><input type="text" class="obj-val" placeholder="25%"><span class="obj-unit">/trim</span></label>
+        <label class="obj-row"><input type="checkbox" class="obj-check" data-label="Avis Google / trimestre"><span class="obj-name">Avis Google</span><span class="obj-sep">&ge;</span><input type="number" class="obj-val" placeholder="20" min="0"><span class="obj-unit">/trim</span></label>
+      </div>
+      <p id="obj-count" style="font-size: 0.68rem; color: var(--text-muted); margin: 0;">0 objectif s&eacute;lectionn&eacute;</p>
+      <div id="sim-c-detail" style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.25rem;">Entrez un montant ci-dessus</div>
+      <p id="option-c-sim" style="font-size: 0.72rem; color: var(--text-muted); margin: 0.25rem 0 0; line-height: 1.4;"></p>
+    </div>
+
+    <!-- SLIDER (toujours visible) -->
+    <div style="margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--border-light);">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.25rem;">
+        <span style="font-size: 0.72rem; color: var(--text-muted);">CA total Le Clos</span>
+        <span id="sim-ca-display" style="font-family: var(--font-mono); font-size: 1.1rem; font-weight: 700; color: var(--text);">$170 000</span>
+      </div>
+      <input type="range" id="sim-slider" min="170000" max="340000" step="5000" value="170000" style="width: 100%; accent-color: var(--blue); cursor: pointer; height: 6px;">
+      <div style="display: flex; justify-content: space-between; font-size: 0.62rem; color: var(--text-muted); font-family: var(--font-mono);">
         <span>$170K</span>
         <span>$340K</span>
       </div>
+      <div style="display: flex; gap: 0.35rem; margin-top: 0.35rem; font-size: 0.68rem; color: var(--text-muted);">
+        <span>En ligne (~20%) :</span>
+        <span id="sim-online" style="font-family: var(--font-mono); font-weight: 600; color: var(--text);">$34 000</span>
+        <span>&mdash;</span>
+        <span id="sim-monthly" style="font-family: var(--font-mono); font-weight: 600; color: var(--text);">~$6 800/mois</span>
+      </div>
     </div>
 
-    <div style="display: flex; gap: 0.5rem; margin-bottom: 0.75rem; font-size: 0.75rem; color: var(--text-muted);">
-      <span>CA en ligne estim&eacute; (~20%) :</span>
-      <span id="sim-online" style="font-family: var(--font-mono); font-weight: 600; color: var(--text);">$34 000</span>
-      <span>&mdash;</span>
-      <span>soit</span>
-      <span id="sim-monthly" style="font-family: var(--font-mono); font-weight: 600; color: var(--text);">~$6 800/mois</span>
+    <!-- RECAP FIXE (toujours visible) -->
+    <div style="margin-top: 0.75rem; padding: 0.5rem 0.6rem; background: #f8f9fa; border-radius: 6px; font-size: 0.68rem; color: var(--text-muted); line-height: 1.5;">
+      <strong>Rappel :</strong> forfait &euro;2 200/mois + commission DL Winery 10% au-del&agrave; de $372K = inchang&eacute;s. Seule la formule Le Clos varie.
     </div>
 
-    <!-- Résultats par option -->
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem; margin-top: 1rem;">
-
-      <div style="background: rgba(37,99,235,0.06); border-radius: var(--radius); padding: 1rem; border-left: 3px solid var(--blue);">
-        <div style="font-family: var(--font-mono); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--blue); margin-bottom: 0.35rem;">Option A &mdash; Diff&eacute;r&eacute;e</div>
-        <div style="font-size: 0.78rem; color: var(--text-secondary); margin-bottom: 0.5rem;">0% pendant 6 mois, puis 10% au-del&agrave; de $5K/mois</div>
-        <div style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.15rem;">Commission premi&egrave;re saison :</div>
-        <div id="sim-a" style="font-family: var(--font-mono); font-size: 1.4rem; font-weight: 700; color: var(--blue);">$0</div>
-        <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.15rem;">(d&eacute;marre en f&eacute;vrier 2027)</div>
-      </div>
-
-      <div style="background: rgba(139,92,246,0.06); border-radius: var(--radius); padding: 1rem; border-left: 3px solid var(--violet);">
-        <div style="font-family: var(--font-mono); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--violet); margin-bottom: 0.35rem;">Option B &mdash; Partage de croissance</div>
-        <div style="font-size: 0.78rem; color: var(--text-secondary); margin-bottom: 0.5rem;">0% &le;$170K &bull; 5% $170-250K &bull; 8% $250-340K &bull; 10% &gt;$340K</div>
-        <div style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.15rem;">Commission premi&egrave;re saison :</div>
-        <div id="sim-b" style="font-family: var(--font-mono); font-size: 1.4rem; font-weight: 700; color: var(--violet);">$0</div>
-        <div id="sim-b-detail" style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.15rem;">en dessous de votre baseline</div>
-      </div>
-
-      <div style="background: rgba(34,197,94,0.06); border-radius: var(--radius); padding: 1rem; border-left: 3px solid var(--green);">
-        <div style="font-family: var(--font-mono); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--green); margin-bottom: 0.35rem;">Option C &mdash; Bonus objectifs</div>
-        <div style="font-size: 0.78rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Bonus trimestriel sur objectifs atteints</div>
-        <div style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.15rem;">Commission premi&egrave;re saison :</div>
-        <div id="sim-c" style="font-family: var(--font-mono); font-size: 1.4rem; font-weight: 700; color: var(--green);">&mdash;</div>
-        <div id="sim-c-detail" style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.15rem;">Entrez un montant dans l'Option C ci-dessus</div>
-      </div>
-
+    <!-- BOUTON ENVOI -->
+    <div style="margin-top: 1rem; text-align: center;">
+      <p style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.5rem; line-height: 1.4;">
+        Quand votre choix est fait, envoyez. Mon IA me pr&eacute;vient imm&eacute;diatement.
+      </p>
+      <button id="send-proposal-btn" onclick="sendProposal()" style="
+        width: 100%; padding: 0.75rem; font-size: 0.88rem; font-weight: 700;
+        color: #fff; background: var(--blue); border: none; border-radius: 10px;
+        cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 14px rgba(59,130,246,0.3);
+        font-family: var(--font-sans);
+      ">
+        &#x1F4E9; Envoyer ma proposition &agrave; Antoine
+      </button>
+      <p id="proposal-confirm" style="display: none; margin-top: 0.5rem; font-size: 0.78rem; color: var(--green); font-weight: 600;">
+        Merci ! Antoine a &eacute;t&eacute; notifi&eacute; et reviendra vers vous rapidement.
+      </p>
     </div>
 
-    <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 1rem; margin-bottom: 0; line-height: 1.5;">
-      <strong>Rappel :</strong> dans tous les cas, le forfait mensuel (&euro;2 200) et la commission DL Winery (10% au-del&agrave; de $372K) restent identiques. Seule la formule Le Clos change.
-    </p>
   </div>
 
+  <style>
+    .obj-row {
+      display: flex; align-items: center; gap: 0.35rem; cursor: pointer;
+      padding: 0.3rem 0.4rem; border-radius: 6px; transition: background 0.15s;
+    }
+    .obj-row:active { background: rgba(34,197,94,0.08); }
+    .obj-row input[type="checkbox"] {
+      accent-color: var(--green); width: 18px; height: 18px; cursor: pointer; flex-shrink: 0;
+    }
+    .obj-name { font-size: 0.72rem; color: var(--text-secondary); flex: 1; min-width: 0; }
+    .obj-sep { font-size: 0.65rem; color: var(--text-muted); flex-shrink: 0; }
+    .obj-val {
+      font-family: var(--font-mono); font-size: 0.75rem; font-weight: 600;
+      color: var(--text); border: 2px solid var(--border); border-radius: 5px;
+      padding: 0.2rem 0.3rem; width: 55px; outline: none; background: #fff; flex-shrink: 0;
+    }
+    .obj-val:focus { border-color: var(--green); }
+    .obj-unit { font-size: 0.6rem; color: var(--text-muted); flex-shrink: 0; }
+    .tab-btn { line-height: 1.2; }
+  </style>
+
   <script>
+  // Tab switching
+  function switchTab(id) {
+    document.querySelectorAll('.tab-content').forEach(function(el) { el.style.display = 'none'; });
+    document.getElementById('tab-' + id).style.display = 'block';
+    var colors = { a: 'var(--blue)', b: 'var(--violet)', c: 'var(--green)' };
+    document.querySelectorAll('.tab-btn').forEach(function(btn) {
+      if (btn.dataset.tab === id) {
+        btn.style.background = colors[id]; btn.style.color = '#fff';
+        btn.classList.add('tab-active');
+      } else {
+        btn.style.background = '#f8f8f8'; btn.style.color = 'var(--text-muted)';
+        btn.classList.remove('tab-active');
+      }
+    });
+    // Track tab switch
+    hasInteracted = true;
+    scheduleTracking();
+  }
+
   (function() {
     var slider = document.getElementById('sim-slider');
     var optionCInput = document.getElementById('option-c-amount');
@@ -3368,6 +3347,7 @@
 
     var trackTimer = null;
     var trackHistory = [];
+    window.hasInteracted = false; // Only track after real interaction
 
     function fmt(n) {
       return '$' + n.toLocaleString('en-US');
@@ -3380,7 +3360,12 @@
         'H9B7BHXro6R6YscvL4mpdDl9sUoBvE8z': 'Sebastien',
         'tfzQUQKFOl6QHNGefleGy5aksjPVGjYO': 'Celine',
         'XpcyoBPbVbe7bSjDDzDF3d9j-n5DQaeN': 'Antoine',
-        '4-k17JqiWWU7Wx9ArOkV-Py-D-Q5Del0': 'Preview'
+        '4-k17JqiWWU7Wx9ArOkV-Py-D-Q5Del0': 'Preview',
+        'celine-email-8kQ2vR7pXm': 'Celine',
+        'celine-wa-Tn4bJ9sLwZ': 'Celine',
+        'seb-tg-Fh6cP3qYdN': 'Sebastien',
+        'seb-wa-Kx8mW5rBvE': 'Sebastien',
+        'antoine-test-Zq1': 'Antoine'
       };
       return names[t] || 'Inconnu';
     }
@@ -3402,6 +3387,8 @@
       var cAmount = parseInt(optionCInput.value) || 0;
       var bTotal = calcBTotal(ca);
       var viewer = getViewerName();
+      var activeTab = document.querySelector('.tab-active');
+      var selectedOption = activeTab ? activeTab.dataset.tab.toUpperCase() : '?';
       var checks = document.querySelectorAll('.obj-check');
       var selectedObjs = [];
       checks.forEach(function(cb) {
@@ -3412,42 +3399,44 @@
           selectedObjs.push({ val: val, label: label });
         }
       });
-      return { ca: ca, online: online, monthly: monthly, cAmount: cAmount, bTotal: bTotal, viewer: viewer, selectedObjs: selectedObjs };
+      return { ca: ca, online: online, monthly: monthly, cAmount: cAmount, bTotal: bTotal, viewer: viewer, selectedOption: selectedOption, selectedObjs: selectedObjs };
     }
 
     function sendTracking() {
+      if (!window.hasInteracted) return; // Don't track before interaction
       var d = getSimData();
       var now = new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Paris', dateStyle: 'short', timeStyle: 'medium' });
 
       var text = [
-        '\u{1F4CA} *Simulateur Le Clos utilis\u00e9*',
+        '\u{1F4CA} *Simulateur Le Clos*',
         '',
         '*Qui :* ' + d.viewer,
         '*Quand :* ' + now,
+        '*Onglet actif :* Option ' + d.selectedOption,
         '',
-        '*CA total simul\u00e9 :* ' + fmt(d.ca),
-        '*CA en ligne (~20%) :* ' + fmt(d.online) + ' (' + fmt(d.monthly) + '/mois)',
+        '*CA simul\u00e9 :* ' + fmt(d.ca),
+        '*En ligne (~20%) :* ' + fmt(d.online),
         '',
-        '*Option A (diff\u00e9r\u00e9e) :* $0 (1\u00e8re saison)',
-        '*Option B (croissance) :* ' + fmt(d.bTotal),
-        '*Option C (bonus) :* ' + (d.cAmount > 0 ? fmt(d.cAmount) + '/trim = ' + fmt(d.cAmount * 2) + '/an' : 'Non renseign\u00e9'),
+        '*Option A :* $0 (1\u00e8re saison)',
+        '*Option B :* ' + fmt(d.bTotal),
+        '*Option C :* ' + (d.cAmount > 0 ? fmt(d.cAmount) + '/trim = ' + fmt(d.cAmount * 2) + '/an' : 'Non renseign\u00e9'),
       ].join('\n');
 
       if (d.selectedObjs.length > 0) {
-        text += '\n\n*Objectifs choisis (' + d.selectedObjs.length + ') :*';
+        text += '\n\n*Objectifs (' + d.selectedObjs.length + ') :*';
         d.selectedObjs.forEach(function(o) {
-          text += '\n\u2022 \u2265 ' + o.val + ' ' + o.label;
+          text += '\n\u2022 ' + o.label + ' \u2265 ' + o.val;
         });
       }
 
       if (trackHistory.length > 0) {
         var last3 = trackHistory.slice(-3).map(function(h) {
-          return 'CA ' + fmt(h.ca) + ' | C: ' + (h.cAmount > 0 ? fmt(h.cAmount) : '-');
+          return h.tab + ' | CA ' + fmt(h.ca) + (h.cAmount > 0 ? ' | C:' + fmt(h.cAmount) : '');
         });
-        text += '\n\n*Historique r\u00e9cent :*\n' + last3.join('\n');
+        text += '\n\n*Historique :*\n' + last3.join('\n');
       }
 
-      trackHistory.push({ ca: d.ca, cAmount: d.cAmount, time: now });
+      trackHistory.push({ ca: d.ca, cAmount: d.cAmount, tab: d.selectedOption, time: now });
 
       fetch('/track', {
         method: 'POST',
@@ -3456,7 +3445,7 @@
       }).catch(function() {});
     }
 
-    function sendProposal() {
+    window.sendProposal = function() {
       var d = getSimData();
       var now = new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Paris', dateStyle: 'short', timeStyle: 'medium' });
       var objCount = d.selectedObjs.length;
@@ -3467,22 +3456,21 @@
         '',
         '*De :* ' + d.viewer,
         '*Date :* ' + now,
+        '*Option choisie :* ' + d.selectedOption,
         '',
-        '\u{1F4B0} *CA total Le Clos estim\u00e9 :* ' + fmt(d.ca),
-        '\u{1F4BB} *CA en ligne (~20%) :* ' + fmt(d.online),
+        '\u{1F4B0} *CA Le Clos estim\u00e9 :* ' + fmt(d.ca),
+        '\u{1F4BB} *CA en ligne :* ' + fmt(d.online),
         '',
-        '*\u2500\u2500\u2500 Incentive Le Clos choisi \u2500\u2500\u2500*',
-        '',
-        '*Option A (diff\u00e9r\u00e9e) :* $0 premi\u00e8re saison',
-        '*Option B (croissance) :* ' + fmt(d.bTotal),
-        '  \u2192 0% \u2264$170K | 5% $170-250K | 8% $250-340K | 10% >$340K',
+        '*\u2500\u2500\u2500 D\u00e9tail \u2500\u2500\u2500*',
+        '*Option A :* $0 premi\u00e8re saison',
+        '*Option B :* ' + fmt(d.bTotal) + ' (0% \u2264$170K | 5% $170-250K | 8% $250-340K | 10% >$340K)',
       ].join('\n');
 
       if (d.cAmount > 0) {
-        text += '\n*Option C (bonus) :* ' + fmt(d.cAmount) + '/trim = ' + fmt(d.cAmount * 2) + '/an';
+        text += '\n*Option C :* ' + fmt(d.cAmount) + '/trim = ' + fmt(d.cAmount * 2) + '/an';
         if (objCount > 0) {
-          text += ' (si ' + reqCount + '/' + objCount + ' objectifs)';
-          text += '\n\n*Objectifs s\u00e9lectionn\u00e9s :*';
+          text += ' (si ' + reqCount + '/' + objCount + ' obj.)';
+          text += '\n\n*Objectifs :*';
           d.selectedObjs.forEach(function(o) {
             text += '\n  \u2022 ' + o.label + ' \u2265 ' + o.val;
           });
@@ -3491,7 +3479,7 @@
         text += '\n*Option C :* Non renseign\u00e9e';
       }
 
-      text += '\n\n\u{1F4E9} _Le client a valid\u00e9 et envoy\u00e9 sa proposition._';
+      text += '\n\n\u{1F4E9} _Proposition valid\u00e9e et envoy\u00e9e._';
 
       var btn = document.getElementById('send-proposal-btn');
       btn.disabled = true;
@@ -3502,19 +3490,19 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text: text, token: window.__VIEWER_TOKEN__ || '', isProposal: true })
       }).then(function() {
-        btn.textContent = '\u2705 Proposition envoy\u00e9e \u00e0 Antoine';
+        btn.textContent = '\u2705 Proposition envoy\u00e9e';
         btn.style.background = 'var(--green)';
         document.getElementById('proposal-confirm').style.display = 'block';
       }).catch(function() {
         btn.textContent = 'Erreur \u2014 r\u00e9essayez';
         btn.disabled = false;
       });
-    }
+    };
 
-    function scheduleTracking() {
+    window.scheduleTracking = function() {
       clearTimeout(trackTimer);
       trackTimer = setTimeout(sendTracking, 3000);
-    }
+    };
 
     function update() {
       var ca = parseInt(slider.value);
@@ -3525,37 +3513,27 @@
       onlineDisplay.textContent = fmt(online);
       monthlyDisplay.textContent = '~' + fmt(monthly) + '/mois';
 
-      // Option A: 0% first 6 months (entire first season = $0)
       simA.textContent = '$0';
 
-      // Option B: seasonal tiers on total CA (not monthly)
-      // $0-170K = 0%, $170K-250K = 5%, $250K-340K = 8%, >$340K = 10%
-      var bTotal = 0;
-      if (ca > 170000) {
-        var t1 = Math.min(ca - 170000, 80000) * 0.05;  // 170K-250K at 5%
-        var t2 = ca > 250000 ? Math.min(ca - 250000, 90000) * 0.08 : 0;  // 250K-340K at 8%
-        var t3 = ca > 340000 ? (ca - 340000) * 0.10 : 0;  // >340K at 10%
-        bTotal = Math.round(t1 + t2 + t3);
-      }
+      var bTotal = calcBTotal(ca);
       simB.textContent = fmt(bTotal);
-      simBDetail.textContent = bTotal > 0 ? 'sur le CA ao\u00fbt\u2013d\u00e9c au-dessus de $170K' : 'en dessous de votre baseline';
+      simBDetail.textContent = bTotal > 0 ? 'Commission sur le CA au-dessus de $170K' : '0% en dessous de votre baseline ($170K)';
 
-      // Option C: dynamic from input + objectives
       var cAmount = parseInt(optionCInput.value) || 0;
       var objCount = document.querySelectorAll('.obj-check:checked').length;
       var reqCount = Math.max(1, Math.ceil(objCount / 2));
       if (cAmount > 0) {
         simC.textContent = fmt(cAmount * 2);
-        simCDetail.textContent = fmt(cAmount) + '/trim \u00d7 2 trimestres';
-        var objSuffix = objCount > 0 ? ' si ' + reqCount + '/' + objCount + ' objectifs atteints.' : '';
-        optionCSim.innerHTML = '<strong>Simulation :</strong> ' + fmt(cAmount) + '/trimestre \u00d7 2 trimestres actifs (Q3 + Q4) = <strong>' + fmt(cAmount * 2) + '/an</strong>' + objSuffix + ' Objectifs non atteints = z\u00e9ro bonus.';
+        simCDetail.textContent = fmt(cAmount) + '/trim \u00d7 2 trim.';
+        var objSuffix = objCount > 0 ? ' si ' + reqCount + '/' + objCount + ' obj. atteints.' : '';
+        optionCSim.innerHTML = fmt(cAmount) + '/trim \u00d7 2 = <strong>' + fmt(cAmount * 2) + '/an</strong>' + objSuffix;
       } else {
         simC.textContent = '\u2014';
-        simCDetail.textContent = 'Entrez un montant ci-dessus';
-        optionCSim.innerHTML = '<strong>Simulation :</strong> Entrez un montant ci-dessus pour voir le co\u00fbt annuel.';
+        simCDetail.textContent = 'Entrez un montant';
+        optionCSim.innerHTML = '';
       }
 
-      scheduleTracking();
+      if (window.hasInteracted) scheduleTracking();
     }
 
     function updateObjCount() {
@@ -3563,44 +3541,29 @@
       var el = document.getElementById('obj-count');
       if (count === 0) {
         el.textContent = '0 objectif s\u00e9lectionn\u00e9';
+        el.style.color = 'var(--text-muted)';
+        el.style.fontWeight = '400';
       } else {
-        el.textContent = count + ' objectif' + (count > 1 ? 's' : '') + ' s\u00e9lectionn\u00e9' + (count > 1 ? 's' : '') + ' \u2014 bonus vers\u00e9 si ' + Math.max(1, Math.ceil(count / 2)) + '/' + count + ' atteint' + (Math.max(1, Math.ceil(count / 2)) > 1 ? 's' : '');
+        var req = Math.max(1, Math.ceil(count / 2));
+        el.textContent = count + ' obj. \u2014 bonus si ' + req + '/' + count + ' atteints';
         el.style.color = 'var(--green)';
         el.style.fontWeight = '600';
       }
+      window.hasInteracted = true;
       scheduleTracking();
     }
 
-    slider.addEventListener('input', update);
-    optionCInput.addEventListener('input', update);
+    slider.addEventListener('input', function() { window.hasInteracted = true; update(); });
+    optionCInput.addEventListener('input', function() { window.hasInteracted = true; update(); });
     document.querySelectorAll('.obj-check').forEach(function(cb) {
       cb.addEventListener('change', updateObjCount);
     });
     document.querySelectorAll('.obj-val').forEach(function(inp) {
-      inp.addEventListener('input', scheduleTracking);
+      inp.addEventListener('input', function() { window.hasInteracted = true; scheduleTracking(); });
     });
-    update();
+    update(); // Initial render (no tracking)
   })();
   </script>
-
-  <!-- Send proposal button -->
-  <div style="margin-top: 2rem; text-align: center;">
-    <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 0.75rem; line-height: 1.5;">
-      Quand vous avez fait votre choix, envoyez votre proposition. Mon assistant IA me pr&eacute;viendra imm&eacute;diatement avec vos pr&eacute;f&eacute;rences.
-    </p>
-    <button id="send-proposal-btn" onclick="sendProposal()" style="
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.85rem 2rem; font-size: 0.95rem; font-weight: 700;
-      color: #fff; background: var(--blue); border: none; border-radius: 10px;
-      cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 14px rgba(59,130,246,0.3);
-      font-family: var(--font-sans);
-    " onmouseover="if(!this.disabled){this.style.transform='translateY(-1px)';this.style.boxShadow='0 6px 20px rgba(59,130,246,0.4)';}" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 14px rgba(59,130,246,0.3)';">
-      &#x1F4E9; Envoyer ma proposition &agrave; Antoine
-    </button>
-    <p id="proposal-confirm" style="display: none; margin-top: 0.75rem; font-size: 0.82rem; color: var(--green); font-weight: 600;">
-      Merci ! Antoine a &eacute;t&eacute; notifi&eacute; et reviendra vers vous rapidement.
-    </p>
-  </div>
 
   <div class="annotation-box celine" style="margin-top: 1.5rem;">
     <span class="annotation celine">Pour C&eacute;line</span>
