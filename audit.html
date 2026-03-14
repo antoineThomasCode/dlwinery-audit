@@ -3233,22 +3233,43 @@
         <span style="font-size: 0.82rem; font-weight: 600; color: var(--green);">Bonus sur objectifs</span>
         <span style="font-family: var(--font-mono); font-size: 1.2rem; font-weight: 700; color: var(--green);" id="sim-c">&mdash;</span>
       </div>
-      <div style="display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.6rem;">
-        <span style="font-size: 0.9rem; font-weight: 700; color: var(--green);">$</span>
-        <input type="number" id="option-c-amount" placeholder="Montant" min="0" max="10000" step="50" style="font-family: var(--font-mono); font-size: 1rem; font-weight: 700; color: var(--green); border: 2px solid var(--border); border-radius: 6px; padding: 0.35rem 0.5rem; width: 100px; outline: none; background: #fff;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border)'">
-        <span style="font-size: 0.72rem; color: var(--text-muted); flex: 1;">/ an</span>
+
+      <!-- PALIERS DE BONUS -->
+      <p style="font-size: 0.72rem; color: var(--text-secondary); margin-bottom: 0.5rem; line-height: 1.4;">Bonus annuel par palier &mdash; si les objectifs sont d&eacute;pass&eacute;s, le bonus monte. Vous choisissez le montant de chaque palier.</p>
+      <div style="display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 0.75rem;">
+        <div style="display: flex; align-items: center; gap: 0.4rem; background: #f8f9fa; border-radius: 6px; padding: 0.4rem 0.5rem;">
+          <span style="font-size: 0.62rem; color: var(--text-muted); width: 70px; flex-shrink: 0;">Pessimiste</span>
+          <span style="font-size: 0.6rem; color: var(--text-muted); flex-shrink: 0;">$</span>
+          <input type="number" id="bonus-pessimiste" class="bonus-tier" placeholder="3 000" min="0" step="500" style="font-family: var(--font-mono); font-size: 0.82rem; font-weight: 700; color: var(--green); border: 2px solid var(--border); border-radius: 5px; padding: 0.25rem 0.35rem; width: 75px; outline: none; background: #fff;" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border)'">
+          <span style="font-size: 0.58rem; color: var(--text-muted); flex: 1; line-height: 1.3;">objectifs de base atteints</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.4rem; background: rgba(139,92,246,0.06); border-radius: 6px; padding: 0.4rem 0.5rem;">
+          <span style="font-size: 0.62rem; color: var(--violet); font-weight: 600; width: 70px; flex-shrink: 0;">R&eacute;aliste</span>
+          <span style="font-size: 0.6rem; color: var(--text-muted); flex-shrink: 0;">$</span>
+          <input type="number" id="bonus-realiste" class="bonus-tier" placeholder="5 000" min="0" step="500" style="font-family: var(--font-mono); font-size: 0.82rem; font-weight: 700; color: var(--violet); border: 2px solid var(--border); border-radius: 5px; padding: 0.25rem 0.35rem; width: 75px; outline: none; background: #fff;" onfocus="this.style.borderColor='var(--violet)'" onblur="this.style.borderColor='var(--border)'">
+          <span style="font-size: 0.58rem; color: var(--text-muted); flex: 1; line-height: 1.3;">objectifs d&eacute;pass&eacute;s</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.4rem; background: rgba(37,99,235,0.06); border-radius: 6px; padding: 0.4rem 0.5rem;">
+          <span style="font-size: 0.62rem; color: var(--blue); font-weight: 600; width: 70px; flex-shrink: 0;">Optimiste</span>
+          <span style="font-size: 0.6rem; color: var(--text-muted); flex-shrink: 0;">$</span>
+          <input type="number" id="bonus-optimiste" class="bonus-tier" placeholder="10 000" min="0" step="500" style="font-family: var(--font-mono); font-size: 0.82rem; font-weight: 700; color: var(--blue); border: 2px solid var(--border); border-radius: 5px; padding: 0.25rem 0.35rem; width: 75px; outline: none; background: #fff;" onfocus="this.style.borderColor='var(--blue)'" onblur="this.style.borderColor='var(--border)'">
+          <span style="font-size: 0.58rem; color: var(--text-muted); flex: 1; line-height: 1.3;">tous objectifs doubl&eacute;s</span>
+        </div>
       </div>
+
+      <!-- OBJECTIFS -->
+      <p style="font-size: 0.68rem; color: var(--text-muted); margin-bottom: 0.35rem;">S&eacute;lectionnez vos objectifs et seuils de base. <span style="color: var(--text-secondary);">Rep&egrave;res DL Winery (Keuka) indiqu&eacute;s en gris.</span></p>
       <div id="obj-list" style="display: flex; flex-direction: column; gap: 0.3rem; margin-bottom: 0.4rem;">
-        <label class="obj-row"><input type="checkbox" class="obj-check" data-label="R&eacute;servations en ligne / an"><span class="obj-name">R&eacute;servations en ligne</span><span class="obj-sep">&ge;</span><input type="number" class="obj-val" placeholder="200" min="0"><span class="obj-unit">/an</span></label>
-        <label class="obj-row"><input type="checkbox" class="obj-check" data-label="Abonn&eacute;s email / an"><span class="obj-name">Abonn&eacute;s email</span><span class="obj-sep">&ge;</span><input type="number" class="obj-val" placeholder="500" min="0"><span class="obj-unit">/an</span></label>
-        <label class="obj-row"><input type="checkbox" class="obj-check" data-label="CA en ligne Vinoshipper / an"><span class="obj-name">CA en ligne Vinoshipper</span><span class="obj-sep">&ge;</span><input type="text" class="obj-val" placeholder="$15K"><span class="obj-unit">/an</span></label>
-        <label class="obj-row"><input type="checkbox" class="obj-check" data-label="Inscriptions Wine Club / an"><span class="obj-name">Wine Club en ligne</span><span class="obj-sep">&ge;</span><input type="number" class="obj-val" placeholder="30" min="0"><span class="obj-unit">/an</span></label>
-        <label class="obj-row"><input type="checkbox" class="obj-check" data-label="Trafic site web / an"><span class="obj-name">Trafic site web</span><span class="obj-sep">&ge;</span><input type="number" class="obj-val" placeholder="5000" min="0"><span class="obj-unit">/an</span></label>
-        <label class="obj-row"><input type="checkbox" class="obj-check" data-label="Taux ouverture email / an"><span class="obj-name">Taux ouverture email</span><span class="obj-sep">&ge;</span><input type="text" class="obj-val" placeholder="25%"><span class="obj-unit">/an</span></label>
-        <label class="obj-row"><input type="checkbox" class="obj-check" data-label="Avis Google / an"><span class="obj-name">Avis Google</span><span class="obj-sep">&ge;</span><input type="number" class="obj-val" placeholder="20" min="0"><span class="obj-unit">/an</span></label>
+        <label class="obj-row"><input type="checkbox" class="obj-check" data-label="R&eacute;servations en ligne / an"><span class="obj-name">R&eacute;servations en ligne</span><span class="obj-sep">&ge;</span><input type="number" class="obj-val" placeholder="500" min="0"><span class="obj-unit">/an</span><span class="obj-bench">DL: 506</span></label>
+        <label class="obj-row"><input type="checkbox" class="obj-check" data-label="Abonn&eacute;s email / an"><span class="obj-name">Abonn&eacute;s email</span><span class="obj-sep">&ge;</span><input type="number" class="obj-val" placeholder="1000" min="0"><span class="obj-unit">/an</span><span class="obj-bench">DL: 25K base</span></label>
+        <label class="obj-row"><input type="checkbox" class="obj-check" data-label="CA en ligne Vinoshipper / an"><span class="obj-name">CA en ligne</span><span class="obj-sep">&ge;</span><input type="text" class="obj-val" placeholder="$40K"><span class="obj-unit">/an</span><span class="obj-bench">DL: $372K</span></label>
+        <label class="obj-row"><input type="checkbox" class="obj-check" data-label="Inscriptions Wine Club / an"><span class="obj-name">Wine Club en ligne</span><span class="obj-sep">&ge;</span><input type="number" class="obj-val" placeholder="50" min="0"><span class="obj-unit">/an</span><span class="obj-bench">DL: 864 mbr</span></label>
+        <label class="obj-row"><input type="checkbox" class="obj-check" data-label="Trafic site web / an"><span class="obj-name">Trafic site web</span><span class="obj-sep">&ge;</span><input type="number" class="obj-val" placeholder="10000" min="0"><span class="obj-unit">/an</span><span class="obj-bench">Nouveau</span></label>
+        <label class="obj-row"><input type="checkbox" class="obj-check" data-label="Taux ouverture email / an"><span class="obj-name">Taux ouverture email</span><span class="obj-sep">&ge;</span><input type="text" class="obj-val" placeholder="25%"><span class="obj-unit">/an</span><span class="obj-bench">Moy: 20%</span></label>
+        <label class="obj-row"><input type="checkbox" class="obj-check" data-label="Avis Google / an"><span class="obj-name">Avis Google</span><span class="obj-sep">&ge;</span><input type="number" class="obj-val" placeholder="50" min="0"><span class="obj-unit">/an</span><span class="obj-bench">DL: 4.8&#9733;</span></label>
       </div>
       <p id="obj-count" style="font-size: 0.68rem; color: var(--text-muted); margin: 0;">0 objectif s&eacute;lectionn&eacute;</p>
-      <div id="sim-c-detail" style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.25rem;">Entrez un montant ci-dessus</div>
+      <div id="sim-c-detail" style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.25rem;">Entrez vos montants ci-dessus</div>
       <p id="option-c-sim" style="font-size: 0.72rem; color: var(--text-muted); margin: 0.25rem 0 0; line-height: 1.4;"></p>
     </div>
 
@@ -3314,6 +3335,7 @@
     }
     .obj-val:focus { border-color: var(--green); }
     .obj-unit { font-size: 0.6rem; color: var(--text-muted); flex-shrink: 0; }
+    .obj-bench { font-size: 0.55rem; color: #999; background: #f0f0f0; border-radius: 3px; padding: 0.1rem 0.3rem; flex-shrink: 0; white-space: nowrap; }
     .tab-btn { line-height: 1.2; }
   </style>
 
@@ -3339,7 +3361,9 @@
 
   (function() {
     var slider = document.getElementById('sim-slider');
-    var optionCInput = document.getElementById('option-c-amount');
+    var bonusPess = document.getElementById('bonus-pessimiste');
+    var bonusReal = document.getElementById('bonus-realiste');
+    var bonusOpti = document.getElementById('bonus-optimiste');
     var optionCSim = document.getElementById('option-c-sim');
     var caDisplay = document.getElementById('sim-ca-display');
     var onlineDisplay = document.getElementById('sim-online');
@@ -3389,7 +3413,9 @@
       var ca = parseInt(slider.value);
       var online = Math.round(ca * 0.20);
       var monthly = Math.round(online / 5);
-      var cAmount = parseInt(optionCInput.value) || 0;
+      var cPess = parseInt(bonusPess.value) || 0;
+      var cReal = parseInt(bonusReal.value) || 0;
+      var cOpti = parseInt(bonusOpti.value) || 0;
       var bTotal = calcBTotal(ca);
       var viewer = getViewerName();
       var activeTab = document.querySelector('.tab-active');
@@ -3404,7 +3430,7 @@
           selectedObjs.push({ val: val, label: label });
         }
       });
-      return { ca: ca, online: online, monthly: monthly, cAmount: cAmount, bTotal: bTotal, viewer: viewer, selectedOption: selectedOption, selectedObjs: selectedObjs };
+      return { ca: ca, online: online, monthly: monthly, cPess: cPess, cReal: cReal, cOpti: cOpti, bTotal: bTotal, viewer: viewer, selectedOption: selectedOption, selectedObjs: selectedObjs };
     }
 
     function sendTracking() {
@@ -3424,7 +3450,7 @@
         '',
         '*Option A :* $0 (1\u00e8re saison)',
         '*Option B :* ' + fmt(d.bTotal),
-        '*Option C :* ' + (d.cAmount > 0 ? fmt(d.cAmount) + '/an' : 'Non renseign\u00e9'),
+        '*Option C :* ' + (d.cReal > 0 ? 'P:' + fmt(d.cPess) + ' / R:' + fmt(d.cReal) + ' / O:' + fmt(d.cOpti) + '/an' : 'Non renseign\u00e9'),
       ].join('\n');
 
       if (d.selectedObjs.length > 0) {
@@ -3436,12 +3462,12 @@
 
       if (trackHistory.length > 0) {
         var last3 = trackHistory.slice(-3).map(function(h) {
-          return h.tab + ' | CA ' + fmt(h.ca) + (h.cAmount > 0 ? ' | C:' + fmt(h.cAmount) : '');
+          return h.tab + ' | CA ' + fmt(h.ca) + (h.cReal > 0 ? ' | C:' + fmt(h.cReal) : '');
         });
         text += '\n\n*Historique :*\n' + last3.join('\n');
       }
 
-      trackHistory.push({ ca: d.ca, cAmount: d.cAmount, tab: d.selectedOption, time: now });
+      trackHistory.push({ ca: d.ca, cReal: d.cReal, tab: d.selectedOption, time: now });
 
       fetch('/track', {
         method: 'POST',
@@ -3471,10 +3497,13 @@
         '*Option B :* ' + fmt(d.bTotal) + ' (0% \u2264$170K | 5% $170-250K | 8% $250-340K | 10% >$340K)',
       ].join('\n');
 
-      if (d.cAmount > 0) {
-        text += '\n*Option C :* ' + fmt(d.cAmount) + '/an';
+      if (d.cReal > 0) {
+        text += '\n*Option C :*';
+        text += '\n  Pessimiste : ' + fmt(d.cPess) + '/an';
+        text += '\n  R\u00e9aliste : ' + fmt(d.cReal) + '/an';
+        text += '\n  Optimiste : ' + fmt(d.cOpti) + '/an';
         if (objCount > 0) {
-          text += ' (si ' + reqCount + '/' + objCount + ' obj.)';
+          text += '\n  (si ' + reqCount + '/' + objCount + ' obj. atteints)';
           text += '\n\n*Objectifs :*';
           d.selectedObjs.forEach(function(o) {
             text += '\n  \u2022 ' + o.label + ' \u2265 ' + o.val;
@@ -3524,17 +3553,19 @@
       simB.textContent = fmt(bTotal);
       simBDetail.textContent = bTotal > 0 ? 'Commission sur le CA au-dessus de $170K' : '0% en dessous de votre baseline ($170K)';
 
-      var cAmount = parseInt(optionCInput.value) || 0;
+      var cPess = parseInt(bonusPess.value) || 0;
+      var cReal = parseInt(bonusReal.value) || 0;
+      var cOpti = parseInt(bonusOpti.value) || 0;
       var objCount = document.querySelectorAll('.obj-check:checked').length;
       var reqCount = Math.max(1, Math.ceil(objCount / 2));
-      if (cAmount > 0) {
-        simC.textContent = fmt(cAmount);
-        simCDetail.textContent = 'bonus annuel';
+      if (cPess > 0 || cReal > 0 || cOpti > 0) {
+        simC.textContent = fmt(cReal || cPess || cOpti);
+        simCDetail.textContent = 'bonus r\u00e9aliste /an';
         var objSuffix = objCount > 0 ? ' si ' + reqCount + '/' + objCount + ' obj. atteints.' : '';
-        optionCSim.innerHTML = 'Bonus annuel : <strong>' + fmt(cAmount) + '</strong>' + objSuffix;
+        optionCSim.innerHTML = 'P: <strong>' + fmt(cPess) + '</strong> / R: <strong>' + fmt(cReal) + '</strong> / O: <strong>' + fmt(cOpti) + '</strong>' + objSuffix;
       } else {
         simC.textContent = '\u2014';
-        simCDetail.textContent = 'Entrez un montant';
+        simCDetail.textContent = 'Entrez vos montants ci-dessus';
         optionCSim.innerHTML = '';
       }
 
@@ -3559,7 +3590,9 @@
     }
 
     slider.addEventListener('input', function() { window.hasInteracted = true; update(); });
-    optionCInput.addEventListener('input', function() { window.hasInteracted = true; update(); });
+    document.querySelectorAll('.bonus-tier').forEach(function(inp) {
+      inp.addEventListener('input', function() { window.hasInteracted = true; update(); });
+    });
     document.querySelectorAll('.obj-check').forEach(function(cb) {
       cb.addEventListener('change', updateObjCount);
     });
