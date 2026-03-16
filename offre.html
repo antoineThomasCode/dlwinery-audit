@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Offre Partenariat — Domaine LeSeurre × Antoine Thomas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<meta name="robots" content="noindex, nofollow">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #ffffff;
+    --text: #0a0a0a;
+    --text-secondary: #525252;
+    --text-muted: #737373;
+    --border: #e5e5e5;
+    --border-light: #f0f0f0;
+    --blue: #2563eb;
+    --blue-dark: #1e3a5f;
+    --green: #22c55e;
+    --green-bg: #f0fdf4;
+    --amber: #f59e0b;
+    --amber-bg: #fffbeb;
+    --violet: #8b5cf6;
+    --red: #ef4444;
+    --red-bg: #fef2f2;
+    --radius: 0.625rem;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  }
+
+  html { font-size: 16px; scroll-behavior: smooth; overflow-x: hidden; }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  .container { max-width: 680px; margin: 0 auto; padding: 0 1.25rem; }
+
+  .label-mono {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  h1 { font-size: 2rem; font-weight: 700; line-height: 1.15; letter-spacing: -0.025em; margin-bottom: 0.5rem; }
+  h2 { font-size: 1.4rem; font-weight: 700; line-height: 1.25; margin-bottom: 0.5rem; }
+  h3 { font-size: 1.1rem; font-weight: 600; line-height: 1.35; margin-bottom: 0.35rem; }
+  p { margin-bottom: 1rem; color: var(--text-secondary); }
+  .subtitle { font-size: 1rem; color: var(--text-secondary); font-weight: 400; margin-bottom: 1.5rem; }
+
+  /* Cover */
+  .cover {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(165deg, #0a0a0a 0%, #1e3a5f 55%, #2563eb 100%);
+    color: #fff;
+    padding: 3rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 30% 20%, rgba(37,99,235,0.15) 0%, transparent 60%);
+  }
+  .cover > * { position: relative; z-index: 1; }
+  .cover .label-mono { color: rgba(255,255,255,0.5); margin-bottom: 1.5rem; }
+  .cover h1 { color: #fff; font-size: clamp(1.6rem, 4.5vw, 2.4rem); margin-bottom: 0.75rem; }
+  .cover .subtitle { color: rgba(255,255,255,0.7); margin-bottom: 0.5rem; font-size: 0.95rem; }
+
+  /* Countdown */
+  .countdown-bar {
+    background: rgba(245,158,11,0.12);
+    border: 1px solid rgba(245,158,11,0.25);
+    border-radius: var(--radius);
+    padding: 0.75rem 1rem;
+    text-align: center;
+    margin: 1.5rem 0;
+  }
+  .countdown-bar .label { font-size: 0.72rem; color: var(--amber); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.25rem; }
+  .countdown-bar .timer { font-family: var(--font-mono); font-size: 1.6rem; font-weight: 700; color: var(--text); }
+  .countdown-bar .timer-sub { font-size: 0.72rem; color: var(--text-muted); margin-top: 0.15rem; }
+
+  /* Glass card */
+  .glass-card {
+    background: rgba(37,99,235,0.03);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin: 1.25rem 0;
+  }
+
+  /* Pricing cards */
+  .pricing-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; margin: 1.5rem 0; }
+  .pricing-card {
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    position: relative;
+  }
+  .pricing-card.highlight {
+    border-color: var(--blue);
+    box-shadow: 0 4px 20px rgba(37,99,235,0.12);
+  }
+  .pricing-card h3 { font-size: 1.05rem; margin-bottom: 0.5rem; }
+  .pricing-card .price { font-size: 2rem; font-weight: 700; color: var(--text); line-height: 1.1; }
+  .pricing-card .price-sub { font-size: 0.82rem; color: var(--text-muted); margin-top: 0.25rem; margin-bottom: 1rem; }
+  .pricing-card .feature-list { list-style: none; padding: 0; margin: 0; }
+  .pricing-card .feature-list li {
+    font-size: 0.82rem; color: var(--text-secondary); padding: 0.3rem 0; padding-left: 1.5rem;
+    position: relative; line-height: 1.45;
+  }
+  .pricing-card .feature-list li::before {
+    content: '\2713'; position: absolute; left: 0; top: 0.3rem; color: var(--green); font-weight: 600; font-size: 0.8rem;
+  }
+
+  /* Section label */
+  .section-label {
+    font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 0.5rem; margin-top: 1rem;
+  }
+
+  /* Includes grid */
+  .includes-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem 1rem;
+  }
+  .include-item {
+    display: flex; align-items: flex-start; gap: 0.4rem; font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5;
+  }
+  .include-item .check { color: var(--green); font-weight: 700; flex-shrink: 0; font-size: 0.85rem; }
+
+  /* Data table */
+  .data-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .data-table thead { background: #f8f9fa; }
+  .data-table th { padding: 0.5rem 0.75rem; text-align: left; font-weight: 600; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); border-bottom: 2px solid var(--border); white-space: nowrap; }
+  .data-table td { padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--border-light); word-break: break-word; }
+  .mono { font-family: var(--font-mono); font-size: 0.82rem; }
+
+  /* Note box */
+  .note-box {
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius);
+    font-size: 0.82rem;
+    line-height: 1.55;
+    margin: 1rem 0;
+  }
+  .note-box.amber { background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.15); }
+  .note-box.green { background: rgba(34,197,94,0.06); border: 1px solid rgba(34,197,94,0.15); }
+  .note-box.blue { background: rgba(37,99,235,0.04); border: 1px solid rgba(37,99,235,0.12); }
+
+  /* CTA button */
+  .cta-btn {
+    display: block; width: 100%; padding: 0.85rem; font-size: 0.95rem; font-weight: 700;
+    color: #fff; background: var(--blue); border: none; border-radius: var(--radius);
+    cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 14px rgba(37,99,235,0.3);
+    font-family: var(--font-body); text-align: center; text-decoration: none; min-height: 48px;
+  }
+  .cta-btn:hover { background: #1d4ed8; box-shadow: 0 6px 20px rgba(37,99,235,0.4); }
+
+  /* Audit link */
+  .audit-link {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    font-size: 0.78rem; color: var(--blue); text-decoration: none; font-weight: 500;
+  }
+  .audit-link:hover { text-decoration: underline; }
+
+  section { padding: 2.5rem 0; border-bottom: 1px solid var(--border-light); }
+  section:last-of-type { border-bottom: none; }
+
+  footer { padding: 2rem 0; text-align: center; font-size: 0.72rem; color: var(--text-muted); border-top: 1px solid var(--border-light); }
+
+  /* Mobile */
+  @media (max-width: 640px) {
+    .container { padding: 0 1rem; }
+    h1 { font-size: 1.6rem; }
+    h2 { font-size: 1.2rem; }
+    .cover { min-height: 50vh; padding: 2.5rem 1.25rem; }
+    .pricing-card { padding: 1.25rem; }
+    .pricing-card .price { font-size: 1.7rem; }
+    .includes-grid { grid-template-columns: 1fr; }
+    .countdown-bar .timer { font-size: 1.3rem; }
+    section { padding: 2rem 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<header class="cover">
+  <span class="label-mono">antoine.works &times; Domaine LeSeurre</span>
+  <h1>Offre de partenariat</h1>
+  <p class="subtitle">Offre ferme &mdash; bas&eacute;e sur l'audit strat&eacute;gique de mars 2026</p>
+  <p style="color: rgba(255,255,255,0.5); font-size: 0.78rem; margin: 0;">Ce document compl&egrave;te <a href="/" style="color: rgba(255,255,255,0.7); text-decoration: underline;">l'audit complet</a></p>
+</header>
+
+<main class="container">
+
+  <!-- COUNTDOWN -->
+  <div class="countdown-bar">
+    <div class="label">Offre valable</div>
+    <div class="timer" id="countdown">72:00:00</div>
+    <div class="timer-sub">Expire le <span id="expiry-date"></span></div>
+  </div>
+
+  <!-- SECTION 1 — L'offre -->
+  <section>
+    <span class="label-mono">L'offre</span>
+    <h2>Deux &eacute;tablissements. Un partenariat.</h2>
+    <p class="subtitle">Accompagnement strat&eacute;gie + ex&eacute;cution marketing compl&egrave;te, de mars &agrave; d&eacute;cembre 2026.</p>
+
+    <div class="pricing-grid">
+      <!-- DL WINERY -->
+      <div class="pricing-card highlight">
+        <h3>Domaine LeSeurre</h3>
+        <div class="price">&euro;1 100<span style="font-size: 0.85rem; font-weight: 400; color: var(--text-muted);">/mois</span></div>
+        <p class="price-sub">Keuka Lake &mdash; &Eacute;tablissement existant</p>
+
+        <p class="section-label" style="color: var(--blue);">Strat&eacute;gie &amp; pilotage</p>
+        <ul class="feature-list">
+          <li>Strat&eacute;gie de croissance compl&egrave;te (6 leviers)</li>
+          <li>Reporting hebdomadaire &amp; dashboard temps r&eacute;el</li>
+          <li>Appel strat&eacute;gique mensuel (30 min)</li>
+          <li>Chatbots Telegram personnalis&eacute;s</li>
+        </ul>
+
+        <p class="section-label" style="color: var(--violet);">Ex&eacute;cution marketing</p>
+        <ul class="feature-list">
+          <li>Site premium (d&eacute;j&agrave; construit)</li>
+          <li>SEO &amp; contenu organique continu</li>
+          <li>Email marketing automatis&eacute; (25 403 contacts)</li>
+          <li>Gestion publicitaire Meta &amp; Google</li>
+          <li>Campagnes Wine Club</li>
+        </ul>
+
+        <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border-light);">
+          <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 0.25rem;"><strong>Commission sur la croissance</strong></p>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0;">10% du CA en ligne <strong>additionnel</strong> au-del&agrave; de $372K.<br>Si le CA ne cro&icirc;t pas = z&eacute;ro commission.</p>
+        </div>
+      </div>
+
+      <!-- LE CLOS -->
+      <div class="pricing-card highlight">
+        <h3>Le Clos 1487</h3>
+        <div class="price">&euro;1 100<span style="font-size: 0.85rem; font-weight: 400; color: var(--text-muted);">/mois</span></div>
+        <p class="price-sub">Seneca Lake &mdash; Ouverture ao&ucirc;t 2026</p>
+
+        <p class="section-label" style="color: var(--blue);">Phase 1 : pr&eacute;-lancement (mars&ndash;juillet)</p>
+        <ul class="feature-list">
+          <li>Audit de march&eacute; &amp; analyse concurrentielle</li>
+          <li>Cr&eacute;ation du site Le Clos 1487</li>
+          <li>Strat&eacute;gie de positionnement &amp; storytelling</li>
+          <li>Campagne teasing &amp; pr&eacute;-r&eacute;servations</li>
+        </ul>
+
+        <p class="section-label" style="color: var(--violet);">Phase 2 : lancement (ao&ucirc;t&ndash;d&eacute;c)</p>
+        <ul class="feature-list">
+          <li>Campagne d'ouverture</li>
+          <li>Email marketing &amp; base de donn&eacute;es propre</li>
+          <li>Strat&eacute;gie d'influence &amp; PR</li>
+          <li>Cross-promotion avec DL Winery</li>
+        </ul>
+
+        <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border-light);">
+          <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 0.25rem;"><strong>Commission Le Clos</strong></p>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0;"><strong style="color: var(--green);">Aucune commission la premi&egrave;re ann&eacute;e.</strong><br>On fait le bilan en d&eacute;cembre 2026 et on ren&eacute;gocie pour 2027.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOTAL -->
+    <div class="glass-card" style="text-align: center;">
+      <p style="font-size: 0.82rem; margin-bottom: 0.25rem; color: var(--text-muted);">Total mensuel</p>
+      <div style="font-size: 2.5rem; font-weight: 700; color: var(--text);">&euro;2 200<span style="font-size: 0.95rem; font-weight: 400; color: var(--text-muted);">/mois TTC</span></div>
+      <p style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.5rem; margin-bottom: 0;">Mars (demi-mois) : &euro;1 100 &bull; Budget pub s&eacute;par&eacute; &bull; Infra VPS : ~&euro;15&ndash;30/mois</p>
+    </div>
+
+    <div class="note-box green">
+      <strong style="color: var(--green);">Offre simplifi&eacute;e.</strong> Pas de simulateur, pas de paliers. Un forfait fixe pour les deux &eacute;tablissements, z&eacute;ro commission sur Le Clos la premi&egrave;re ann&eacute;e. La commission DL Winery ne s'applique que si les ventes en ligne d&eacute;passent votre r&eacute;f&eacute;rence actuelle de $372K.
+    </div>
+  </section>
+
+  <!-- SECTION 2 — Conditions -->
+  <section>
+    <span class="label-mono">Conditions</span>
+    <h2>Conditions contractuelles</h2>
+
+    <table class="data-table" style="font-size: 0.85rem;">
+      <thead>
+        <tr><th>Condition</th><th>D&eacute;tail</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>D&eacute;but</strong></td><td>15 mars 2026</td></tr>
+        <tr><td><strong>Fin</strong></td><td>31 d&eacute;cembre 2026 &mdash; pas de reconduction automatique</td></tr>
+        <tr><td><strong>Facturation</strong></td><td>Forfait le 1er de chaque mois. Commissions trimestrielles.</td></tr>
+        <tr><td><strong>Pr&eacute;avis de r&eacute;siliation</strong></td><td><strong>30 jours.</strong> Vous pr&eacute;venez, on termine les travaux en cours, je pr&eacute;pare la capsule de passation, et la mission s'arr&ecirc;te.</td></tr>
+        <tr><td><strong>Ren&eacute;gociation</strong></td><td>Bilan en novembre. Nouveau contrat n&eacute;goci&eacute; pour 2027 si on continue.</td></tr>
+        <tr><td><strong>Propri&eacute;t&eacute;</strong></td><td>100% Domaine LeSeurre. Site, donn&eacute;es, comptes, outils, automatisations. Transfert complet + capsule de transition.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="note-box blue" style="margin-top: 1.25rem;">
+      <strong>Capsule de passation.</strong> Si la mission s'arr&ecirc;te, vous recevez un document complet : acc&egrave;s, mots de passe, &eacute;tat des campagnes en cours, recommandations pour la suite. Rien n'est perdu.
+    </div>
+  </section>
+
+  <!-- SECTION 3 — Ce qui est inclus -->
+  <section>
+    <span class="label-mono">Inclusions</span>
+    <h2>Tout ce qui est inclus</h2>
+    <p class="subtitle">Un seul forfait, deux &eacute;tablissements, z&eacute;ro surprise.</p>
+
+    <div class="includes-grid">
+      <div class="include-item"><span class="check">&#10003;</span><span>Strat&eacute;gie digitale compl&egrave;te &amp; ex&eacute;cution</span></div>
+      <div class="include-item"><span class="check">&#10003;</span><span>Maintenance &amp; optimisation du site</span></div>
+      <div class="include-item"><span class="check">&#10003;</span><span>SEO &amp; contenu organique</span></div>
+      <div class="include-item"><span class="check">&#10003;</span><span>Email marketing automatis&eacute;</span></div>
+      <div class="include-item"><span class="check">&#10003;</span><span>Campagnes Wine Club</span></div>
+      <div class="include-item"><span class="check">&#10003;</span><span>Gestion publicitaire</span></div>
+      <div class="include-item"><span class="check">&#10003;</span><span>Rapports hebdomadaires</span></div>
+      <div class="include-item"><span class="check">&#10003;</span><span>Chatbots Telegram</span></div>
+      <div class="include-item"><span class="check">&#10003;</span><span>Dashboard analytics</span></div>
+      <div class="include-item"><span class="check">&#10003;</span><span>Google Business Profile</span></div>
+      <div class="include-item"><span class="check">&#10003;</span><span>Cr&eacute;ation site Le Clos 1487</span></div>
+      <div class="include-item"><span class="check">&#10003;</span><span>Programme influence &amp; affiliation</span></div>
+      <div class="include-item"><span class="check">&#10003;</span><span>Strat&eacute;gie &eacute;quipe &amp; recrutement</span></div>
+      <div class="include-item"><span class="check">&#10003;</span><span>Capsule de transition si arr&ecirc;t</span></div>
+    </div>
+
+    <div class="note-box amber" style="margin-top: 1.25rem;">
+      <strong style="color: var(--amber);">Non inclus :</strong> Budget publicitaire (pay&eacute; directement par vous &agrave; Google/Meta). Recommandation de d&eacute;marrage : $300&ndash;500/mois. Vous d&eacute;cidez du montant.
+    </div>
+  </section>
+
+  <!-- SECTION 4 — Calendrier -->
+  <section>
+    <span class="label-mono">Calendrier</span>
+    <h2>Co&ucirc;t mensuel pr&eacute;visionnel</h2>
+
+    <table class="data-table" style="font-size: 0.85rem;">
+      <thead>
+        <tr>
+          <th>Poste</th>
+          <th>Mars</th>
+          <th>Avr&ndash;Juil</th>
+          <th>Ao&ucirc;t&ndash;Oct</th>
+          <th>Nov&ndash;D&eacute;c</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Forfait</td>
+          <td class="mono">&euro;1 100</td>
+          <td class="mono">&euro;2 200</td>
+          <td class="mono">&euro;2 200</td>
+          <td class="mono">&euro;2 200</td>
+        </tr>
+        <tr>
+          <td>Budget pub</td>
+          <td class="mono">&mdash;</td>
+          <td class="mono">$0&ndash;500</td>
+          <td class="mono">$500&ndash;1 500</td>
+          <td class="mono">$300&ndash;500</td>
+        </tr>
+        <tr>
+          <td>Commission DL</td>
+          <td class="mono">&mdash;</td>
+          <td class="mono">&mdash;</td>
+          <td class="mono">Si CA &gt;$372K</td>
+          <td class="mono">Si CA &gt;$372K</td>
+        </tr>
+        <tr>
+          <td>Commission Le Clos</td>
+          <td class="mono" colspan="4" style="text-align: center; color: var(--green); font-weight: 600;">$0 &mdash; aucune commission en 2026</td>
+        </tr>
+        <tr style="background: rgba(37,99,235,0.05); font-weight: 600;">
+          <td><strong>Total</strong></td>
+          <td class="mono" style="color: var(--blue);">~&euro;1 100</td>
+          <td class="mono" style="color: var(--blue);">~&euro;2 200&ndash;2 700</td>
+          <td class="mono" style="color: var(--blue);">~&euro;2 700&ndash;3 700</td>
+          <td class="mono" style="color: var(--blue);">~&euro;2 500&ndash;2 700</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- SECTION 5 — Prochaines étapes -->
+  <section style="border-bottom: none;">
+    <span class="label-mono">Prochaines &eacute;tapes</span>
+    <h2>Comment on d&eacute;marre</h2>
+
+    <div style="display: flex; flex-direction: column; gap: 1rem; margin: 1.5rem 0;">
+      <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+        <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--blue); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0;">1</div>
+        <div>
+          <p style="margin: 0; font-weight: 600; color: var(--text);">Vous acceptez cette offre</p>
+          <p style="margin: 0.15rem 0 0; font-size: 0.82rem;">Un message &agrave; Antoine suffit. Le contrat formel suit dans les 24h.</p>
+        </div>
+      </div>
+      <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+        <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--blue); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0;">2</div>
+        <div>
+          <p style="margin: 0; font-weight: 600; color: var(--text);">Chatbots Telegram d&eacute;ploy&eacute;s sous 48h</p>
+          <p style="margin: 0.15rem 0 0; font-size: 0.82rem;">Sessions d'onboarding structur&eacute;es : 1 th&egrave;me/jour, 15&ndash;20 min.</p>
+        </div>
+      </div>
+      <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+        <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--blue); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0;">3</div>
+        <div>
+          <p style="margin: 0; font-weight: 600; color: var(--text);">Site DL Winery en ligne fin mars</p>
+          <p style="margin: 0.15rem 0 0; font-size: 0.82rem;">Le site est d&eacute;j&agrave; construit. Validation via chatbot, mise en ligne sous 2 semaines.</p>
+        </div>
+      </div>
+      <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+        <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--green); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0;">4</div>
+        <div>
+          <p style="margin: 0; font-weight: 600; color: var(--text);">Ex&eacute;cution pleine d&egrave;s le 1er avril</p>
+          <p style="margin: 0.15rem 0 0; font-size: 0.82rem;">6 leviers de croissance activ&eacute;s. Reporting hebdomadaire d&egrave;s la semaine 1.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 2rem; text-align: center;">
+      <button class="cta-btn" id="accept-btn" onclick="acceptOffer()">
+        Accepter l'offre
+      </button>
+      <p id="accept-confirm" style="display: none; margin-top: 0.75rem; font-size: 0.85rem; color: var(--green); font-weight: 600;">
+        Merci ! Antoine a &eacute;t&eacute; notifi&eacute; et vous contacte sous 24h.
+      </p>
+      <p style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.75rem;">
+        En acceptant, vous confirmez votre accord de principe.<br>
+        Le contrat d&eacute;finitif est envoy&eacute; sous 24h pour signature.
+      </p>
+    </div>
+
+    <div style="text-align: center; margin-top: 1.5rem;">
+      <a href="/" class="audit-link">&larr; Consulter l'audit complet</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <p style="margin: 0;">antoine.works &times; Domaine LeSeurre &mdash; Confidentiel</p>
+  </div>
+</footer>
+
+<!-- COUNTDOWN TIMER -->
+<script>
+(function() {
+  // Offer valid 72h from first page load (stored in localStorage)
+  var storageKey = 'dlw-offer-start';
+  var stored = localStorage.getItem(storageKey);
+  var startTime = stored ? parseInt(stored) : Date.now();
+  if (!stored) localStorage.setItem(storageKey, startTime.toString());
+
+  var expiry = startTime + (72 * 60 * 60 * 1000);
+  var expiryDate = new Date(expiry);
+  var expiryEl = document.getElementById('expiry-date');
+  expiryEl.textContent = expiryDate.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit', timeZone: 'America/New_York' }) + ' (heure NY)';
+
+  function updateCountdown() {
+    var remaining = expiry - Date.now();
+    if (remaining <= 0) {
+      document.getElementById('countdown').textContent = 'Expir\u00e9e';
+      document.getElementById('countdown').style.color = 'var(--red)';
+      var btn = document.getElementById('accept-btn');
+      btn.disabled = true;
+      btn.textContent = 'Offre expir\u00e9e';
+      btn.style.background = '#999';
+      btn.style.boxShadow = 'none';
+      return;
+    }
+    var h = Math.floor(remaining / 3600000);
+    var m = Math.floor((remaining % 3600000) / 60000);
+    var s = Math.floor((remaining % 60000) / 1000);
+    document.getElementById('countdown').textContent =
+      String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+})();
+</script>
+
+<!-- ACCEPT OFFER -->
+<script>
+function acceptOffer() {
+  var params = new URLSearchParams(window.location.search);
+  var token = params.get('t') || '';
+  var names = {
+    'seb-tg-Fh6cP3qYdN': 'Sebastien',
+    'seb-wa-Kx8mW5rBvE': 'Sebastien',
+    'celine-email-8kQ2vR7pXm': 'Celine',
+    'celine-wa-Tn4bJ9sLwZ': 'Celine',
+    'celine-tg-Rm3yK8wNxA': 'Celine',
+    'antoine-test-Zq1': 'Antoine',
+    'H9B7BHXro6R6YscvL4mpdDl9sUoBvE8z': 'Sebastien',
+    'tfzQUQKFOl6QHNGefleGy5aksjPVGjYO': 'Celine',
+    'XpcyoBPbVbe7bSjDDzDF3d9j-n5DQaeN': 'Antoine',
+    '4-k17JqiWWU7Wx9ArOkV-Py-D-Q5Del0': 'Preview'
+  };
+  var viewer = names[token] || 'Inconnu';
+  var now = new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Paris', dateStyle: 'short', timeStyle: 'medium' });
+
+  var text = [
+    '\u{1F389}\u{1F389}\u{1F389} *OFFRE ACCEPT\u00c9E*',
+    '',
+    '*De :* ' + viewer,
+    '*Date :* ' + now,
+    '',
+    '*Offre :* \u20ac2 200/mois (DL \u20ac1 100 + Le Clos \u20ac1 100)',
+    '*Commission Le Clos :* $0 premi\u00e8re ann\u00e9e',
+    '*Commission DL :* 10% au-del\u00e0 de $372K',
+    '*Pr\u00e9avis :* 30 jours',
+    '',
+    '\u{1F4E9} _Accord de principe valid\u00e9. Envoyer le contrat._'
+  ].join('\n');
+
+  var btn = document.getElementById('accept-btn');
+  btn.disabled = true;
+  btn.textContent = 'Envoi en cours...';
+
+  fetch('/track', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ text: text, token: token, isProposal: true })
+  }).then(function() {
+    btn.textContent = 'Offre accept\u00e9e \u2713';
+    btn.style.background = 'var(--green)';
+    document.getElementById('accept-confirm').style.display = 'block';
+  }).catch(function() {
+    btn.textContent = 'Erreur \u2014 r\u00e9essayez';
+    btn.disabled = false;
+  });
+}
+</script>
+
+<!-- TRACKING -->
+<script>
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  var token = params.get('t') || '';
+  if (!token) return;
+
+  // Track page open
+  fetch('/event', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ token: token, event: 'offre_page_open', device: /mobile|android|iphone/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop' })
+  }).catch(function(){});
+
+  // Pass token to audit link
+  var auditLink = document.querySelector('.audit-link');
+  if (auditLink) auditLink.href = '/?t=' + token;
+
+  // Also fix the cover audit link
+  var coverLink = document.querySelector('.cover a');
+  if (coverLink) coverLink.href = '/?t=' + token;
+})();
+</script>
+
+</body>
+</html>
