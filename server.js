@@ -38,7 +38,7 @@ const notFoundHtml = `<!DOCTYPE html>
 // ============================================================================
 // IN-MEMORY ANALYTICS STORE
 // ============================================================================
-const sessions = []; // { token, name, channel, device, startedAt, lastActiveAt, events[], sections{}, accordions{}, faqOpens{}, readingMode, scrollMax, proposalSent }
+const sessions = []; // { token, name, channel, device, startedAt, lastActiveAt, events[], sections{}, accordions{}, faqOpens{}, readingMode, scrollMax, proposalSent, simulator }
 
 function getOrCreateSession(token) {
   const viewer = TOKENS[token];
@@ -61,6 +61,7 @@ function getOrCreateSession(token) {
       readingMode: "Skim", // Skim | Detail | Deep dive
       scrollMax: 0,
       proposalSent: false,
+      simulator: null, // { ca, selectedOption, bTotal, cPess, cReal, cOpti, selectedObjs[], history[] }
     };
     sessions.push(session);
   }
@@ -171,6 +172,34 @@ function generateReport() {
         }
       }
 
+      // Simulator data
+      if (s.simulator) {
+        const sim = s.simulator;
+        const fmt = n => "$" + Number(n).toLocaleString("en-US");
+        text += `\n  *Simulateur Le Clos :*`;
+        text += `\n    CA simul\u00e9 : ${fmt(sim.ca)}`;
+        text += `\n    Onglet actif : Option ${sim.selectedOption}`;
+        if (sim.selectedOption === "A") {
+          text += `\n    \u2192 $0 (1\u00e8re saison)`;
+        } else if (sim.selectedOption === "B") {
+          text += `\n    \u2192 Commission : ${fmt(sim.bTotal)}`;
+        } else if (sim.selectedOption === "C") {
+          text += `\n    \u2192 P:${fmt(sim.cPess)} / R:${fmt(sim.cReal)} / O:${fmt(sim.cOpti)}`;
+        }
+        if (sim.selectedObjs && sim.selectedObjs.length > 0) {
+          text += `\n    Objectifs (${sim.selectedObjs.length}) :`;
+          for (const obj of sim.selectedObjs) {
+            text += `\n      \u2022 ${obj.label} \u2265 ${obj.val}`;
+          }
+        }
+        if (sim.history && sim.history.length > 0) {
+          text += `\n    *Historique simulations :*`;
+          for (const h of sim.history.slice(-5)) {
+            text += `\n      ${h.time} \u2014 Option ${h.tab} | CA ${fmt(h.ca)}`;
+          }
+        }
+      }
+
       // Sticky CTA clicks
       const ctaClicks = s.events.filter(e => e.type === "sticky_cta_click").length;
       if (ctaClicks > 0) {
@@ -266,6 +295,11 @@ const server = http.createServer(async (req, res) => {
           // Reading mode (latest value wins)
           if (data.readingMode) {
             session.readingMode = data.readingMode;
+          }
+
+          // Simulator state (latest value wins)
+          if (data.simulator) {
+            session.simulator = data.simulator;
           }
 
           if (data.event) {

@@ -2705,6 +2705,23 @@
       trackTimer = setTimeout(sendTracking, 3000);
     };
 
+    // Expose simulator state for heartbeat tracking
+    window.getSimState = function() {
+      if (!window.hasInteracted) return null;
+      var d = getSimData();
+      return {
+        ca: d.ca,
+        online: d.online,
+        selectedOption: d.selectedOption,
+        bTotal: d.bTotal,
+        cPess: d.cPess,
+        cReal: d.cReal,
+        cOpti: d.cOpti,
+        selectedObjs: d.selectedObjs,
+        history: trackHistory.slice(-10).map(function(h) { return { ca: h.ca, tab: h.tab, cReal: h.cReal, time: h.time }; })
+      };
+    };
+
     function update() {
       var ca = parseInt(slider.value);
       var online = Math.round(ca * 0.20);
@@ -3275,6 +3292,12 @@
       readingMode: getReadingMode()
     };
 
+    // Include simulator state if user has interacted
+    if (window.getSimState) {
+      var simState = window.getSimState();
+      if (simState) payload.simulator = simState;
+    }
+
     for (var s in sectionTimers) {
       if (sectionTimers[s] > 0) {
         payload.sections[s] = sectionTimers[s];
@@ -3306,6 +3329,10 @@
         readingMode: getReadingMode(),
         event: 'page_leave'
       };
+      if (window.getSimState) {
+        var simState = window.getSimState();
+        if (simState) payload.simulator = simState;
+      }
       if (navigator.sendBeacon) {
         navigator.sendBeacon('/event', JSON.stringify(payload));
       } else {
