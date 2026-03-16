@@ -2516,6 +2516,10 @@
   if (!token) return;
 
   var device = /mobile|android|iphone/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop';
+  var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || 'unknown';
+  var likelyPerson = 'unknown';
+  if (tz.indexOf('Europe') === 0 || tz.indexOf('Paris') >= 0) likelyPerson = 'Celine (France)';
+  else if (tz.indexOf('America') === 0) likelyPerson = 'Sebastien (US)';
   var scrollMax = 0;
   var sectionTimers = {};
   var visibleSections = {};
@@ -2665,6 +2669,8 @@
     var payload = {
       token: token,
       device: device,
+      timezone: tz,
+      likelyPerson: likelyPerson,
       scrollMax: scrollMax,
       sections: {},
       accordions: accordionOpens,

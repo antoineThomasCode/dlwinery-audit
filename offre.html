@@ -522,10 +522,15 @@ function acceptOffer() {
   var viewer = names[token] || 'Inconnu';
   var now = new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Paris', dateStyle: 'short', timeStyle: 'medium' });
 
+  var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || 'unknown';
+  var likelyPerson = 'unknown';
+  if (tz.indexOf('Europe') === 0 || tz.indexOf('Paris') >= 0) likelyPerson = 'Celine (France)';
+  else if (tz.indexOf('America') === 0) likelyPerson = 'Sebastien (US)';
+
   var text = [
     '\u{1F389}\u{1F389}\u{1F389} *OFFRE ACCEPT\u00c9E*',
     '',
-    '*De :* ' + viewer,
+    '*De :* ' + viewer + ' \u2014 probable : ' + likelyPerson,
     '*Date :* ' + now,
     '',
     '*Offre :* \u20ac2 200/mois (DL \u20ac1 400 + Le Clos \u20ac800)',
@@ -562,11 +567,18 @@ function acceptOffer() {
   var token = params.get('t') || '';
   if (!token) return;
 
-  // Track page open
+  // Detect timezone for geo identification (France = Céline, US = Sébastien)
+  var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || 'unknown';
+  var lang = navigator.language || 'unknown';
+  var likelyPerson = 'unknown';
+  if (tz.indexOf('Europe') === 0 || tz.indexOf('Paris') >= 0) likelyPerson = 'Celine (France)';
+  else if (tz.indexOf('America') === 0 || tz.indexOf('New_York') >= 0 || tz.indexOf('Eastern') >= 0) likelyPerson = 'Sebastien (US)';
+
+  // Track page open with geo
   fetch('/event', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ token: token, event: 'offre_page_open', device: /mobile|android|iphone/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop' })
+    body: JSON.stringify({ token: token, event: 'offre_page_open', device: /mobile|android|iphone/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop', timezone: tz, likelyPerson: likelyPerson, lang: lang })
   }).catch(function(){});
 
   // Pass token to audit link

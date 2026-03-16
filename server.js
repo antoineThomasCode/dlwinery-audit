@@ -129,7 +129,8 @@ function generateReport() {
       const channel = s.channel !== "legacy" ? ` (via ${s.channel})` : "";
       const device = s.device || "?";
 
-      text += `\n\u{23F0} *${start}*${channel} \u2014 ${device}`;
+      const geo = s.likelyPerson ? ` [${s.likelyPerson}]` : "";
+      text += `\n\u{23F0} *${start}*${channel} \u2014 ${device}${geo}`;
       text += `\n  Dur\u00e9e : ~${durationMin} min`;
       text += `\n  Scroll max : ${s.scrollMax}%`;
 
@@ -271,7 +272,21 @@ const server = http.createServer(async (req, res) => {
         if (session) {
           session.lastActiveAt = Date.now();
           if (data.device) session.device = data.device;
+          if (data.timezone) session.timezone = data.timezone;
+          if (data.likelyPerson) session.likelyPerson = data.likelyPerson;
+          if (data.lang) session.lang = data.lang;
           if (data.scrollMax) session.scrollMax = Math.max(session.scrollMax, data.scrollMax);
+
+          // Send Telegram alert for offer page open with geo identification
+          if (data.event === "offre_page_open") {
+            const viewer = TOKENS[data.token];
+            if (viewer && viewer.notify) {
+              const now = new Date().toLocaleString("fr-FR", { timeZone: "Europe/Paris", dateStyle: "short", timeStyle: "medium" });
+              const geo = data.likelyPerson || "inconnu";
+              const tz = data.timezone || "?";
+              sendTelegram(`\u{1F4CB} *Page Offre ouverte*\n\n*Token :* ${viewer.name}\n*Probable :* ${geo}\n*Timezone :* ${tz}\n*Device :* ${data.device || "?"}\n*Quand :* ${now}`);
+            }
+          }
 
           // Section visibility tracking
           if (data.sections) {
