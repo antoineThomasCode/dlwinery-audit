@@ -13,6 +13,7 @@ const TOKENS = {
   // Céline
   "celine-email-8kQ2vR7pXm": { name: "Celine", channel: "email", role: "co-owner", emoji: "\u{1F4CA}", notify: true },
   "celine-wa-Tn4bJ9sLwZ":    { name: "Celine", channel: "whatsapp", role: "co-owner", emoji: "\u{1F4CA}", notify: true },
+  "celine-tg-Rm3yK8wNxA":   { name: "Celine", channel: "telegram", role: "co-owner", emoji: "\u{1F4CA}", notify: true },
   // Sébastien
   "seb-tg-Fh6cP3qYdN":      { name: "Sebastien", channel: "telegram", role: "co-owner", emoji: "\u{1F3AF}", notify: true },
   "seb-wa-Kx8mW5rBvE":      { name: "Sebastien", channel: "whatsapp", role: "co-owner", emoji: "\u{1F3AF}", notify: true },
