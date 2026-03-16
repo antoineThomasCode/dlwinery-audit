@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DL Winery — Recrutement & Formation Équipe Tasting Room — Mars 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #ffffff;
+    --text: #0a0a0a;
+    --text-secondary: #525252;
+    --text-muted: #737373;
+    --border: #e5e5e5;
+    --border-light: #f0f0f0;
+    --blue: #2563eb;
+    --blue-dark: #1e3a5f;
+    --green: #22c55e;
+    --green-bg: #f0fdf4;
+    --amber: #f59e0b;
+    --amber-bg: #fffbeb;
+    --violet: #8b5cf6;
+    --orange: #f97316;
+    --red: #ef4444;
+    --red-bg: #fef2f2;
+    --radius: 0.625rem;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  html { font-size: 16px; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  body { font-family: var(--font-sans); color: var(--text); background: var(--bg); line-height: 1.6; }
+  .container { max-width: 820px; margin: 0 auto; padding: 0 1.5rem; }
+  img { max-width: 100%; }
+
+  .label-mono { display: block; font-family: var(--font-mono); font-size: 0.65rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
+  h2 { font-size: 1.75rem; font-weight: 700; line-height: 1.25; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+  h3 { font-size: 1.15rem; font-weight: 600; line-height: 1.35; margin-bottom: 0.35rem; }
+  h4 { font-size: 1rem; font-weight: 600; margin-bottom: 0.25rem; }
+  .mono { font-family: var(--font-mono); font-size: 0.85em; }
+  p { margin-bottom: 1rem; color: var(--text-secondary); }
+  .subtitle { font-size: 1.1rem; color: var(--text-secondary); font-weight: 400; margin-bottom: 2rem; }
+
+  /* Cover */
+  .cover { background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%); color: #fff; padding: 4rem 1.5rem 3rem; text-align: center; }
+  .cover .label-mono { color: rgba(255,255,255,0.5); font-size: 0.65rem; margin-bottom: 2rem; }
+  .cover h1 { font-size: clamp(1.8rem, 4.5vw, 2.8rem); color: #fff; margin-bottom: 1rem; line-height: 1.2; }
+  .cover .subtitle { color: rgba(255,255,255,0.7); margin-bottom: 0.5rem; font-size: 1.05rem; }
+  .cover .date { font-family: var(--font-mono); font-size: 0.8rem; color: rgba(255,255,255,0.4); margin-top: 2rem; }
+  .badge { display: inline-block; font-family: var(--font-mono); font-size: 0.6rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; padding: 6px 16px; border: 1px solid rgba(255,255,255,0.15); border-radius: 100px; color: rgba(255,255,255,0.5); margin-top: 1.5rem; }
+
+  /* Sections */
+  section { padding: 2.5rem 0; border-bottom: 1px solid var(--border-light); }
+  section:last-of-type { border-bottom: none; }
+
+  /* Accordion */
+  .accordion { border: 1px solid var(--border-light); border-radius: 10px; overflow: hidden; margin-bottom: 0.5rem; }
+  .accordion summary { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; cursor: pointer; background: #fff; border: none; width: 100%; text-align: left; font-family: inherit; gap: 12px; min-height: 48px; list-style: none; }
+  .accordion summary::-webkit-details-marker { display: none; }
+  .accordion summary::marker { display: none; }
+  .accordion-title { font-weight: 600; font-size: 0.88rem; flex: 1; }
+  .accordion-meta { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); white-space: nowrap; }
+  .accordion-chevron { width: 16px; height: 16px; flex-shrink: 0; color: var(--text-muted); transition: transform 0.2s; }
+  .accordion[open] .accordion-chevron { transform: rotate(180deg); }
+  .accordion-body { padding: 0 18px 18px; }
+
+  /* Stat grid */
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.75rem; }
+  .stat-card { background: #fafafa; border-radius: 10px; padding: 16px; text-align: center; }
+  .stat-card .value { font-family: var(--font-mono); font-size: 1.5rem; font-weight: 700; color: var(--text); }
+  .stat-card .value.green { color: var(--green); }
+  .stat-card .desc { font-size: 0.72rem; color: var(--text-muted); margin-top: 6px; line-height: 1.3; }
+
+  /* Data table */
+  .data-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  .data-table th { text-align: left; font-weight: 600; padding: 8px 10px; border-bottom: 2px solid var(--border); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
+  .data-table td { padding: 8px 10px; border-bottom: 1px solid var(--border-light); vertical-align: top; }
+  .data-table tr:last-child td { border-bottom: none; }
+
+  /* Fiabilité badges */
+  .fiab { font-size: 0.55rem; vertical-align: super; margin-left: 2px; }
+  .fiab.verifie { color: var(--green); }
+  .fiab.estime { color: var(--amber); }
+  .fiab.projete { color: var(--blue); }
+
+  /* Source card */
+  .source-card { padding: 14px 16px; background: #fafafa; border-radius: 10px; border-left: 3px solid var(--blue); margin-bottom: 0.75rem; }
+  .source-card h4 { font-size: 0.88rem; margin-bottom: 4px; }
+  .source-card p { font-size: 0.8rem; margin-bottom: 4px; color: var(--text-secondary); }
+  .source-card .meta { font-size: 0.68rem; color: var(--text-muted); }
+
+  /* Action card */
+  .action-card { padding: 16px 18px; border-radius: 10px; margin-bottom: 0.75rem; }
+  .action-card h4 { font-size: 0.9rem; margin-bottom: 6px; }
+  .action-card p { font-size: 0.82rem; margin-bottom: 0; line-height: 1.6; }
+
+  /* Timeline */
+  .timeline-item { display: flex; gap: 1rem; margin-bottom: 1rem; }
+  .timeline-marker { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 0.7rem; font-weight: 700; flex-shrink: 0; }
+  .timeline-content { flex: 1; }
+  .timeline-content h4 { font-size: 0.88rem; margin-bottom: 2px; }
+  .timeline-content p { font-size: 0.8rem; margin-bottom: 0; color: var(--text-secondary); line-height: 1.5; }
+
+  /* Fade-in */
+  .fade-in-section { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-in-section.visible { opacity: 1; transform: translateY(0); }
+
+  /* Footer */
+  footer { background: #0f172a; color: rgba(255,255,255,0.5); padding: 2rem 1.5rem; text-align: center; font-size: 0.72rem; line-height: 1.6; }
+  footer strong { color: rgba(255,255,255,0.8); }
+
+  /* Mobile */
+  @media (max-width: 640px) {
+    .cover h1 { font-size: 1.6rem; }
+    h2 { font-size: 1.4rem; }
+    .stat-grid { grid-template-columns: 1fr 1fr; }
+    .container { padding: 0 1rem; }
+    section { padding: 2rem 0; }
+  }
+
+  @media print {
+    .cover { padding: 2rem 1rem; }
+    .accordion { border: 1px solid #ddd; }
+    .accordion[open] .accordion-body { display: block; }
+    .badge { display: none; }
+    footer { display: none; }
+    .fade-in-section { opacity: 1 !important; transform: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<header class="cover">
+  <p class="label-mono">antoine.works &mdash; document strat&eacute;gique</p>
+  <h1>Recrutement &amp; Formation &Eacute;quipe Tasting Room</h1>
+  <p class="subtitle">Transformer le personnel en moteur de croissance du Wine Club</p>
+  <p class="subtitle" style="color: rgba(255,255,255,0.5); font-size: 0.9rem; margin-bottom: 0;">Pr&eacute;par&eacute; pour S&eacute;bastien &amp; C&eacute;line LeSeurre &mdash; Domaine LeSeurre Winery</p>
+  <p class="date">Mars 2026</p>
+  <span class="badge">Confidentiel</span>
+</header>
+
+<main class="container">
+
+<!-- ================================================================ -->
+<!-- SECTION 1 — LE PROBLÈME                                          -->
+<!-- ================================================================ -->
+<section class="fade-in-section">
+  <span class="label-mono">Le constat</span>
+  <h2>Votre &eacute;quipe est le goulot d'&eacute;tranglement invisible</h2>
+  <p class="subtitle">Avec 24&nbsp;000 visiteurs par an, votre tasting room est une machine &agrave; convertir &mdash; si l'&eacute;quipe est form&eacute;e pour le faire.</p>
+
+  <div class="stat-grid" style="margin-bottom: 2rem;">
+    <div class="stat-card" style="background: var(--red-bg); border: 1px solid rgba(239,68,68,0.15);">
+      <div class="value" style="color: var(--red);">~1%</div>
+      <div class="desc">Taux de conversion visiteur &rarr; Wine Club actuel <span class="fiab estime">&#9684;</span></div>
+    </div>
+    <div class="stat-card" style="background: var(--green-bg); border: 1px solid rgba(34,197,94,0.15);">
+      <div class="value green">8,7%</div>
+      <div class="desc">Benchmark national (SVB 2024 DtC Wine Survey) <span class="fiab projete">&#9675;</span></div>
+    </div>
+    <div class="stat-card" style="background: var(--amber-bg); border: 1px solid rgba(245,158,11,0.15);">
+      <div class="value" style="color: var(--amber);">64%</div>
+      <div class="desc">Des visiteurs repartent sans qu'on leur ait propos&eacute; le club</div>
+    </div>
+    <div class="stat-card">
+      <div class="value">$385</div>
+      <div class="desc">Revenu annuel moyen par membre Wine Club <span class="fiab verifie">&#9679;</span></div>
+    </div>
+  </div>
+
+  <div style="padding: 16px 18px; background: rgba(239,68,68,0.03); border-radius: 10px; border-left: 3px solid var(--red); margin-bottom: 1rem;">
+    <p style="font-size: 0.88rem; line-height: 1.7; color: var(--text-secondary); margin: 0;">
+      <strong style="color: var(--red);">Traduction en dollars&nbsp;:</strong> Chaque point de conversion en plus = ~240 nouveaux membres/an = <strong>+$92&nbsp;000 de revenu r&eacute;current annuel</strong>. Passer de 1% &agrave; 3% (un objectif modeste) repr&eacute;sente <strong>+$133&nbsp;000/an</strong>. Et chaque membre reste en moyenne 30 mois (LTV $963).
+    </p>
+  </div>
+
+  <p style="font-size: 0.82rem; color: var(--text-muted);">
+    Source : WISE Academy 10-Year Mystery Shopping Benchmark (janv. 2026, 6&nbsp;000+ visites) &bull; SVB 2024 DtC Wine Survey &bull; Donn&eacute;es Vinoshipper DL Winery <span class="fiab verifie">&#9679;</span>
+  </p>
+</section>
+
+<!-- ================================================================ -->
+<!-- SECTION 2 — LES VIVIERS DE RECRUTEMENT                          -->
+<!-- ================================================================ -->
+<section class="fade-in-section">
+  <span class="label-mono">Section 1 &mdash; Recrutement</span>
+  <h2>5 viviers de talents &agrave; moins d'une heure</h2>
+  <p class="subtitle">Vous avez l'un des meilleurs &eacute;cosyst&egrave;mes universitaires viticoles du pays &agrave; vos portes. Voici comment en profiter.</p>
+
+  <!-- KEUKA COLLEGE -->
+  <details class="accordion" open>
+    <summary>
+      <span class="accordion-title">Keuka College &mdash; litt&eacute;ralement &agrave; Hammondsport</span>
+      <span class="accordion-meta">0 km &bull; Gratuit</span>
+      <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg>
+    </summary>
+    <div class="accordion-body">
+      <div class="stat-grid" style="margin-bottom: 1rem;">
+        <div class="stat-card" style="border: 1px solid var(--border-light);">
+          <div class="value" style="font-size: 1.2rem;">0 min</div>
+          <div class="desc">De trajet pour les &eacute;tudiants</div>
+        </div>
+        <div class="stat-card" style="border: 1px solid var(--border-light);">
+          <div class="value" style="font-size: 1.2rem;">560h</div>
+          <div class="desc">De <em>Field Period</em> obligatoire par &eacute;tudiant</div>
+        </div>
+      </div>
+
+      <p style="font-size: 0.85rem; line-height: 1.7; margin-bottom: 0.75rem;">
+        <strong>Programmes pertinents&nbsp;:</strong> Business Management, Marketing. Chaque &eacute;tudiant Keuka doit compl&eacute;ter 560 heures d'exp&eacute;rience professionnelle (<em>Field Period</em>) sur 4 ans. <strong>Ils ont besoin de vous autant que vous avez besoin d'eux.</strong>
+      </p>
+
+      <div class="action-card" style="background: rgba(34,197,94,0.04); border: 1px solid rgba(34,197,94,0.12);">
+        <h4 style="color: var(--green);">Action imm&eacute;diate</h4>
+        <p style="color: var(--text-secondary);">
+          Contacter le Career Development Office de Keuka College. Proposer des placements <em>Field Period</em> pour le tasting room d&egrave;s ce printemps. Co&ucirc;t : <strong>$0</strong> (sauf salaire horaire si applicable).<br>
+          <span style="font-size: 0.72rem; color: var(--text-muted);">keuka.edu/academics/career-development</span>
+        </p>
+      </div>
+    </div>
+  </details>
+
+  <!-- CORNELL -->
+  <details class="accordion">
+    <summary>
+      <span class="accordion-title">Cornell University &mdash; Le pipeline premium</span>
+      <span class="accordion-meta">44 miles &bull; Gratuit via Handshake</span>
+      <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg>
+    </summary>
+    <div class="accordion-body">
+      <p style="font-size: 0.85rem; line-height: 1.7; margin-bottom: 1rem;">
+        Cornell abrite l'un des seuls programmes de <strong>Viticulture &amp; Enology (V&amp;E) de l'Ivy League</strong>, dans le College of Agriculture &amp; Life Sciences (CALS). Mais ce n'est pas le seul vivier&nbsp;:
+      </p>
+
+      <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1rem;">
+        <div class="source-card" style="border-left-color: var(--green);">
+          <h4>CALS &mdash; Viticulture &amp; Enology</h4>
+          <p>Tous les &eacute;tudiants V&amp;E <strong>doivent faire au moins un stage</strong> pour valider leur dipl&ocirc;me. Stages d'&eacute;t&eacute; (juin-ao&ucirc;t) et stages de vendanges (sept-nov) sont activement encourag&eacute;s.</p>
+          <p class="meta">Cr&eacute;dits possibles : VIEN 4960 (jusqu'&agrave; 3 cr&eacute;dits). Contrat d'apprentissage &eacute;tudiant/superviseur/conseiller.</p>
+        </div>
+        <div class="source-card" style="border-left-color: var(--violet);">
+          <h4>Nolan School of Hotel Administration</h4>
+          <p>&Eacute;cole d'h&ocirc;tellerie <strong>n&deg;1 mondiale</strong>. Le cours HADM 4300 &laquo;&nbsp;Introduction to Wines&nbsp;&raquo; accueille <strong>600&ndash;900 &eacute;tudiants par semestre</strong>. Ces &eacute;tudiants sont form&eacute;s &agrave; l'exp&eacute;rience client &mdash; <strong>id&eacute;aux pour le tasting room</strong>.</p>
+          <p class="meta">Stage obligatoire au Statler Hotel (200+ &eacute;tudiants/an). Profils orient&eacute;s business + service.</p>
+        </div>
+        <div class="source-card" style="border-left-color: var(--amber);">
+          <h4>CUVEC &mdash; Club &eacute;tudiant V&amp;E</h4>
+          <p>Cornell University Viticulture &amp; Enology Club. Vinification, d&eacute;gustations, &eacute;v&eacute;nements carri&egrave;re. <strong>Point de contact direct avec les &eacute;tudiants motiv&eacute;s.</strong></p>
+          <p class="meta">cornell.campusgroups.com/cuvec</p>
+        </div>
+      </div>
+
+      <div class="action-card" style="background: rgba(37,99,235,0.04); border: 1px solid rgba(37,99,235,0.12);">
+        <h4 style="color: var(--blue);">Comment recruter &agrave; Cornell (3 &eacute;tapes)</h4>
+        <p style="color: var(--text-secondary); margin-bottom: 8px;">
+          <strong>1.</strong> Cr&eacute;er un compte employeur sur <strong>Handshake</strong> (joinhandshake.com) &mdash; gratuit, touche CALS + Hotel School simultan&eacute;ment.<br>
+          <strong>2.</strong> Publier l'offre de stage (janvier pour l'&eacute;t&eacute;, juin pour les vendanges).<br>
+          <strong>3.</strong> Contacter le coordinateur V&amp;E pour une annonce directe aux &eacute;tudiants.
+        </p>
+        <p style="font-size: 0.72rem; color: var(--text-muted);">
+          Contact Employer Relations : recruiting@cornell.edu &bull; +1 (607) 255-5296<br>
+          Stages V&amp;E : grapesandwine.cals.cornell.edu/undergraduate/internships/
+        </p>
+      </div>
+
+      <table class="data-table" style="margin-top: 1rem;">
+        <thead><tr><th>Poste</th><th>D&eacute;tail</th><th>Co&ucirc;t</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Publication Handshake</td>
+            <td>Offre de stage visible par 25&nbsp;000+ &eacute;tudiants</td>
+            <td class="mono" style="color: var(--green);">$0</td>
+          </tr>
+          <tr>
+            <td>Salaire stagiaire</td>
+            <td>$15/h &times; 40h &times; 12 sem (minimum wage NY upstate)</td>
+            <td class="mono">~$7&nbsp;200</td>
+          </tr>
+          <tr>
+            <td>Logement (optionnel)</td>
+            <td>Chambre pr&egrave;s du domaine ou arrangement local</td>
+            <td class="mono">~$1&nbsp;500&ndash;3&nbsp;000</td>
+          </tr>
+          <tr style="background: rgba(37,99,235,0.03);">
+            <td><strong>Budget total</strong></td>
+            <td>1 stagiaire Cornell, &eacute;t&eacute; complet</td>
+            <td class="mono" style="font-weight: 600;">~$8&nbsp;700&ndash;10&nbsp;200</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.75rem;">
+        <strong>Avantage diff&eacute;renciant</strong>&nbsp;: tr&egrave;s peu de wineries Finger Lakes recrutent activement via Handshake. Domaine LeSeurre + histoire Champagne 6&egrave;me g&eacute;n&eacute;ration = magn&eacute;tique pour les &eacute;tudiants V&amp;E.
+      </p>
+    </div>
+  </details>
+
+  <!-- FLCC -->
+  <details class="accordion">
+    <summary>
+      <span class="accordion-title">Finger Lakes Community College (FLCC) &mdash; Le nouveau programme id&eacute;al</span>
+      <span class="accordion-meta">45 min &bull; Gratuit</span>
+      <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg>
+    </summary>
+    <div class="accordion-body">
+      <div style="padding: 14px 16px; background: rgba(34,197,94,0.04); border-radius: 10px; border: 1px solid rgba(34,197,94,0.12); margin-bottom: 1rem;">
+        <p style="font-size: 0.88rem; font-weight: 600; color: var(--green); margin-bottom: 4px;">Nouveau &mdash; Janvier 2026</p>
+        <p style="font-size: 0.85rem; line-height: 1.6; color: var(--text-secondary); margin: 0;">
+          FLCC vient de lancer un <strong>Certificate in Wine Service Management</strong> (27 cr&eacute;dits) qui inclut <strong>300 heures de stage obligatoire dans un &eacute;tablissement viticole</strong>. Ces &eacute;tudiants <em>doivent</em> trouver des wineries partenaires. C'est un pipeline gratuit de personnel pr&eacute;-form&eacute;.
+        </p>
+      </div>
+
+      <p style="font-size: 0.85rem; line-height: 1.7; margin-bottom: 0.75rem;"><strong>Autres programmes FLCC pertinents&nbsp;:</strong></p>
+      <ul style="font-size: 0.82rem; line-height: 1.8; color: var(--text-secondary); margin-left: 1.2rem; margin-bottom: 1rem;">
+        <li><strong>Viticulture &amp; Wine Technology AAS</strong> &mdash; 2 ans, bas&eacute; &agrave; Cornell AgriTech (Geneva)</li>
+        <li><strong>Event &amp; Hospitality Management AAS</strong> &mdash; 600h de stage int&eacute;gr&eacute;</li>
+        <li><strong>Viticulture Certificate</strong> &mdash; 29 cr&eacute;dits, stages inclus, compl&eacute;table en 12 mois</li>
+      </ul>
+
+      <div class="action-card" style="background: rgba(34,197,94,0.04); border: 1px solid rgba(34,197,94,0.12);">
+        <h4 style="color: var(--green);">Action</h4>
+        <p style="color: var(--text-secondary);">
+          Contacter FLCC pour devenir <strong>site partenaire</strong> du nouveau Wine Service Certificate. Premier arrivé, premier servi &mdash; le programme vient de d&eacute;marrer.<br>
+          <span style="font-size: 0.72rem; color: var(--text-muted);">flcc.edu &bull; Programme lanc&eacute; janvier 2026</span>
+        </p>
+      </div>
+    </div>
+  </details>
+
+  <!-- J-1 VISA -->
+  <details class="accordion">
+    <summary>
+      <span class="accordion-title">Programme J-1 Visa &mdash; Stagiaires internationaux</span>
+      <span class="accordion-meta">~$8&ndash;12K tout compris</span>
+      <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg>
+    </summary>
+    <div class="accordion-body">
+      <p style="font-size: 0.85rem; line-height: 1.7; margin-bottom: 1rem;">
+        Le programme J-1 permet d'accueillir des <strong>stagiaires internationaux en &oelig;nologie, viticulture ou h&ocirc;tellerie</strong>. Pour Domaine LeSeurre, c'est un atout majeur&nbsp;: vous pouvez recruter directement depuis les &eacute;coles viticoles fran&ccedil;aises &mdash; <strong>votre r&eacute;seau Champagne est un avantage concurrentiel unique</strong>.
+      </p>
+
+      <table class="data-table" style="margin-bottom: 1rem;">
+        <thead><tr><th>Cat&eacute;gorie J-1</th><th>Profil</th><th>Dur&eacute;e max</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Intern</strong></td>
+            <td>18-25 ans, &eacute;tudiant ou dipl&ocirc;m&eacute; &lt;12 mois</td>
+            <td class="mono">12 mois</td>
+          </tr>
+          <tr>
+            <td><strong>Trainee</strong></td>
+            <td>20-35 ans, dipl&ocirc;me + 1 an XP ou 5 ans XP</td>
+            <td class="mono">12-18 mois</td>
+          </tr>
+          <tr>
+            <td><strong>Summer Work Travel</strong></td>
+            <td>&Eacute;tudiant &eacute;tranger temps plein</td>
+            <td class="mono">4 mois (mai-oct)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="font-size: 0.85rem; line-height: 1.7; margin-bottom: 0.75rem;"><strong>Le sponsor principal pour les wineries&nbsp;:</strong></p>
+      <div class="source-card" style="border-left-color: var(--violet); margin-bottom: 1rem;">
+        <h4>CAEP &mdash; Consortium for Agricultural Education Programs</h4>
+        <p>Programme sp&eacute;cifique <strong>&oelig;nologie</strong> : Wine Cellar Training, Viticulture Training, Enology Business Training, Laboratory Training. Travaille avec des centaines de wineries am&eacute;ricaines.</p>
+        <p class="meta">caep.org/program-enology.php &bull; Contact : enology@caep.org</p>
+      </div>
+
+      <table class="data-table" style="margin-bottom: 1rem;">
+        <thead><tr><th>Poste</th><th>Co&ucirc;t</th><th>Pay&eacute; par</th></tr></thead>
+        <tbody>
+          <tr><td>Frais CAEP + SEVIS + ambassade</td><td class="mono">~$2&nbsp;250</td><td>Le stagiaire (g&eacute;n&eacute;ralement)</td></tr>
+          <tr><td>Assurance sant&eacute;</td><td class="mono">$60-100/mois</td><td>Inclus dans frais CAEP (4 mois)</td></tr>
+          <tr><td>Visite de site (&lt;25 employ&eacute;s)</td><td class="mono">$250</td><td>Winery</td></tr>
+          <tr><td>Salaire (3-4 mois, min. wage)</td><td class="mono">$5&nbsp;400&ndash;7&nbsp;200</td><td>Winery</td></tr>
+          <tr><td>Logement (aide)</td><td class="mono">$1&nbsp;500&ndash;3&nbsp;000</td><td>Winery (recommand&eacute;)</td></tr>
+          <tr style="background: rgba(139,92,246,0.03);">
+            <td><strong>Total winery</strong></td>
+            <td class="mono" style="font-weight: 600;">~$8&nbsp;000&ndash;12&nbsp;000</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="padding: 14px 16px; background: rgba(139,92,246,0.04); border-radius: 10px; border: 1px solid rgba(139,92,246,0.12); margin-bottom: 0.75rem;">
+        <p style="font-size: 0.85rem; line-height: 1.7; color: var(--text-secondary); margin: 0;">
+          <strong style="color: var(--violet);">Avantage fiscal</strong>&nbsp;: les participants J-1 ne sont <strong>pas soumis aux taxes FICA/FUTA</strong> (Social Security, Medicare). Cela repr&eacute;sente une &eacute;conomie de ~7,65% sur le salaire brut par rapport &agrave; un employ&eacute; r&eacute;gulier.
+        </p>
+      </div>
+
+      <div style="padding: 14px 16px; background: rgba(245,158,11,0.04); border-radius: 10px; border: 1px solid rgba(245,158,11,0.12);">
+        <p style="font-size: 0.85rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 6px;">
+          <strong style="color: var(--amber);">Votre avantage unique</strong>&nbsp;: S&eacute;bastien et C&eacute;line viennent de Champagne, 6&egrave;me g&eacute;n&eacute;ration. Vous pouvez recruter directement dans les &eacute;coles viticoles fran&ccedil;aises (Avize Viti Campus, Lyc&eacute;e viticole de Beaune, Universit&eacute; de Reims&hellip;). Aucune autre winery Finger Lakes ne peut offrir ce lien culturel.
+        </p>
+        <p style="font-size: 0.82rem; line-height: 1.6; color: var(--text-secondary); margin: 0;">
+          <strong>Timeline</strong>&nbsp;: pr&eacute;voir 6&ndash;9 mois &agrave; l'avance. Pour un stagiaire d'&eacute;t&eacute; 2027, commencer les d&eacute;marches en <strong>octobre 2026</strong>.
+        </p>
+      </div>
+    </div>
+  </details>
+
+  <!-- WINEJOBS + AUTRES -->
+  <details class="accordion">
+    <summary>
+      <span class="accordion-title">Autres canaux &mdash; Winejobs, RIT, workforce locale</span>
+      <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg>
+    </summary>
+    <div class="accordion-body">
+      <table class="data-table" style="margin-bottom: 1rem;">
+        <thead><tr><th>Canal</th><th>Co&ucirc;t</th><th>Id&eacute;al pour</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Winejobs.com</strong> (WineBusiness.com)</td>
+            <td class="mono">$187&ndash;209 / 35 jours</td>
+            <td>Postes sp&eacute;cialis&eacute;s vin (tasting room manager, cellar)</td>
+          </tr>
+          <tr>
+            <td><strong>RIT</strong> &mdash; Hospitality &amp; Tourism Mgmt</td>
+            <td class="mono" style="color: var(--green);">$0 (Handshake)</td>
+            <td>Profils business/tech pour management tasting room</td>
+          </tr>
+          <tr>
+            <td><strong>Indeed / Craigslist Ithaca</strong></td>
+            <td class="mono">$0&ndash;25</td>
+            <td>Volume, saisonnier, local</td>
+          </tr>
+          <tr>
+            <td><strong>CSSWFNY</strong> (Workforce NY)</td>
+            <td class="mono" style="color: var(--green);">$0</td>
+            <td>Aide au recrutement saisonnier, formation</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.6;">
+        <strong>Contexte concurrentiel</strong>&nbsp;: 140+ wineries dans les Finger Lakes, toutes en concurrence pour le m&ecirc;me bassin d'emploi. Depuis le titre Wine Enthusiast &laquo;&nbsp;R&eacute;gion de l'Ann&eacute;e 2025&nbsp;&raquo;, le tourisme augmente et la pression sur le recrutement aussi. <strong>Se diff&eacute;rencier par la culture fran&ccedil;aise et la formation est votre meilleur levier.</strong>
+      </p>
+      <p style="font-size: 0.82rem; color: var(--text-muted);">
+        Salaire moyen tasting room (Finger Lakes)&nbsp;: <strong>$16&ndash;20/h</strong> + pourboires ($3-8/h). Manager&nbsp;: $40&ndash;55K/an.
+      </p>
+    </div>
+  </details>
+</section>
+
+<!-- ================================================================ -->
+<!-- SECTION 3 — FORMATION                                            -->
+<!-- ================================================================ -->
+<section class="fade-in-section">
+  <span class="label-mono">Section 2 &mdash; Formation</span>
+  <h2>Former l'&eacute;quipe &agrave; convertir</h2>
+  <p class="subtitle">Recruter ne suffit pas. L'objectif est de transformer chaque interaction tasting room en opportunit&eacute; Wine Club.</p>
+
+  <!-- WISE -->
+  <details class="accordion" open>
+    <summary>
+      <span class="accordion-title">WISE Academy &mdash; La certification de r&eacute;f&eacute;rence</span>
+      <span class="accordion-meta">~$300/personne (avec subvention NY)</span>
+      <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg>
+    </summary>
+    <div class="accordion-body">
+      <p style="font-size: 0.85rem; line-height: 1.7; margin-bottom: 1rem;">
+        <strong>Wine Industry Sales Education (WISE)</strong> est la <strong>seule certification au monde d&eacute;di&eacute;e &agrave; la vente DTC en tasting room</strong>. Ce n'est pas un cours sur le vin &mdash; c'est un cours sur <strong>comment convertir un visiteur en membre du Wine Club</strong>.
+      </p>
+
+      <h4 style="margin-bottom: 0.75rem;">Le Triple Score &mdash; les 3 comportements qui comptent</h4>
+      <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.25rem;">
+        <div style="display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; background: rgba(34,197,94,0.04); border-radius: 8px;">
+          <span style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; color: var(--green); background: rgba(34,197,94,0.1); border-radius: 6px; padding: 4px 8px; flex-shrink: 0;">1</span>
+          <div>
+            <div style="font-size: 0.85rem; font-weight: 600;">Demander la vente</div>
+            <div style="font-size: 0.78rem; color: var(--text-secondary);">Terminer chaque d&eacute;gustation par une invitation &agrave; l'achat. 64% des employ&eacute;s ne le font pas.</div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; background: rgba(37,99,235,0.04); border-radius: 8px;">
+          <span style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; color: var(--blue); background: rgba(37,99,235,0.1); border-radius: 6px; padding: 4px 8px; flex-shrink: 0;">2</span>
+          <div>
+            <div style="font-size: 0.85rem; font-weight: 600;">Pr&eacute;senter le Wine Club de fa&ccedil;on personnalis&eacute;e</div>
+            <div style="font-size: 0.78rem; color: var(--text-secondary);">Pas un pitch g&eacute;n&eacute;rique &mdash; adapt&eacute; &agrave; ce que le visiteur a aim&eacute; pendant la d&eacute;gustation.</div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; background: rgba(139,92,246,0.04); border-radius: 8px;">
+          <span style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; color: var(--violet); background: rgba(139,92,246,0.1); border-radius: 6px; padding: 4px 8px; flex-shrink: 0;">3</span>
+          <div>
+            <div style="font-size: 0.85rem; font-weight: 600;">Capturer les coordonn&eacute;es</div>
+            <div style="font-size: 0.78rem; color: var(--text-secondary);">Email et/ou t&eacute;l&eacute;phone pour le suivi post-visite. Seuls 18% des employ&eacute;s le font actuellement.</div>
+          </div>
+        </div>
+      </div>
+
+      <h4 style="margin-bottom: 0.75rem;">Certifications disponibles</h4>
+      <table class="data-table" style="margin-bottom: 1rem;">
+        <thead><tr><th>Cours</th><th>Dur&eacute;e</th><th>Prix</th><th>Avec subvention NY Wines</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>WISE #111</strong> Tasting Room Professional</td>
+            <td>2 jours</td>
+            <td class="mono">$700</td>
+            <td class="mono" style="color: var(--green); font-weight: 600;">~$300</td>
+          </tr>
+          <tr>
+            <td>WISE #121 Advanced Tasting Room</td>
+            <td>2 jours</td>
+            <td class="mono">$700</td>
+            <td class="mono" style="color: var(--green);">~$300</td>
+          </tr>
+          <tr>
+            <td>WISE #211 Tasting Room Management</td>
+            <td>2 jours</td>
+            <td class="mono">$700+</td>
+            <td class="mono" style="color: var(--green);">~$300+</td>
+          </tr>
+          <tr>
+            <td>WISE #213 Wine Club Management</td>
+            <td>3 jours</td>
+            <td class="mono">$990</td>
+            <td class="mono" style="color: var(--green);">~$590</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="padding: 14px 16px; background: rgba(34,197,94,0.04); border-radius: 10px; border: 1px solid rgba(34,197,94,0.12); margin-bottom: 1rem;">
+        <p style="font-size: 0.85rem; line-height: 1.7; color: var(--text-secondary); margin: 0;">
+          <strong style="color: var(--green);">Subvention NY Wine &amp; Grape Foundation</strong>&nbsp;: les membres b&eacute;n&eacute;ficient d'une prise en charge <strong>jusqu'&agrave; $400 par cours</strong>. Un cours WISE #111 &agrave; $700 ne vous co&ucirc;te que ~$300. V&eacute;rifiez votre &eacute;ligibilit&eacute; sur newyorkwines.org.
+        </p>
+      </div>
+
+      <h4 style="margin-bottom: 0.75rem;">Mystery Shopping &mdash; Mesurer avant et apr&egrave;s</h4>
+      <p style="font-size: 0.85rem; line-height: 1.7; margin-bottom: 0.75rem;">
+        WISE propose un service de <strong>mystery shopping</strong> pour mesurer le Triple Score de votre &eacute;quipe. Un &laquo;&nbsp;client myst&egrave;re&nbsp;&raquo; vient d&eacute;guster et &eacute;value l'exp&eacute;rience selon le r&eacute;f&eacute;rentiel WISE.
+      </p>
+      <table class="data-table" style="margin-bottom: 1rem;">
+        <thead><tr><th>Service</th><th>Prix</th><th>Inclus</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Mystery shop standard</td>
+            <td class="mono">$375</td>
+            <td>Visite + rapport d&eacute;taill&eacute; + debrief</td>
+          </tr>
+          <tr>
+            <td>Mystery shop avec food pairing/tour</td>
+            <td class="mono">$425</td>
+            <td>Idem + &eacute;valuation exp&eacute;rience compl&egrave;te</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="action-card" style="background: rgba(37,99,235,0.04); border: 1px solid rgba(37,99,235,0.12);">
+        <h4 style="color: var(--blue);">Plan recommand&eacute;</h4>
+        <p style="color: var(--text-secondary);">
+          <strong>1.</strong> 2&ndash;3 mystery shops ($750&ndash;1&nbsp;275) pour &eacute;tablir le baseline Triple Score.<br>
+          <strong>2.</strong> WISE #111 pour tout le staff tasting room (~$300/personne apr&egrave;s subvention).<br>
+          <strong>3.</strong> Mystery shops trimestriels pour mesurer la progression.<br>
+          <strong>Budget ann&eacute;e 1</strong> (6 employ&eacute;s + 4 mystery shops)&nbsp;: <strong>~$3&nbsp;300</strong>.
+        </p>
+      </div>
+    </div>
+  </details>
+
+  <!-- WSET -->
+  <details class="accordion">
+    <summary>
+      <span class="accordion-title">WSET Level 1 &mdash; Les fondamentaux du vin</span>
+      <span class="accordion-meta">$300&ndash;400/personne &bull; 1 jour</span>
+      <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg>
+    </summary>
+    <div class="accordion-body">
+      <p style="font-size: 0.85rem; line-height: 1.7; margin-bottom: 1rem;">
+        Wine &amp; Spirit Education Trust &mdash; le <strong>standard mondial</strong> de la formation vin. Le Level 1 est la base : c&eacute;pages, r&eacute;gions, service, d&eacute;gustation syst&eacute;matique. <strong>1 jour de cours + examen</strong> (30 QCM, 70% pour passer, taux de r&eacute;ussite ~95%).
+      </p>
+
+      <h4 style="margin-bottom: 0.5rem;">O&ugrave; le passer pr&egrave;s de chez vous</h4>
+      <table class="data-table" style="margin-bottom: 1rem;">
+        <thead><tr><th>Prestataire</th><th>Lieu</th><th>Distance</th><th>Prix</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Cultivate FLX</strong></td>
+            <td>Finger Lakes</td>
+            <td>Local</td>
+            <td class="mono">~$350</td>
+          </tr>
+          <tr>
+            <td><strong>New York Kitchen</strong></td>
+            <td>Canandaigua</td>
+            <td>~45 min</td>
+            <td class="mono">~$400</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.6;">
+        <strong>WSET vs WISE</strong>&nbsp;: WSET enseigne les <em>connaissances</em> (qu'est-ce que le vin), WISE enseigne les <em>comp&eacute;tences</em> (comment le vendre). <strong>Les deux sont compl&eacute;mentaires</strong> &mdash; commencez par WISE (#111) pour l'impact commercial imm&eacute;diat, ajoutez WSET L1 en basse saison pour approfondir les connaissances.
+      </p>
+    </div>
+  </details>
+
+  <!-- INCENTIVES -->
+  <details class="accordion">
+    <summary>
+      <span class="accordion-title">Incentives &eacute;quipe &mdash; Motiver la conversion</span>
+      <span class="accordion-meta">$15&ndash;60 / inscription club</span>
+      <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg>
+    </summary>
+    <div class="accordion-body">
+      <p style="font-size: 0.85rem; line-height: 1.7; margin-bottom: 1rem;">
+        La formation donne les comp&eacute;tences. Les incentives donnent la <strong>motivation</strong>. Le principe est simple : chaque inscription Wine Club g&eacute;n&egrave;re $385/an de revenu &mdash; reverser $15&ndash;60 &agrave; l'employ&eacute; qui l'a g&eacute;n&eacute;r&eacute;e est un investissement &agrave; <strong>ROI imm&eacute;diat</strong>.
+      </p>
+
+      <table class="data-table" style="margin-bottom: 1rem;">
+        <thead><tr><th>Mod&egrave;le</th><th>Structure</th><th>Budget estim&eacute;</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Bonus fixe</strong></td>
+            <td>$15&ndash;25 par inscription valid&eacute;e</td>
+            <td class="mono">~$4&ndash;6K/an (si 264 inscriptions)</td>
+          </tr>
+          <tr>
+            <td><strong>Paliers progressifs</strong></td>
+            <td>$15 (1-5/mois), $30 (6-10), $60 (11+)</td>
+            <td class="mono">~$5&ndash;10K/an</td>
+          </tr>
+          <tr>
+            <td><strong>Leaderboard + challenges</strong></td>
+            <td>Classement mensuel, bonus pour le top performer</td>
+            <td class="mono">~$2&ndash;4K/an</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.6;">
+        <strong>ROI</strong>&nbsp;: m&ecirc;me &agrave; $60/inscription et 200 nouvelles inscriptions, le co&ucirc;t des incentives ($12K) repr&eacute;sente <strong>moins de 16%</strong> du revenu g&eacute;n&eacute;r&eacute; ($77K+). C'est &agrave; vous de d&eacute;finir les montants et objectifs qui correspondent &agrave; votre culture d'&eacute;quipe.
+      </p>
+    </div>
+  </details>
+</section>
+
+<!-- ================================================================ -->
+<!-- SECTION 4 — PLAN D'ACTION                                        -->
+<!-- ================================================================ -->
+<section class="fade-in-section">
+  <span class="label-mono">Section 3 &mdash; Plan d'action</span>
+  <h2>Calendrier d'ex&eacute;cution</h2>
+  <p class="subtitle">Actions concr&egrave;tes, class&eacute;es par priorit&eacute; et timeline. Ce qui peut d&eacute;marrer imm&eacute;diatement est marqu&eacute; en vert.</p>
+
+  <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+
+    <div class="timeline-item">
+      <div class="timeline-marker" style="background: rgba(34,197,94,0.1); color: var(--green);">NOW</div>
+      <div class="timeline-content">
+        <h4>Mars&ndash;Avril 2026 <span style="font-weight: 400; color: var(--green); font-size: 0.8rem;">&mdash; Actions imm&eacute;diates ($0)</span></h4>
+        <p>
+          &#10003; Contacter Keuka College Career Services (Field Period)<br>
+          &#10003; Contacter FLCC pour le Wine Service Certificate<br>
+          &#10003; Cr&eacute;er un compte Handshake (Cornell + RIT)<br>
+          &#10003; Publier les offres de stage &eacute;t&eacute; 2026 (derniers d&eacute;lais)
+        </p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-marker" style="background: rgba(37,99,235,0.1); color: var(--blue);">AVR</div>
+      <div class="timeline-content">
+        <h4>Avril&ndash;Mai 2026 <span style="font-weight: 400; color: var(--blue); font-size: 0.8rem;">&mdash; Formation (~$2&nbsp;000)</span></h4>
+        <p>
+          &#9675; Commander 2&ndash;3 mystery shops WISE (baseline)<br>
+          &#9675; Inscrire l'&eacute;quipe &agrave; WISE #111 avant la haute saison<br>
+          &#9675; D&eacute;finir les incentives Wine Club (montants + r&egrave;gles)
+        </p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-marker" style="background: rgba(139,92,246,0.1); color: var(--violet);">MAI</div>
+      <div class="timeline-content">
+        <h4>Mai&ndash;Septembre 2026 <span style="font-weight: 400; color: var(--violet); font-size: 0.8rem;">&mdash; Haute saison = mesure</span></h4>
+        <p>
+          &#9675; Stagiaires en place (Keuka, Cornell, FLCC)<br>
+          &#9675; Mystery shops mensuels ou bi-mensuels<br>
+          &#9675; Suivi conversion Wine Club par employ&eacute;<br>
+          &#9675; Ajustement incentives selon r&eacute;sultats
+        </p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-marker" style="background: rgba(245,158,11,0.1); color: var(--amber);">OCT</div>
+      <div class="timeline-content">
+        <h4>Octobre&ndash;D&eacute;cembre 2026 <span style="font-weight: 400; color: var(--amber); font-size: 0.8rem;">&mdash; Bilan + pr&eacute;paration 2027</span></h4>
+        <p>
+          &#9675; Bilan conversion Wine Club Y1 (vs baseline)<br>
+          &#9675; WSET L1 pour l'&eacute;quipe (basse saison)<br>
+          &#9675; Contacter CAEP pour stagiaire J-1 &eacute;t&eacute; 2027<br>
+          &#9675; Publier sur Handshake pour &eacute;t&eacute; 2027 (d&egrave;s janvier)
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- SECTION 5 — BUDGET TOTAL                                         -->
+<!-- ================================================================ -->
+<section class="fade-in-section">
+  <span class="label-mono">Section 4 &mdash; Budget</span>
+  <h2>Investissement total &mdash; Ann&eacute;e 1</h2>
+
+  <table class="data-table" style="margin-bottom: 1.5rem;">
+    <thead><tr><th>Poste</th><th>D&eacute;tail</th><th>Co&ucirc;t</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Recrutement (Handshake, Keuka, FLCC)</td>
+        <td>Publications + partenariats &eacute;coles</td>
+        <td class="mono" style="color: var(--green); font-weight: 600;">$0</td>
+      </tr>
+      <tr>
+        <td>Stagiaire Cornell (&eacute;t&eacute;)</td>
+        <td>12 sem, $15/h + logement</td>
+        <td class="mono">~$9&nbsp;000</td>
+      </tr>
+      <tr>
+        <td>WISE #111 (6 employ&eacute;s)</td>
+        <td>$300/pers apr&egrave;s subvention NY</td>
+        <td class="mono">~$1&nbsp;800</td>
+      </tr>
+      <tr>
+        <td>WISE Mystery Shopping (&times;4)</td>
+        <td>$375/visite</td>
+        <td class="mono">~$1&nbsp;500</td>
+      </tr>
+      <tr>
+        <td>WSET L1 (3 employ&eacute;s cl&eacute;s)</td>
+        <td>$350/pers chez Cultivate FLX</td>
+        <td class="mono">~$1&nbsp;050</td>
+      </tr>
+      <tr>
+        <td>Incentives Wine Club</td>
+        <td>$25/inscription, ~300 inscriptions</td>
+        <td class="mono">~$7&nbsp;500</td>
+      </tr>
+      <tr>
+        <td>Winejobs.com (1 annonce)</td>
+        <td>35 jours</td>
+        <td class="mono">~$200</td>
+      </tr>
+      <tr style="background: rgba(37,99,235,0.04); font-weight: 600;">
+        <td><strong>Total ann&eacute;e 1</strong></td>
+        <td></td>
+        <td class="mono" style="color: var(--blue); font-size: 1rem;">~$21&nbsp;050</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="padding: 16px 18px; background: rgba(34,197,94,0.04); border-radius: 10px; border: 1px solid rgba(34,197,94,0.12);">
+    <p style="font-size: 0.92rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 6px;">
+      <strong style="color: var(--green);">Retour sur investissement</strong>
+    </p>
+    <p style="font-size: 0.85rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 6px;">
+      Objectif&nbsp;: passer de 1% &agrave; 3% de conversion = <strong>+346 membres nets/an</strong> = <strong>+$133&nbsp;000 de revenu r&eacute;current</strong>.
+    </p>
+    <p style="font-size: 0.85rem; line-height: 1.7; color: var(--text-secondary); margin: 0;">
+      M&ecirc;me en atteignant seulement 2% (moiti&eacute; de l'objectif), le revenu additionnel (~$89K) d&eacute;passe l'investissement <strong>de 4 &agrave; 1</strong>.
+    </p>
+  </div>
+
+  <p style="font-size: 0.72rem; color: var(--text-muted); margin-top: 1rem;">
+    Tous les chiffres sont des estimations bas&eacute;es sur les tarifs publi&eacute;s (mars 2026). Les subventions NY Wine &amp; Grape Foundation sont soumises &agrave; &eacute;ligibilit&eacute;. Les projections de conversion sont des sc&eacute;narios, pas des garanties.
+  </p>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <p style="margin-bottom: 0.5rem;">
+    <strong>antoine.works</strong> &mdash; Strat&eacute;gie de croissance augment&eacute;e par l'IA
+  </p>
+  <p style="margin: 0;">
+    Document confidentiel &mdash; Propri&eacute;t&eacute; d'Antoine Thomas / antoine.works<br>
+    Sources : Cornell CALS &bull; CAEP J-1 Programs &bull; WISE Academy &bull; WSET &bull; SVB 2024 DtC Wine Survey &bull; NY Wine &amp; Grape Foundation &bull; FLCC &bull; Keuka College &bull; BLS JOLTS &bull; PayScale &bull; Donn&eacute;es Vinoshipper DL Winery
+  </p>
+</footer>
+
+<script>
+  // Fade-in on scroll
+  if ('IntersectionObserver' in window) {
+    var fadeObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          fadeObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in-section').forEach(function(el) { fadeObserver.observe(el); });
+  }
+</script>
+</body>
+</html>

@@ -26,6 +26,9 @@ const TOKENS = {
 };
 
 const auditHtml = fs.readFileSync(path.join(__dirname, "audit.html"), "utf-8");
+const staffingHtml = fs.existsSync(path.join(__dirname, "staffing.html"))
+  ? fs.readFileSync(path.join(__dirname, "staffing.html"), "utf-8")
+  : null;
 
 const notFoundHtml = `<!DOCTYPE html>
 <html lang="fr"><head><meta charset="utf-8"><title>Lien invalide</title>
@@ -315,6 +318,28 @@ const server = http.createServer(async (req, res) => {
     const report = generateReport();
     res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
     res.end(report);
+    return;
+  }
+
+  // Serve staffing document
+  if (url.pathname === "/staffing") {
+    const token = url.searchParams.get("t");
+    if (!token || !TOKENS[token] || !staffingHtml) {
+      res.writeHead(403, { "Content-Type": "text/html; charset=utf-8" });
+      res.end(notFoundHtml);
+      return;
+    }
+    const viewer = TOKENS[token];
+    if (viewer.notify) {
+      const now = new Date().toLocaleString("fr-FR", { timeZone: "Europe/Paris", dateStyle: "short", timeStyle: "medium" });
+      sendTelegram(`📋 *Document Staffing ouvert*\n\n*Qui :* ${viewer.name}\n*Quand :* ${now}`);
+    }
+    res.writeHead(200, {
+      "Content-Type": "text/html; charset=utf-8",
+      "Cache-Control": "no-store",
+      "X-Robots-Tag": "noindex, nofollow",
+    });
+    res.end(staffingHtml);
     return;
   }
 
