@@ -426,7 +426,20 @@ const server = http.createServer(async (req, res) => {
   }
 
   const token = url.searchParams.get("t");
-  if (!token || !TOKENS[token]) {
+
+  // Public access (no token) — serve page without tracking
+  if (!token) {
+    res.writeHead(200, {
+      "Content-Type": "text/html; charset=utf-8",
+      "Cache-Control": "no-store",
+      "X-Robots-Tag": "noindex, nofollow",
+    });
+    res.end(auditHtml);
+    return;
+  }
+
+  // Invalid token — block
+  if (!TOKENS[token]) {
     res.writeHead(403, { "Content-Type": "text/html; charset=utf-8" });
     res.end(notFoundHtml);
     return;
